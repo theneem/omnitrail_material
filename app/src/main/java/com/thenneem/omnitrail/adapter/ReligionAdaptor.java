@@ -1,0 +1,113 @@
+package com.thenneem.omnitrail.adapter;
+
+import android.content.Context;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.net.Uri;
+import android.nfc.Tag;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.List;
+
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
+import com.thenneem.omnitrail.R;
+import com.thenneem.omnitrail.model.Religion;
+
+import org.w3c.dom.Text;
+
+
+public class ReligionAdaptor extends RecyclerView.Adapter<ReligionAdaptor.ReligionViewHolder>  {
+
+    private List<Religion> religions;
+    private int rowLayout;
+    private Context context;
+
+
+    public static class ReligionViewHolder extends RecyclerView.ViewHolder {
+
+        LinearLayout religionLayout;
+        ImageView imgView;
+        TextView txtRName;
+        TextView txtRDesc;
+        TextView txtRSaint;
+        TextView txtRTemple;
+
+        public ReligionViewHolder(View v) {
+
+            super(v);
+            religionLayout  = (LinearLayout) v.findViewById(R.id.religion_layout);
+            imgView = (ImageView)v.findViewById(R.id.religionThumb);
+            txtRName = (TextView) v.findViewById(R.id.txtReligionName);
+            txtRDesc =(TextView)v.findViewById(R.id.txtReligionDesc);
+            txtRSaint =(TextView)v.findViewById(R.id.txtRSaint);
+            txtRTemple =(TextView)v.findViewById(R.id.txtRTemple);
+
+        }
+
+
+
+    }
+    public ReligionAdaptor(List<Religion> religions, int rowLayout, Context context ) {
+        this.religions = religions;
+        this.rowLayout = rowLayout;
+        this.context = context;
+
+    }
+
+    @NonNull
+    @Override
+    public ReligionViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(rowLayout, parent, false);
+        return new ReligionViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull ReligionViewHolder holder, int position) {
+
+
+        Uri myUri = Uri.parse("http://scienceclub.in/images/logo.png");
+
+
+        holder.txtRName.setText(religions.get(position).getReligionName());
+        holder.txtRDesc.setText(religions.get(position).getReligionDesc());
+        holder.txtRSaint.setText("Saints (" + religions.get(position).getNoofsaint() + ")");
+        holder.txtRTemple.setText("Temples (" + religions.get(position).getNooftemple() + ")");
+        holder.txtRDesc.setVisibility(View.GONE);
+
+        Picasso.Builder builder = new Picasso.Builder(this.context);
+        //builder.downloader(new OkHttp3Downloader(context));
+        builder.build().load(religions.get(position).getHeaderimg())
+                .placeholder((R.drawable.ic_launcher_background))
+                .error(R.drawable.ic_launcher_foreground)
+                .into(holder.imgView, new Callback() {
+                    @Override
+                    public void onSuccess() {
+                        //holder.mMediaEvidencePb.setVisibility(View.GONE);
+                    Log.d("test1","piccaso Success" );
+                        //Toast.makeText(context, "Piccaso success ", Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void onError(Exception e) {
+                        Log.d("test1","piccaso error" + e.getMessage() );
+                        Toast.makeText(context, "Piccaso Error "  + e.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                });
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return religions.size();
+    }
+}
