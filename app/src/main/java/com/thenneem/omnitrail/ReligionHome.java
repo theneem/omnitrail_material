@@ -2,49 +2,35 @@ package com.thenneem.omnitrail;
 
 import android.annotation.SuppressLint;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.thenneem.omnitrail.adapter.ReligionAdaptor;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 import com.thenneem.omnitrail.model.Religion;
-import com.thenneem.omnitrail.rest.ApiClient;
-import com.thenneem.omnitrail.rest.ApiInterface;
-
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import com.thenneem.omnitrail.ui.book.BookFragment;
+import com.thenneem.omnitrail.ui.saint.SaintFragment;
+import com.thenneem.omnitrail.ui.temple.TempleFragment;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
-public class FullscreenActivity extends AppCompatActivity {
-
-
-    //recycle view
-    private RecyclerView recyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager layoutManager;
-
-
-    private List<Religion> religionsArray;
-    private Religion religinoSingle;
-
-
-    private static final String TAG = FullscreenActivity.class.getSimpleName();
-
+public class ReligionHome extends AppCompatActivity {
 
 
     /**
@@ -52,6 +38,9 @@ public class FullscreenActivity extends AppCompatActivity {
      * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
      */
     private static final boolean AUTO_HIDE = true;
+
+    BottomNavigationView bottomNavigation;
+
 
     /**
      * If {@link #AUTO_HIDE} is set, the number of milliseconds to wait after
@@ -121,7 +110,7 @@ public class FullscreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_fullscreen);
+        setContentView(R.layout.activity_religion_home);
 
         mVisible = true;
         mControlsView = findViewById(R.id.fullscreen_content_controls);
@@ -140,49 +129,80 @@ public class FullscreenActivity extends AppCompatActivity {
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
         findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
+        bottomNavigation = findViewById(R.id.bottom_navigation);
+        bottomNavigation.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
+        openFragment(TempleFragment.newInstance());
 
 
+        getIncomingIntent();
 
-        recyclerView = (RecyclerView) findViewById(R.id.rv_religions);
+    }
 
-        // use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
-        recyclerView.setHasFixedSize(true);
+    public void openFragment(Fragment fragment) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.container, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
 
-        // use a linear layout manager
-        layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-
-
-        // calling json retrofit
-        ApiInterface apiService =
-                ApiClient.getClient().create(ApiInterface.class);
-
-        Call<List<Religion>> call = apiService.getReligionList();
-
-        call.enqueue(new Callback<List<Religion>>() {
-            @Override
-            public void onResponse(Call<List<Religion>> call, Response<List<Religion>> response) {
-                 //religinoSingle = response.body();
-
-                List<Religion> rl = (List<Religion>) response.body();
-                recyclerView.setAdapter(new ReligionAdaptor(rl,R.layout.religionlist_layout,getApplicationContext()));
+    BottomNavigationView.OnNavigationItemSelectedListener   navigationItemSelectedListener    = new BottomNavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
 
-                Log.d(TAG ,"No of religion revivd " + rl.size());
-                //Log.d(TAG ,"No of religion revivd " + religinoSingle.getReligionName());
+            switch (item.getItemId()) {
+                case R.id.navigation_temple:
+                    openFragment(TempleFragment.newInstance());
+                    return true;
+                case R.id.navigain_saint:
+                    openFragment(SaintFragment.newInstance());
+                    return true;
+                case R.id.navigation_book:
+                    openFragment(BookFragment.newInstance());
+                    return true;
 
-                //Toast.makeText(getApplication(), "No of Religion " + rl.size(), Toast.LENGTH_LONG).show();
             }
 
-            @Override
-            public void onFailure(Call<List<Religion>> call, Throwable t) {
-                Log.d(TAG , t.toString());
-                Toast.makeText(getApplication(), "Error" +  t.toString(),Toast.LENGTH_LONG).show();
-            }
-        });
+
+            return false;
+        }
+    };
+
+    public  void getIncomingIntent(){
+        //mContentView.setText
+
+        Religion religion;
+        religion = (Religion)  getIntent().getSerializableExtra("Religion");
+        TextView txtName = (TextView) findViewById(R.id.fullscreen_content);
+        ImageView imgRThumb = (ImageView) findViewById(R.id.imgReligionThumb);
+
+        txtName.setText(religion.getReligionName());
+
+        Picasso.Builder builder = new Picasso.Builder(getApplicationContext());
 
 
+        builder.build().load(religion.getHeaderimg())
+                .placeholder((R.drawable.ic_launcher_background))
+                .error(R.drawable.ic_launcher_foreground)
+                .into(imgRThumb, new Callback() {
+                    @Override
+                    public void onSuccess() {
+                        //holder.mMediaEvidencePb.setVisibility(View.GONE);
+                        Log.d("test1","piccaso Success" );
+                        //Toast.makeText(context, "Piccaso success ", Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void onError(Exception e) {
+                        Log.d("test1","piccaso error" + e.getMessage() );
+                        Toast.makeText(getApplicationContext(), "Piccaso Error "  + e.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                });
+
+
+
+
+        //Toast.makeText(this, "R Name " + religion.getReligionName(), Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -236,12 +256,5 @@ public class FullscreenActivity extends AppCompatActivity {
     private void delayedHide(int delayMillis) {
         mHideHandler.removeCallbacks(mHideRunnable);
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
-    }
-
-    public void onItemClick(View view) {
-
-       //  Toast.makeText(this, "item clicked", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, ReligionHome.class);
-        startActivity(intent);
     }
 }

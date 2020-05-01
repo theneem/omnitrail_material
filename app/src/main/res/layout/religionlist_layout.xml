@@ -57,23 +57,36 @@
     android:orientation="horizontal"
     android:layout_weight="10"
     >
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        app:srcCompat="@drawable/ic_home_white_24dp"></ImageView>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/txtRTemple"
         android:text="Saints : (567)"
-        android:layout_weight="5"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="3"
         android:textColor="#FFFFFF"
 
         android:textAppearance="?android:attr/textAppearanceMedium"
         ></TextView>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        app:srcCompat="@drawable/ic_account_circle_white_24dp"></ImageView>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/txtRSaint"
         android:text="Temples : (100)"
-        android:layout_weight="5"
+        android:layout_weight="3"
         android:textColor="#FFFFFF"
+        android:layout_gravity="center_vertical"
 
         android:textAppearance="?android:attr/textAppearanceMedium"
         ></TextView>

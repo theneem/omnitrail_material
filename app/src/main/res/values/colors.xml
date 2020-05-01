@@ -1,8 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!-- YELLOW  COLOR -->
+<!--
+<resources>
+    <color name="colorPrimary">#FFEB3B</color>
+    <color name="colorPrimaryDark">#FBC02D</color>
+    <color name="colorAccent">#FFF59D</color>
+
+    <color name="black_overlay">#66000000</color>
+</resources>
+-->
+
+<!-- gREEB  COLOR -->
+<!--
+<resources>
+<color name="colorPrimary">#4CAF50</color>
+<color name="colorPrimaryDark">#388E3C</color>
+<color name="colorAccent">#A5D6A7</color>
+
+<color name="black_overlay">#66000000</color>
+</resources>
+
+-->
+<!-- ORANNGE BHAGAVA COLOR -->
+
 <resources>
     <color name="colorPrimary">#FF5722</color>
     <color name="colorPrimaryDark">#E64A19</color>
     <color name="colorAccent">#FFAB91</color>
 
     <color name="black_overlay">#66000000</color>
+    <color name="text_Header">#FFFFFF</color>
+    <color name="text_Second">#000000</color>
+
 </resources>
+
+

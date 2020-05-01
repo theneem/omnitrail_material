@@ -2,11 +2,12 @@ package com.thenneem.omnitrail.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class Religion {
+public class Religion implements Serializable {
 
     @SerializedName("ReligionID")
     private int ReligionID;

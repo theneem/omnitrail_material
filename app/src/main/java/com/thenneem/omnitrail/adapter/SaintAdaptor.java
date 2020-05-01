@@ -1,5 +1,6 @@
 package com.thenneem.omnitrail.adapter;
 
+
 import android.content.ClipData;
 import android.content.Context;
 
@@ -26,46 +27,46 @@ import com.thenneem.omnitrail.FullscreenActivity;
 import com.thenneem.omnitrail.R;
 import com.thenneem.omnitrail.ReligionHome;
 import com.thenneem.omnitrail.model.Religion;
+import com.thenneem.omnitrail.model.Saint;
 import com.thenneem.omnitrail.rest.ItemClickListner;
 
 import org.w3c.dom.Text;
 
 
-public class ReligionAdaptor extends RecyclerView.Adapter<ReligionAdaptor.ReligionViewHolder>   {
+public class SaintAdaptor  extends RecyclerView.Adapter<SaintAdaptor.SaintViewHolder>    {
 
-    private List<Religion> religions;
+
+    private List<Saint> saints;
     private int rowLayout;
     private Context context;
 
+    public static  class SaintViewHolder extends RecyclerView.ViewHolder implements   View.OnClickListener {
 
 
-    public static class ReligionViewHolder extends RecyclerView.ViewHolder implements   View.OnClickListener {
-
-        LinearLayout religionLayout;
-        ImageView imgView;
-        TextView txtRName;
-        TextView txtRDesc;
-        TextView txtRSaint;
-        TextView txtRTemple;
+        LinearLayout saintLayout;
+        ImageView imgSaintView;
+        TextView txtSName;
+        TextView txtSaintDesc;
+        TextView txtSectName;
+        TextView txtSamudai;
 
         private ItemClickListner itemClickListner;
 
-        public ReligionViewHolder(View v) {
+        public SaintViewHolder(@NonNull View itemView) {
+            super(itemView);
 
-            super(v);
-            religionLayout  = (LinearLayout) v.findViewById(R.id.religion_layout);
-            imgView = (ImageView)v.findViewById(R.id.religionThumb);
-            txtRName = (TextView) v.findViewById(R.id.txtReligionName);
-            txtRDesc =(TextView)v.findViewById(R.id.txtReligionDesc);
-            txtRSaint =(TextView)v.findViewById(R.id.txtRSaint);
-            txtRTemple =(TextView)v.findViewById(R.id.txtRTemple);
 
-            v.setOnClickListener(this);
+            saintLayout  = (LinearLayout) itemView.findViewById(R.id.saint_layout);
+            imgSaintView = (ImageView)itemView.findViewById(R.id.saintThumb);
+            txtSName = (TextView) itemView.findViewById(R.id.txtSaintName);
+            txtSaintDesc =(TextView)itemView.findViewById(R.id.txtSaintDesc);
+            txtSectName =(TextView)itemView.findViewById(R.id.txtSectName);
+            txtSamudai =(TextView)itemView.findViewById(R.id.txtSamudai);
+
+            itemView.setOnClickListener(this);
 
 
         }
-
-
         public void     setItemClickListner(ItemClickListner itemClickListner)
         {
             this.itemClickListner = itemClickListner;
@@ -75,45 +76,49 @@ public class ReligionAdaptor extends RecyclerView.Adapter<ReligionAdaptor.Religi
         @Override
         public void onClick(View v) {
 
+
             itemClickListner.onClick(v,getAdapterPosition());
+
         }
     }
-    public ReligionAdaptor(List<Religion> religions, int rowLayout, Context context ) {
-        this.religions = religions;
+
+    public SaintAdaptor(List<Saint> saints, int rowLayout, Context context)
+    {
+        this.saints = saints;
         this.rowLayout = rowLayout;
         this.context = context;
-
-
     }
-
     @NonNull
     @Override
-    public ReligionViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public SaintAdaptor.SaintViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
         View view = LayoutInflater.from(parent.getContext()).inflate(rowLayout, parent, false);
-        return new ReligionViewHolder(view);
+
+        return new SaintAdaptor.SaintViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ReligionViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull SaintAdaptor.SaintViewHolder holder, int position) {
 
 
+        holder.txtSName.setText(saints.get(position).getSaintName());
+        holder.txtSaintDesc.setText(saints.get(position).getSaintDesc());
+        holder.txtSectName.setText("Sect: " + saints.get(position).getSectName() );
+        holder.txtSamudai.setText("Samudai: (" + saints.get(position).getSamudai() + ")");
+        holder.txtSaintDesc.setText(saints.get(position).getSaintDesc());
 
-        holder.txtRName.setText(religions.get(position).getReligionName());
-        holder.txtRDesc.setText(religions.get(position).getReligionDesc());
-        holder.txtRSaint.setText("Saints (" + religions.get(position).getNoofsaint() + ")");
-        holder.txtRTemple.setText("Temples (" + religions.get(position).getNooftemple() + ")");
-        holder.txtRDesc.setVisibility(View.GONE);
+
 
         Picasso.Builder builder = new Picasso.Builder(this.context);
         //builder.downloader(new OkHttp3Downloader(context));
-        builder.build().load(religions.get(position).getHeaderimg())
+        builder.build().load(saints.get(position).getSaintIMG())
                 .placeholder((R.drawable.ic_launcher_background))
                 .error(R.drawable.ic_launcher_foreground)
-                .into(holder.imgView, new Callback() {
+                .into(holder.imgSaintView, new Callback() {
                     @Override
                     public void onSuccess() {
                         //holder.mMediaEvidencePb.setVisibility(View.GONE);
-                    Log.d("test1","piccaso Success" );
+                        Log.d("test1","piccaso Success" );
                         //Toast.makeText(context, "Piccaso success ", Toast.LENGTH_LONG).show();
                     }
 
@@ -131,9 +136,10 @@ public class ReligionAdaptor extends RecyclerView.Adapter<ReligionAdaptor.Religi
         holder.setItemClickListner(new ItemClickListner() {
             @Override
             public void onClick(View view, int position) {
-                // Toast.makeText(context, " Clicked " + religions.get(position).getReligionName(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, " Clicked " + saints.get(position).getSaintName(), Toast.LENGTH_SHORT).show();
 
 
+                /*
                 Intent intent = new Intent(context, ReligionHome.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("Religion_Name", religions.get(position).getReligionName());
@@ -142,15 +148,21 @@ public class ReligionAdaptor extends RecyclerView.Adapter<ReligionAdaptor.Religi
                 context.startActivity(intent);
 
 
+                */
+
+
 
             }
         });
+
+
+
 
 
     }
 
     @Override
     public int getItemCount() {
-        return religions.size();
+        return saints.size();
     }
 }

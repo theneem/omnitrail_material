@@ -1,69 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/colorPrimaryDark"
-    tools:context=".FullscreenActivity">
+    android:background="@color/colorPrimary"
+    tools:context=".ReligionHome">
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_gravity="start"
-        android:layout_margin="0dp"
         >
 
-        <androidx.cardview.widget.CardView
+        <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:layout_marginRight="2dp"
-            android:layout_marginLeft="2dp"
-            app:cardCornerRadius="10dp"
+            android:src="@drawable/banner"
+            android:id="@+id/imgReligionThumb">
 
-            app:cardBackgroundColor="@color/colorPrimaryDark"
-            android:outlineAmbientShadowColor="@color/colorPrimaryDark"
-            >
+        </ImageView>
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="160dp"
-            android:layout_gravity="top"
-            android:layout_margin="0dp"
-            android:src="@drawable/omnitrail_home1" />
-
-
-        </androidx.cardview.widget.CardView>
-    <!-- The primary full-screen view. This can be replaced with whatever view
+        <!-- The primary full-screen view. This can be replaced with whatever view
          is needed to present your content, e.g. VideoView, SurfaceView,
          TextureView, etc. -->
     <TextView
         android:id="@+id/fullscreen_content"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:gravity="center"
         android:keepScreenOn="true"
-        android:text=""
-        android:textColor="#33b5e5"
-        android:textSize="50sp"
-        android:textStyle="bold"
-        android:visibility="gone"
-        />
+        android:text="Religion Home"
+        android:textColor="@color/text_Header"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/container">
 
 
-    <androidx.recyclerview.widget.RecyclerView
+        </FrameLayout>
+    </LinearLayout>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/rv_religions"
-        android:onClick="onItemClick"
-        >
-
-
-    </androidx.recyclerview.widget.RecyclerView>
-
-    </LinearLayout>
+        android:layout_gravity="bottom"
+        android:background="@color/colorPrimaryDark"
+        app:itemIconTint="@color/text_Header"
+        app:itemTextColor="@color/text_Header"
+        app:menu="@menu/bottom_menu"
+        />
     <!-- This FrameLayout insets its children based on system windows using
          android:fitsSystemWindows. -->
     <FrameLayout
@@ -91,5 +81,6 @@
 
         </LinearLayout>
     </FrameLayout>
+
 
 </FrameLayout>
