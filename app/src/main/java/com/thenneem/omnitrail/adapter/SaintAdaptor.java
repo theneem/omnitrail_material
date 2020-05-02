@@ -117,9 +117,7 @@ public class SaintAdaptor  extends RecyclerView.Adapter<SaintAdaptor.SaintViewHo
                 .into(holder.imgSaintView, new Callback() {
                     @Override
                     public void onSuccess() {
-                        //holder.mMediaEvidencePb.setVisibility(View.GONE);
                         Log.d("test1","piccaso Success" );
-                        //Toast.makeText(context, "Piccaso success ", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -136,7 +134,8 @@ public class SaintAdaptor  extends RecyclerView.Adapter<SaintAdaptor.SaintViewHo
         holder.setItemClickListner(new ItemClickListner() {
             @Override
             public void onClick(View view, int position) {
-                Toast.makeText(context, " Clicked " + saints.get(position).getSaintName(), Toast.LENGTH_SHORT).show();
+
+                //Toast.makeText(context, " Clicked " + saints.get(position).getSaintName(), Toast.LENGTH_SHORT).show();
 
 
                 /*

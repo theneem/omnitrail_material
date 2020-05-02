@@ -1,6 +1,7 @@
 package com.thenneem.omnitrail.rest;
 
 
+import com.thenneem.omnitrail.model.Book;
 import com.thenneem.omnitrail.model.Religion;
 import com.thenneem.omnitrail.model.Saint;
 
@@ -24,6 +25,12 @@ public interface ApiInterface {
     @POST("saintlist.php")
     @FormUrlEncoded
     Call<List<Saint>> getSaintList(@Field("rid") String rid);
+
+
+    @POST("booklist.php")
+    @FormUrlEncoded
+    Call<List<Book>> getBookList(@Field("rid") String rid);
+
 
 
 }

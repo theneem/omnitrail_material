@@ -9,15 +9,15 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <!--
-<SearchView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:queryHint="enter Saint Name"
-    android:queryBackground="@color/text_Header"
-    style="@style/MaterialAlertDialog.MaterialComponents.Title.Panel.CenterStacked"
-    android:gravity="end"
+            <SearchView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:queryHint="enter Saint Name"
+                android:queryBackground="@color/text_Header"
+                style="@style/MaterialAlertDialog.MaterialComponents.Title.Panel.CenterStacked"
+                android:gravity="end"
 
-    ></SearchView>
+                ></SearchView>
         -->
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
