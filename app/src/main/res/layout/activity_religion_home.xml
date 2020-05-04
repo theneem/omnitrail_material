@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/colorPrimary"
+    android:background="@color/colorPrimaryDark"
     tools:context=".ReligionHome">
 
 
@@ -13,13 +13,28 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:background="@color/colorPrimaryDark"
         >
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/toptoolbar"
+            android:background="@color/colorPrimaryDark"
+            app:title="@string/app_name"
+            app:titleTextColor="@color/text_Header"
+            app:logo="@mipmap/ic_launcher_round"
+android:theme="@style/MaterialAlertDialog.MaterialComponents.Title.Icon.CenterStacked"
+            ></com.google.android.material.appbar.MaterialToolbar>
+
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/banner"
-            android:id="@+id/imgReligionThumb">
+            android:id="@+id/imgReligionThumb"
+
+            >
 
         </ImageView>
 
@@ -35,7 +50,9 @@
         android:text="Religion Home"
         android:textColor="@color/text_Header"
         android:textSize="30sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:visibility="gone"
+        />
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"

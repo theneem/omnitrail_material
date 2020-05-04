@@ -68,7 +68,7 @@ public class BookFragment extends Fragment {
         ApiInterface apiService =
                 ApiClient.getClient().create(ApiInterface.class);
 
-        Call<List<Book>> call = apiService.getBookList("1");
+        Call<List<Book>> call = apiService.getBookList(getArguments().getString("rid"));
 
         call.enqueue(new Callback<List<Book>>() {
             @Override

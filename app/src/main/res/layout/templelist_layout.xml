@@ -2,9 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:id="@+id/templelist_layout"
+    android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/book_layout"
-    android:orientation="vertical">
+    >
+
+
 
 
     <androidx.cardview.widget.CardView
@@ -43,11 +46,11 @@
                     app:cardElevation="10dp"
                     android:layout_weight="7"
                     app:cardBackgroundColor="@color/text_Header"
-                    android:outlineAmbientShadowColor="@color/colorAccent"
+                    android:outlineAmbientShadowColor="@color/colorPrimaryDark"
                     >
 
                     <ImageView
-                        android:id="@+id/bookThumb"
+                        android:id="@+id/templeThumb"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:src="@drawable/ic_launcher_background"
@@ -63,12 +66,12 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/txtBookName"
+                        android:id="@+id/txtTempleName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="start"
                         android:gravity="left"
-                        android:text="Book Name"
+                        android:text="Temple Name"
                         android:textColor="#FFFFFF"
                         android:textAppearance="?android:attr/textAppearanceLarge" />
                     <LinearLayout
@@ -94,8 +97,8 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:id="@+id/txtAuthortName"
-                                android:text="Author Name"
+                                android:id="@+id/txtCityName"
+                                android:text="City Name"
                                 android:layout_marginStart="10dp"
                                 android:layout_gravity="center_vertical"
                                 android:layout_weight="3"
@@ -104,7 +107,31 @@
                                 android:textAppearance="?android:attr/textAppearanceMedium"
                                 ></TextView>
                         </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_weight="5"
+                            >
 
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+
+                                app:srcCompat="@drawable/ic_account_circle_white_24dp"></ImageView>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/txtAddress"
+                                android:text="Address"
+                                android:layout_weight="3"
+                                android:textColor="@color/text_Header"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="10dp"
+
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                ></TextView>
+                        </LinearLayout>
                     </LinearLayout>
 
                 </LinearLayout>
@@ -117,13 +144,13 @@
                 android:orientation="vertical"
                 >
                 <TextView
-                    android:id="@+id/txtBookDesc"
+                    android:id="@+id/txtTempleStory"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
                     android:layout_marginTop="1dp"
                     android:textColor="@color/text_Header"
-                    android:text="Book desc "
+                    android:text="Android Version"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
 
@@ -136,4 +163,6 @@
 
 
     </androidx.cardview.widget.CardView>
+
+
 </LinearLayout>

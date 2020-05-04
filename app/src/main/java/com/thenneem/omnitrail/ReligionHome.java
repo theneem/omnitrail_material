@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
@@ -38,6 +39,9 @@ public class ReligionHome extends AppCompatActivity {
      * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
      */
     private static final boolean AUTO_HIDE = true;
+    private     MaterialToolbar topToolBar;
+private Religion religion;
+
 
     BottomNavigationView bottomNavigation;
 
@@ -112,6 +116,12 @@ public class ReligionHome extends AppCompatActivity {
 
         setContentView(R.layout.activity_religion_home);
 
+       topToolBar = (com.google.android.material.appbar.MaterialToolbar ) findViewById(R.id.toptoolbar);
+
+        // setSupportActionBar(topToolBar);
+        //topToolBar.setLogo(R.drawable.ic_account_circle_white_24dp);
+
+
         mVisible = true;
         mControlsView = findViewById(R.id.fullscreen_content_controls);
         mContentView = findViewById(R.id.fullscreen_content);
@@ -131,15 +141,21 @@ public class ReligionHome extends AppCompatActivity {
         findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
         bottomNavigation = findViewById(R.id.bottom_navigation);
         bottomNavigation.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
-        openFragment(TempleFragment.newInstance());
+
 
 
         getIncomingIntent();
+
+        openFragment(TempleFragment.newInstance());
+
 
     }
 
     public void openFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        Bundle bundle = new Bundle();
+        bundle.putString("rid", String.valueOf( religion.getReligionID()));
+        fragment.setArguments(bundle);
         transaction.replace(R.id.container, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
@@ -171,12 +187,13 @@ public class ReligionHome extends AppCompatActivity {
     public  void getIncomingIntent(){
         //mContentView.setText
 
-        Religion religion;
+        
         religion = (Religion)  getIntent().getSerializableExtra("Religion");
         TextView txtName = (TextView) findViewById(R.id.fullscreen_content);
         ImageView imgRThumb = (ImageView) findViewById(R.id.imgReligionThumb);
 
-        txtName.setText(religion.getReligionName());
+        txtName.setText( religion.getReligionName());
+        topToolBar.setTitle( getString( R.string.app_name) +  " -> " +  religion.getReligionName());
 
         Picasso.Builder builder = new Picasso.Builder(getApplicationContext());
 

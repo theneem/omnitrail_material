@@ -1,5 +1,6 @@
 package com.thenneem.omnitrail.ui.saint;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.thenneem.omnitrail.FullscreenActivity;
 import com.thenneem.omnitrail.R;
@@ -56,6 +58,9 @@ public class SaintFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.saint_fragment, container, false);
 
+        //android.widget.Toolbar  topToolBar = (Toolbar)root.findViewById(R.id.toptoolbar);
+
+
         recyclerView = (RecyclerView) root.findViewById(R.id.rv_religions);
 
         // use this setting to improve performance if you know that changes
@@ -71,7 +76,7 @@ public class SaintFragment extends Fragment {
         ApiInterface apiService =
                 ApiClient.getClient().create(ApiInterface.class);
 
-        Call<List<Saint>> call = apiService.getSaintList("1");
+        Call<List<Saint>> call = apiService.getSaintList(getArguments().getString("rid"));
 
 
 

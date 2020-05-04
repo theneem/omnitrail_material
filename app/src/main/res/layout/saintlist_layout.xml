@@ -15,7 +15,7 @@
         android:layout_marginLeft="10dp"
         app:cardCornerRadius="15dp"
         app:cardElevation="10dp"
-        app:cardBackgroundColor="@color/colorAccent"
+        app:cardBackgroundColor="@color/colorPrimary"
         android:outlineAmbientShadowColor="@color/colorPrimaryDark"
         >
 
@@ -99,7 +99,7 @@
                         android:layout_marginStart="10dp"
                         android:layout_gravity="center_vertical"
                         android:layout_weight="3"
-                        android:textColor="@color/text_Second"
+                        android:textColor="@color/text_Header"
 
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         ></TextView>
@@ -122,7 +122,7 @@
                         android:id="@+id/txtSamudai"
                         android:text="Samudai"
                         android:layout_weight="3"
-                        android:textColor="@color/text_Second"
+                        android:textColor="@color/text_Header"
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="10dp"
 
@@ -146,7 +146,7 @@
          android:layout_height="wrap_content"
          android:layout_gravity="start"
          android:layout_marginTop="1dp"
-         android:textColor="@color/text_Second"
+         android:textColor="@color/text_Header"
          android:text="Android Version"
          android:textAppearance="?android:attr/textAppearanceMedium" />
 

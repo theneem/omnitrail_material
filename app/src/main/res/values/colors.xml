@@ -22,7 +22,7 @@
 </resources>
 
 -->
-<!-- ORANNGE BHAGAVA COLOR -->
+<!-- ORANNGE BHAGAVA COLOR
 
 <resources>
     <color name="colorPrimary">#FF5722</color>
@@ -32,6 +32,21 @@
     <color name="black_overlay">#66000000</color>
     <color name="text_Header">#FFFFFF</color>
     <color name="text_Second">#000000</color>
+
+</resources>
+
+-->
+
+
+
+<resources>
+<color name="colorPrimary">#50797A</color>
+<color name="colorPrimaryDark">#375657</color>
+<color name="colorAccent">#A5BCBC</color>
+
+<color name="black_overlay">#66000000</color>
+<color name="text_Header">#FFFFFF</color>
+<color name="text_Second">#000000</color>
 
 </resources>
 

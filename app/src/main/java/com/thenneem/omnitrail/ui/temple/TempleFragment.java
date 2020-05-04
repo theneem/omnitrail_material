@@ -7,16 +7,46 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.thenneem.omnitrail.R;
+import com.thenneem.omnitrail.adapter.SaintAdaptor;
+import com.thenneem.omnitrail.adapter.TempleAdaptor;
+import com.thenneem.omnitrail.model.Saint;
+import com.thenneem.omnitrail.model.Temple;
+import com.thenneem.omnitrail.rest.ApiClient;
+import com.thenneem.omnitrail.rest.ApiInterface;
+import com.thenneem.omnitrail.ui.saint.SaintFragment;
+import com.thenneem.omnitrail.ui.saint.SaintViewModel;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class TempleFragment extends Fragment {
 
     private TempleViewModel mViewModel;
+
+
+    //recycle view
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager layoutManager;
+
+
+
+
+    private static final String TAG = TempleFragment.class.getSimpleName();
+
 
     public static TempleFragment newInstance() {
         return new TempleFragment();
@@ -25,7 +55,56 @@ public class TempleFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.temple_fragment, container, false);
+
+        View root = inflater.inflate(R.layout.temple_fragment, container, false);
+        //Toast.makeText(this.getContext(), "rid : "  + getArguments().getString("rid"), Toast.LENGTH_SHORT).show();
+
+
+        recyclerView = (RecyclerView) root.findViewById(R.id.rv_temples);
+
+        // use this setting to improve performance if you know that changes
+        // in content do not change the layout size of the RecyclerView
+        recyclerView.setHasFixedSize(true);
+
+        // use a linear layout manager
+        layoutManager = new LinearLayoutManager(this.getContext());
+        recyclerView.setLayoutManager(layoutManager);
+
+
+        // calling json retrofit
+        ApiInterface apiService =
+                ApiClient.getClient().create(ApiInterface.class);
+
+       Call<List<Temple>> call = apiService.getTempleList(getArguments().getString("rid"));
+        //Call<List<Temple>> call = apiService.getTempleList("1");
+
+
+        //
+        call.enqueue(new Callback<List<Temple>>() {
+            @Override
+            public void onResponse(Call<List<Temple>> call, Response<List<Temple>> response) {
+                //religinoSingle = response.body();
+
+                List<Temple> rl = (List<Temple>) response.body();
+                recyclerView.setAdapter(new TempleAdaptor(rl,R.layout.templelist_layout,getContext()));
+
+
+                Log.d(TAG ,"No of religion revivd " + rl.size());
+                //Log.d(TAG ,"No of religion revivd " + religinoSingle.getReligionName());
+
+                //Toast.makeText(getApplication(), "No of Religion " + rl.size(), Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onFailure(Call<List<Temple>> call, Throwable t) {
+                Log.d(TAG , t.toString());
+                Toast.makeText(getContext(), "Error" +  t.toString(),Toast.LENGTH_LONG).show();
+            }
+        });
+
+        //
+        return root;
+
     }
 
 
