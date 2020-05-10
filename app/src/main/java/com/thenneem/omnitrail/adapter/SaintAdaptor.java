@@ -26,8 +26,11 @@ import com.squareup.picasso.Picasso;
 import com.thenneem.omnitrail.FullscreenActivity;
 import com.thenneem.omnitrail.R;
 import com.thenneem.omnitrail.ReligionHome;
+import com.thenneem.omnitrail.SaintHome;
+import com.thenneem.omnitrail.TempleHome;
 import com.thenneem.omnitrail.model.Religion;
 import com.thenneem.omnitrail.model.Saint;
+import com.thenneem.omnitrail.model.Temple;
 import com.thenneem.omnitrail.rest.ItemClickListner;
 
 import org.w3c.dom.Text;
@@ -36,9 +39,11 @@ import org.w3c.dom.Text;
 public class SaintAdaptor  extends RecyclerView.Adapter<SaintAdaptor.SaintViewHolder>    {
 
 
+
     private List<Saint> saints;
     private int rowLayout;
     private Context context;
+
 
     public static  class SaintViewHolder extends RecyclerView.ViewHolder implements   View.OnClickListener {
 
@@ -104,7 +109,7 @@ public class SaintAdaptor  extends RecyclerView.Adapter<SaintAdaptor.SaintViewHo
         holder.txtSName.setText(saints.get(position).getSaintName());
         holder.txtSaintDesc.setText(saints.get(position).getSaintDesc());
         holder.txtSectName.setText("Sect: " + saints.get(position).getSectName() );
-        holder.txtSamudai.setText("Samudai: (" + saints.get(position).getSamudai() + ")");
+        holder.txtSamudai.setText("Samudai: " + saints.get(position).getSamudai() );
         holder.txtSaintDesc.setText(saints.get(position).getSaintDesc());
 
 
@@ -117,12 +122,12 @@ public class SaintAdaptor  extends RecyclerView.Adapter<SaintAdaptor.SaintViewHo
                 .into(holder.imgSaintView, new Callback() {
                     @Override
                     public void onSuccess() {
-                        Log.d("test1","piccaso Success" );
+                        //Log.d("test1","piccaso Success" );
                     }
 
                     @Override
                     public void onError(Exception e) {
-                        Log.d("test1","piccaso error" + e.getMessage() );
+                        //Log.d("test1","piccaso error" + e.getMessage() );
                         Toast.makeText(context, "Piccaso Error "  + e.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
@@ -135,20 +140,15 @@ public class SaintAdaptor  extends RecyclerView.Adapter<SaintAdaptor.SaintViewHo
             @Override
             public void onClick(View view, int position) {
 
-                //Toast.makeText(context, " Clicked " + saints.get(position).getSaintName(), Toast.LENGTH_SHORT).show();
 
+                Toast.makeText(context, " Clicked " + saints.get(position).getSaintName(), Toast.LENGTH_SHORT).show();
 
-                /*
-                Intent intent = new Intent(context, ReligionHome.class);
+                Intent intent = new Intent(context, SaintHome.class);
+
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("Religion_Name", religions.get(position).getReligionName());
-                intent.putExtra("Religion",religions.get(position));
+                intent.putExtra("Saint",saints.get(position));
 
                 context.startActivity(intent);
-
-
-                */
-
 
 
             }

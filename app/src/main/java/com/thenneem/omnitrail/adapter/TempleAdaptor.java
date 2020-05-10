@@ -1,6 +1,7 @@
 package com.thenneem.omnitrail.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +16,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
+import com.thenneem.omnitrail.FullscreenActivity;
 import com.thenneem.omnitrail.R;
+import com.thenneem.omnitrail.TempleHome;
 import com.thenneem.omnitrail.model.Saint;
 import com.thenneem.omnitrail.model.Temple;
 import com.thenneem.omnitrail.rest.ItemClickListner;
@@ -34,6 +37,8 @@ public class TempleAdaptor  extends RecyclerView.Adapter<TempleAdaptor.TempleVie
         ImageView imgTempleView;
         TextView txtTempleName;
         TextView txtTempleStory;
+        TextView txtLocation;
+        TextView txtAddress;
 
 
         private ItemClickListner itemClickListner;
@@ -45,7 +50,8 @@ public class TempleAdaptor  extends RecyclerView.Adapter<TempleAdaptor.TempleVie
             imgTempleView = (ImageView)itemView.findViewById(R.id.templeThumb);
             txtTempleName = (TextView) itemView.findViewById(R.id.txtTempleName);
             txtTempleStory =(TextView)itemView.findViewById(R.id.txtTempleStory);
-
+            txtLocation = (TextView) itemView.findViewById(R.id.txtLocation);
+            txtAddress = (TextView) itemView.findViewById(R.id.txtAddress);
 
             itemView.setOnClickListener(this);
 
@@ -84,24 +90,26 @@ public class TempleAdaptor  extends RecyclerView.Adapter<TempleAdaptor.TempleVie
 
         holder.txtTempleName.setText(temples.get(position).getTempleName());
         holder.txtTempleStory.setText(temples.get(position).getTempleName());
+        holder.txtTempleStory.setText(temples.get(position).getTempleStory());
+        holder.txtLocation.setText(temples.get(position).getCity_name() + ", " +  temples.get(position).getState_name() + "," + temples.get(position).getCountry_name()  );
+        holder.txtAddress.setText(temples.get(position).getAddress());
 
 
 
 
         Picasso.Builder builder = new Picasso.Builder(this.context);
-        //builder.downloader(new OkHttp3Downloader(context));
         builder.build().load(temples.get(position).getTempleIMG())
                 .placeholder((R.drawable.ic_launcher_background))
                 .error(R.drawable.ic_launcher_foreground)
                 .into(holder.imgTempleView, new Callback() {
                     @Override
                     public void onSuccess() {
-                        Log.d("Image temple","piccaso Success" );
+                        //Log.d("Image temple","piccaso Success" );
                     }
 
                     @Override
                     public void onError(Exception e) {
-                        Log.d("Image Temple","piccaso error" + e.getMessage() );
+                        //Log.d("Image Temple","piccaso error" + e.getMessage() );
                         Toast.makeText(context, "Piccaso Error "  + e.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
@@ -115,9 +123,15 @@ public class TempleAdaptor  extends RecyclerView.Adapter<TempleAdaptor.TempleVie
             @Override
             public void onClick(View view, int position) {
 
-                //Toast.makeText(context, " Clicked " + saints.get(position).getSaintName(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, " Clicked " + temples.get(position).getTempleName(), Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(context, TempleHome.class);
+
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("Temple",temples.get(position));
 
 
+                context.startActivity(intent);
 
 
             }

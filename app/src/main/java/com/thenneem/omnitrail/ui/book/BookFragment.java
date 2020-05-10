@@ -79,7 +79,7 @@ public class BookFragment extends Fragment {
                 recyclerView.setAdapter(new BookAdaptor(bl,R.layout.booklist_layout,getContext()));
 
 
-                Log.d(TAG ,"No of religion revivd " + bl.size());
+                //Log.d(TAG ,"No of religion revivd " + bl.size());
                 //Log.d(TAG ,"No of religion revivd " + religinoSingle.getReligionName());
 
                 //Toast.makeText(getApplication(), "No of Religion " + rl.size(), Toast.LENGTH_LONG).show();
@@ -87,7 +87,7 @@ public class BookFragment extends Fragment {
 
             @Override
             public void onFailure(Call<List<Book>> call, Throwable t) {
-                Log.d(TAG , t.toString());
+                //Log.d(TAG , t.toString());
                 Toast.makeText(getContext(), "Error" +  t.toString(),Toast.LENGTH_LONG).show();
             }
         });

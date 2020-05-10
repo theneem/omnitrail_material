@@ -169,7 +169,7 @@ public class FullscreenActivity extends AppCompatActivity {
                 recyclerView.setAdapter(new ReligionAdaptor(rl,R.layout.religionlist_layout,getApplicationContext()));
 
 
-                Log.d(TAG ,"No of religion revivd " + rl.size());
+                //Log.d(TAG ,"No of religion revivd " + rl.size());
                 //Log.d(TAG ,"No of religion revivd " + religinoSingle.getReligionName());
 
                 //Toast.makeText(getApplication(), "No of Religion " + rl.size(), Toast.LENGTH_LONG).show();
@@ -177,7 +177,7 @@ public class FullscreenActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Religion>> call, Throwable t) {
-                Log.d(TAG , t.toString());
+                //Log.d(TAG , t.toString());
                 Toast.makeText(getApplication(), "Error" +  t.toString(),Toast.LENGTH_LONG).show();
             }
         });

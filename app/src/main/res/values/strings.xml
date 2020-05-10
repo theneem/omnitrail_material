@@ -5,4 +5,8 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
 
     <string name="title_activity_religion_home">ReligionHome</string>
+
+    <string name="title_activity_temple_home">Temple Home</string>
+
+    <string name="title_activity_saint_home">SaintHome</string>
 </resources>

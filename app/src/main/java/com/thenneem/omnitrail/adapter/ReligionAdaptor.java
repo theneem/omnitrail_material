@@ -113,13 +113,13 @@ public class ReligionAdaptor extends RecyclerView.Adapter<ReligionAdaptor.Religi
                     @Override
                     public void onSuccess() {
                         //holder.mMediaEvidencePb.setVisibility(View.GONE);
-                    Log.d("test1","piccaso Success" );
+                    //Log.d("test1","piccaso Success" );
                         //Toast.makeText(context, "Piccaso success ", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
                     public void onError(Exception e) {
-                        Log.d("test1","piccaso error" + e.getMessage() );
+                        //Log.d("test1","piccaso error" + e.getMessage() );
                         Toast.makeText(context, "Piccaso Error "  + e.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });

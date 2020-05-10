@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -127,6 +128,23 @@ private Religion religion;
         mContentView = findViewById(R.id.fullscreen_content);
 
 
+        topToolBar.setNavigationIcon(R.drawable.ic_back);
+
+
+        topToolBar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Intent intent = new Intent(getApplicationContext(), FullscreenActivity.class);
+                //startActivity(intent);
+
+                finish();
+
+            }
+        });
+
+
+
+
         // Set up the user interaction to manually show or hide the system UI.
         mContentView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -150,6 +168,7 @@ private Religion religion;
 
 
     }
+
 
     public void openFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -205,13 +224,13 @@ private Religion religion;
                     @Override
                     public void onSuccess() {
                         //holder.mMediaEvidencePb.setVisibility(View.GONE);
-                        Log.d("test1","piccaso Success" );
+                        //Log.d("test1","piccaso Success" );
                         //Toast.makeText(context, "Piccaso success ", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
                     public void onError(Exception e) {
-                        Log.d("test1","piccaso error" + e.getMessage() );
+                        //Log.d("test1","piccaso error" + e.getMessage() );
                         Toast.makeText(getApplicationContext(), "Piccaso Error "  + e.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });

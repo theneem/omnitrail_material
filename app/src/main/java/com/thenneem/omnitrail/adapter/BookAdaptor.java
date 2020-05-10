@@ -110,12 +110,12 @@ public static class      BookViewHolder  extends RecyclerView.ViewHolder impleme
                 .into(holder.imgBookThumb, new Callback() {
                     @Override
                     public void onSuccess() {
-                        Log.d("test1","piccaso Success" );
+                        //Log.d("test1","piccaso Success" );
                     }
 
                     @Override
                     public void onError(Exception e) {
-                        Log.d("test1","piccaso error" + e.getMessage() );
+                        //Log.d("test1","piccaso error" + e.getMessage() );
                         Toast.makeText(context, "Piccaso Error "  + e.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });

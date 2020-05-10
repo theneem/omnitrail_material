@@ -89,7 +89,7 @@ public class TempleFragment extends Fragment {
                 recyclerView.setAdapter(new TempleAdaptor(rl,R.layout.templelist_layout,getContext()));
 
 
-                Log.d(TAG ,"No of religion revivd " + rl.size());
+                //Log.d(TAG ,"No of religion revivd " + rl.size());
                 //Log.d(TAG ,"No of religion revivd " + religinoSingle.getReligionName());
 
                 //Toast.makeText(getApplication(), "No of Religion " + rl.size(), Toast.LENGTH_LONG).show();
@@ -97,7 +97,7 @@ public class TempleFragment extends Fragment {
 
             @Override
             public void onFailure(Call<List<Temple>> call, Throwable t) {
-                Log.d(TAG , t.toString());
+                //Log.d(TAG , t.toString());
                 Toast.makeText(getContext(), "Error" +  t.toString(),Toast.LENGTH_LONG).show();
             }
         });
