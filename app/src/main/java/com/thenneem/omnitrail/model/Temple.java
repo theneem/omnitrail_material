@@ -46,6 +46,56 @@ public class Temple implements Serializable  {
     @SerializedName("country_name")
     private String country_name;
 
+    @SerializedName("wiki_link")
+    private String wiki_link;
+
+
+    @SerializedName("PrimaryDeity")
+    private String PrimaryDeity;
+
+    @SerializedName("GoverningBody")
+    private String GoverningBody;
+
+    @SerializedName("ContactPerson")
+    private String ContactPerson;
+
+    @SerializedName("ContactNumber")
+    private String ContactNumber;
+
+    @SerializedName("Creator")
+    private String Creator;
+
+    @SerializedName("CompletionPerios")
+    private String CompletionPerios;
+
+
+    public String getPrimaryDeity() {
+        return PrimaryDeity;
+    }
+
+    public String getGoverningBody() {
+        return GoverningBody;
+    }
+
+    public String getContactPerson() {
+        return ContactPerson;
+    }
+
+    public String getContactNumber() {
+        return ContactNumber;
+    }
+
+    public String getCreator() {
+        return Creator;
+    }
+
+    public String getCompletionPerios() {
+        return CompletionPerios;
+    }
+
+    public String getWiki_link() {
+        return wiki_link;
+    }
 
     public int getTempleID() {
         return TempleID;

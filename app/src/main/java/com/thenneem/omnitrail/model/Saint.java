@@ -15,6 +15,9 @@ public class Saint   implements Serializable {
     @SerializedName("SaintName")
     private String SaintName;
 
+    @SerializedName("ReligionName")
+    private String ReligionName;
+
 
     @SerializedName("SectName")
     private String SectName;
@@ -48,10 +51,13 @@ public class Saint   implements Serializable {
     private String SaintIMG;
 
 
-    public Saint (int SaintID, String SaintName, String SectName, String Samudai, String SaintDesc, String SaintStory,Date BirthDate, Date SaintDate, Date DeathDate, String SaintIMG) {
+    public Saint (int SaintID, String SaintName, String  ReligionName ,String SectName, String Samudai, String SaintDesc,
+                  String SaintStory,Date BirthDate, Date SaintDate, Date DeathDate, String SaintIMG) {
+
 
         this.SaintID = SaintID;
         this.SaintName = SaintName;
+        this.ReligionName = ReligionName;
         this.Samudai = Samudai;
         this.SectName = SectName;
         this.SaintDesc = SaintDesc;
@@ -70,6 +76,10 @@ public class Saint   implements Serializable {
 
     public String getSaintName() {
         return SaintName;
+    }
+
+    public String getReligionName() {
+        return ReligionName;
     }
 
     public String getSectName() {

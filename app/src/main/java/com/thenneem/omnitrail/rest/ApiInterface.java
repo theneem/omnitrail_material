@@ -38,4 +38,12 @@ public interface ApiInterface {
     Call<List<Temple>> getTempleList(@Field("rid") String rid);
 
 
+
+    @POST("gettemple.php")
+    @FormUrlEncoded
+    Call<List<Temple>> getTemple(@Field("tid") String tid);
+
+
+
+
 }

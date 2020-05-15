@@ -171,8 +171,7 @@ public class SaintHome extends AppCompatActivity {
         TextView txtName = (TextView) findViewById(R.id.fullscreen_content);
         //ImageView imgRThumb = (ImageView) findViewById(R.id.imgTempleBanner);
 
-        //TDODO need to get saint -> Religion NAme from the Saint model
-        topToolBar.setTitle(  getString( R.string.app_name) +  "-> " +   saint.getSaintName());
+        topToolBar.setTitle( saint.getReligionName() +  "-> " +   saint.getSaintName());
 
         Picasso.Builder builder = new Picasso.Builder(getApplicationContext());
 

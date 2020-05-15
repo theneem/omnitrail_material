@@ -9,7 +9,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
@@ -130,28 +130,7 @@
                                 ></TextView>
                         </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:layout_weight="5"
-                            android:gravity="right"
-                            >
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="More..."
-                                android:textAppearance="?android:attr/textAppearanceMedium"
-                                android:textColor="@color/text_Header"
-                                />
-
-                            <ImageButton android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/ic_more_white"
-                                android:layout_gravity="left"
-                                />
-                        </LinearLayout>
                     </LinearLayout>
 
                 </LinearLayout>
@@ -163,6 +142,172 @@
                 android:padding="5dp"
                 android:orientation="vertical"
                 >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_weight="100">
+
+                    <TextView
+                        android:id="@+id/LblPrimaryDeity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_marginTop="1dp"
+                        android:textColor="@color/text_Header"
+                        android:text="Primary Deity :  "
+                        android:layout_weight="60"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+
+
+                    <TextView
+                        android:id="@+id/txtPrimaryDeity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_marginTop="1dp"
+                        android:textColor="@color/text_Header"
+                        android:text="Primary Deity"
+                        android:layout_weight="40"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_weight="100">
+
+                    <TextView
+                        android:id="@+id/lblGoverningBody"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_marginTop="1dp"
+                        android:textColor="@color/text_Header"
+                        android:text="Governing Body : "
+                        android:layout_weight="60"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                    <TextView
+                    android:id="@+id/txtGoverningBody"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginTop="1dp"
+                    android:textColor="@color/text_Header"
+                    android:text="Governing Body"
+                        android:layout_weight="40"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/lblContactPerson"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginTop="1dp"
+                    android:textColor="@color/text_Header"
+                    android:text="Contact Person : "
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <TextView
+                    android:id="@+id/txtContactPerson"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginTop="1dp"
+android:layout_marginStart="10dp"
+                    android:textColor="@color/text_Header"
+                    android:text="Contact Person - Number"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_weight="100">
+
+
+                    <TextView
+                        android:id="@+id/lblCreator"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_marginTop="1dp"
+                        android:textColor="@color/text_Header"
+                        android:text="Creator"
+                        android:layout_weight="60"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+
+                    <TextView
+                    android:id="@+id/txtCreator"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginTop="1dp"
+                    android:textColor="@color/text_Header"
+                    android:text="Creator"
+                        android:layout_weight="40"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_weight="100">
+
+                    <TextView
+                        android:id="@+id/lblCompletionPeriod"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_marginTop="1dp"
+                        android:textColor="@color/text_Header"
+                        android:text="Completion Period"
+                        android:layout_weight="60"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+
+                    <TextView
+                    android:id="@+id/txtCompletionPeriod"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginTop="1dp"
+                    android:textColor="@color/text_Header"
+                    android:text="Completion Period"
+                        android:layout_weight="40"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/txtWiki"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginTop="1dp"
+                    android:textColor="@color/text_Header"
+                    android:text="Wiki Link"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+
+
+
+
                 <TextView
                     android:id="@+id/txtTempleStory"
                     android:layout_width="match_parent"
@@ -170,8 +315,11 @@
                     android:layout_gravity="start"
                     android:layout_marginTop="1dp"
                     android:textColor="@color/text_Header"
-                    android:text="Android Version"
+                    android:text="Temple Story"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
+
+
+
 
 
             </LinearLayout>

@@ -11,12 +11,41 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.material.textfield.TextInputEditText;
+import com.squareup.picasso.Picasso;
 import com.thenneem.omnitrail.R;
+import com.thenneem.omnitrail.adapter.TempleAdaptor;
+import com.thenneem.omnitrail.model.Temple;
+import com.thenneem.omnitrail.rest.ApiClient;
+import com.thenneem.omnitrail.rest.ApiInterface;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class TempleDetailFragment extends Fragment {
 
     private TempleDetailViewModel mViewModel;
+
+
+    ImageView templeThumb;
+    TextView txtTempleName;
+    TextView txtLocation;
+    TextView txtAddress;
+    TextView txtTempleStory;
+    TextView txtPrimaryDeity;
+    TextView txtGoverningBody;
+    TextView txtContactPerson;
+    TextView txtCreator;
+    TextView txtCompletionPeriod;
+    TextView txtWiki;
+
 
     public static TempleDetailFragment newInstance() {
         return new TempleDetailFragment();
@@ -25,8 +54,132 @@ public class TempleDetailFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.temple_detail_fragment, container, false);
-    }
+
+        String myTID = "";
+
+        final View root = inflater.inflate(R.layout.temple_detail_fragment, container, false);
+
+
+
+
+        txtTempleName = root.findViewById(R.id.txtTempleName);
+        txtLocation = root.findViewById(R.id.txtLocation);
+        txtAddress = root.findViewById(R.id.txtAddress);
+        txtTempleStory = root.findViewById(R.id.txtTempleStory);
+        txtPrimaryDeity = root.findViewById(R.id.txtPrimaryDeity);
+        txtGoverningBody = root.findViewById(R.id.txtGoverningBody);
+        txtContactPerson = root.findViewById(R.id.txtContactPerson);
+        txtCreator = root.findViewById(R.id.txtCreator);
+        txtContactPerson = root.findViewById(R.id.txtContactPerson);
+        txtCompletionPeriod = root.findViewById(R.id.txtCompletionPeriod);
+        txtWiki = root.findViewById(R.id.txtWiki);
+        templeThumb = root.findViewById(R.id.templeThumb);
+
+
+
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+
+             myTID = bundle.getString("TempleId");
+            Toast.makeText(this.getContext(), "TempleID : " + myTID, Toast.LENGTH_SHORT).show();
+        }
+
+
+
+        // calling json retrofit
+        ApiInterface apiService =
+                ApiClient.getClient().create(ApiInterface.class);
+
+        Call<List<Temple>> call = apiService.getTemple(myTID);
+        //Call<List<Temple>> call = apiService.getTempleList("1");
+
+
+        //
+        call.enqueue(new Callback<List<Temple>>() {
+            @Override
+            public void onResponse(Call<List<Temple>> call, Response<List<Temple>> response) {
+
+
+                List<Temple> tl = (List<Temple>) response.body();
+                ///recyclerView.setAdapter(new TempleAdaptor(rl,R.layout.templelist_layout,getContext()));
+                BindTempleDetail(tl);
+
+
+            }
+
+            @Override
+            public void onFailure(Call<List<Temple>> call, Throwable t) {
+                //Log.d(TAG , t.toString());
+                Toast.makeText(getContext(), "Error" +  t.toString(),Toast.LENGTH_LONG).show();
+            }
+        });
+
+        //
+
+
+        return root; }
+
+
+        public void BindTempleDetail( List<Temple> tl)
+        {
+            if(tl.size() >0 )
+            {
+
+
+
+
+
+                txtTempleName.setText(tl.get(0).getTempleName());
+
+                txtLocation.setText(tl.get(0).getCity_name() + ", " + tl.get(0).getState_name()+ ", " +  tl.get(0).getCountry_name()  );
+                txtAddress.setText(tl.get(0).getAddress());
+                txtTempleStory.setText(tl.get(0).getTempleStory());
+
+               // tinDeity.setText(tl.get(0).getPrimaryDeity());
+                txtPrimaryDeity.setText(tl.get(0).getPrimaryDeity());
+                txtGoverningBody.setText(tl.get(0).getGoverningBody());
+                txtContactPerson.setText(tl.get(0).getContactPerson() + " : " + tl.get(0).getContactNumber() ) ;
+                txtCreator.setText(tl.get(0).getCreator());
+                txtCompletionPeriod.setText(tl.get(0).getCompletionPerios());
+                txtWiki.setText(tl.get(0).getWiki_link());
+
+
+             /*
+                 = root.findViewById(R.id.txtPrimaryDeity);
+                 = root.findViewById(R.id.txtGoverningBody);
+                 = root.findViewById(R.id.txtContactPerson);
+                 = root.findViewById(R.id.txtCreator);
+                 = root.findViewById(R.id.txtContactPerson);
+                 = root.findViewById(R.id.txtCompletionPeriod);
+                 = root.findViewById(R.id.txtWiki);
+
+
+              */
+
+
+
+                Picasso.Builder builder = new Picasso.Builder(getContext());
+                builder.build().load(tl.get(0).getTempleIMG())
+                        .placeholder((R.drawable.ic_launcher_background))
+                        .error(R.drawable.ic_launcher_foreground)
+                        .into(templeThumb, new com.squareup.picasso.Callback() {
+                            @Override
+                            public void onSuccess() {
+                                //Log.d("Image temple","piccaso Success" );
+                            }
+
+                            @Override
+                            public void onError(Exception e) {
+                                //Log.d("Image Temple","piccaso error" + e.getMessage() );
+                                Toast.makeText(getContext(), "Piccaso Error "  + e.getMessage(), Toast.LENGTH_LONG).show();
+                            }
+                        });
+
+
+
+            }
+
+        }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
