@@ -43,7 +43,7 @@ public class SplashActivity extends AppCompatActivity {
 					SplashActivity.this.finish();
 
 				}
-			}, 20000);
+			}, 2000);
 		} else {
 			AlertDialog.Builder builder1 = new AlertDialog.Builder(SplashActivity.this, R.style.AlertColor);
 			builder1.setMessage("Please Turn on Internet First.");

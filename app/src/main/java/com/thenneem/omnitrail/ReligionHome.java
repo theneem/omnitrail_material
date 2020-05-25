@@ -40,8 +40,8 @@ public class ReligionHome extends AppCompatActivity {
      * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
      */
     private static final boolean AUTO_HIDE = true;
-    private     MaterialToolbar topToolBar;
-private Religion religion;
+    private MaterialToolbar topToolBar;
+    private Religion religion;
 
 
     BottomNavigationView bottomNavigation;
@@ -117,7 +117,7 @@ private Religion religion;
 
         setContentView(R.layout.activity_religion_home);
 
-       topToolBar = (com.google.android.material.appbar.MaterialToolbar ) findViewById(R.id.toptoolbar);
+        topToolBar = (com.google.android.material.appbar.MaterialToolbar) findViewById(R.id.toptoolbar);
 
         // setSupportActionBar(topToolBar);
         //topToolBar.setLogo(R.drawable.ic_account_circle_white_24dp);
@@ -129,6 +129,7 @@ private Religion religion;
 
 
         topToolBar.setNavigationIcon(R.drawable.ic_back);
+        topToolBar.animate();
 
 
         topToolBar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -141,8 +142,6 @@ private Religion religion;
 
             }
         });
-
-
 
 
         // Set up the user interaction to manually show or hide the system UI.
@@ -161,7 +160,6 @@ private Religion religion;
         bottomNavigation.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
 
 
-
         getIncomingIntent();
 
         openFragment(TempleFragment.newInstance());
@@ -173,14 +171,14 @@ private Religion religion;
     public void openFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         Bundle bundle = new Bundle();
-        bundle.putString("rid", String.valueOf( religion.getReligionID()));
+        bundle.putString("rid", String.valueOf(religion.getReligionID()));
         fragment.setArguments(bundle);
         transaction.replace(R.id.container, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
     }
 
-    BottomNavigationView.OnNavigationItemSelectedListener   navigationItemSelectedListener    = new BottomNavigationView.OnNavigationItemSelectedListener() {
+    BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
@@ -203,16 +201,16 @@ private Religion religion;
         }
     };
 
-    public  void getIncomingIntent(){
+    public void getIncomingIntent() {
         //mContentView.setText
 
-        
-        religion = (Religion)  getIntent().getSerializableExtra("Religion");
+
+        religion = (Religion) getIntent().getSerializableExtra("Religion");
         TextView txtName = (TextView) findViewById(R.id.fullscreen_content);
         ImageView imgRThumb = (ImageView) findViewById(R.id.imgReligionThumb);
 
-        txtName.setText( religion.getReligionName());
-        topToolBar.setTitle( getString( R.string.app_name) +  " -> " +  religion.getReligionName());
+        txtName.setText(religion.getReligionName());
+        topToolBar.setTitle(getString(R.string.app_name) + " -> " + religion.getReligionName());
 
         Picasso.Builder builder = new Picasso.Builder(getApplicationContext());
 
@@ -231,11 +229,9 @@ private Religion religion;
                     @Override
                     public void onError(Exception e) {
                         //Log.d("test1","piccaso error" + e.getMessage() );
-                        Toast.makeText(getApplicationContext(), "Piccaso Error "  + e.getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Piccaso Error " + e.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
-
-
 
 
         //Toast.makeText(this, "R Name " + religion.getReligionName(), Toast.LENGTH_SHORT).show();

@@ -45,6 +45,7 @@ public class TempleHome extends AppCompatActivity {
     private MaterialToolbar topToolBar;
 
     private Temple temple;
+    ImageView imgRThumb;
 
     BottomNavigationView bottomNavigation;
 
@@ -210,39 +211,30 @@ public class TempleHome extends AppCompatActivity {
 
         temple = (Temple)  getIntent().getSerializableExtra("Temple");
         TextView txtName = (TextView) findViewById(R.id.fullscreen_content);
-        //ImageView imgRThumb = (ImageView) findViewById(R.id.imgTempleBanner);
+         imgRThumb = (ImageView) findViewById(R.id.imgTempleBanner);
+
+         TextView txtTempleName = (TextView) findViewById(R.id.txtTempleName);
+         txtTempleName.setText(temple.getTempleName());
+
+         TextView txtMyLocation = (TextView) findViewById(R.id.txtMyLocation);
+         txtMyLocation.setText(temple.getCity_name() + ", " +  temple.getState_name() + "," + temple.getCountry_name()  );
 
         topToolBar.setTitle(  temple.getReligionName() + " -> " +  temple.getTempleName());
 
-        //getString( R.string.app_name) +  "-> " +
 
         Picasso.Builder builder = new Picasso.Builder(getApplicationContext());
-
-        /*
-
         builder.build().load(temple.getTempleIMG())
                 .placeholder((R.drawable.ic_launcher_background))
                 .error(R.drawable.ic_launcher_foreground)
                 .into(imgRThumb, new Callback() {
                     @Override
-                    public void onSuccess() {
-                        //holder.mMediaEvidencePb.setVisibility(View.GONE);
-                        //Log.d("test1","piccaso Success" );
-                        //Toast.makeText(context, "Piccaso success ", Toast.LENGTH_LONG).show();
-                    }
+                    public void onSuccess() {                    }
 
                     @Override
                     public void onError(Exception e) {
-                        //Log.d("test1","piccaso error" + e.getMessage() );
                         Toast.makeText(getApplicationContext(), "Piccaso Error "  + e.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
-
-
-        */
-
-
-        //Toast.makeText(this, "R Name " + religion.getReligionName(), Toast.LENGTH_SHORT).show();
     }
 
 

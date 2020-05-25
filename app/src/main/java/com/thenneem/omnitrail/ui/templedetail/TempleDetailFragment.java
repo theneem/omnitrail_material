@@ -2,6 +2,8 @@ package com.thenneem.omnitrail.ui.templedetail;
 
 import androidx.lifecycle.ViewModelProviders;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.squareup.picasso.Picasso;
 import com.thenneem.omnitrail.R;
@@ -29,22 +32,24 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class TempleDetailFragment extends Fragment {
+public class TempleDetailFragment extends Fragment implements View.OnClickListener {
 
     private TempleDetailViewModel mViewModel;
 
 
     ImageView templeThumb;
-    TextView txtTempleName;
-    TextView txtLocation;
-    TextView txtAddress;
+   // TextView txtTempleName;
+   // TextView txtLocation;
+    TextView txtFullAddress;
     TextView txtTempleStory;
     TextView txtPrimaryDeity;
     TextView txtGoverningBody;
     TextView txtContactPerson;
     TextView txtCreator;
     TextView txtCompletionPeriod;
-    TextView txtWiki;
+
+    String strWiki;
+
 
 
     public static TempleDetailFragment newInstance() {
@@ -62,9 +67,9 @@ public class TempleDetailFragment extends Fragment {
 
 
 
-        txtTempleName = root.findViewById(R.id.txtTempleName);
-        txtLocation = root.findViewById(R.id.txtLocation);
-        txtAddress = root.findViewById(R.id.txtAddress);
+//        txtTempleName = root.findViewById(R.id.txtTempleName);
+ //       txtLocation = root.findViewById(R.id.txtMyLocation);
+        txtFullAddress = root.findViewById(R.id.txtFullAddress);
         txtTempleStory = root.findViewById(R.id.txtTempleStory);
         txtPrimaryDeity = root.findViewById(R.id.txtPrimaryDeity);
         txtGoverningBody = root.findViewById(R.id.txtGoverningBody);
@@ -72,16 +77,18 @@ public class TempleDetailFragment extends Fragment {
         txtCreator = root.findViewById(R.id.txtCreator);
         txtContactPerson = root.findViewById(R.id.txtContactPerson);
         txtCompletionPeriod = root.findViewById(R.id.txtCompletionPeriod);
-        txtWiki = root.findViewById(R.id.txtWiki);
+
         templeThumb = root.findViewById(R.id.templeThumb);
 
 
+        MaterialButton btnWiki = (MaterialButton) root.findViewById(R.id.btnWikiLink);
+                btnWiki.setOnClickListener(this);
 
         Bundle bundle = this.getArguments();
         if (bundle != null) {
 
              myTID = bundle.getString("TempleId");
-            Toast.makeText(this.getContext(), "TempleID : " + myTID, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this.getContext(), "TempleID : " + myTID, Toast.LENGTH_SHORT).show();
         }
 
 
@@ -129,10 +136,10 @@ public class TempleDetailFragment extends Fragment {
 
 
 
-                txtTempleName.setText(tl.get(0).getTempleName());
+                //txtTempleName.setText(tl.get(0).getTempleName());
 
-                txtLocation.setText(tl.get(0).getCity_name() + ", " + tl.get(0).getState_name()+ ", " +  tl.get(0).getCountry_name()  );
-                txtAddress.setText(tl.get(0).getAddress());
+               // txtLocation.setText(tl.get(0).getCity_name() + ", " + tl.get(0).getState_name()+ ", " +  tl.get(0).getCountry_name()  );
+                txtFullAddress.setText(tl.get(0).getAddress() + " " + tl.get(0).getCity_name() + ", " + tl.get(0).getState_name()+ ", " +  tl.get(0).getCountry_name() );
                 txtTempleStory.setText(tl.get(0).getTempleStory());
 
                // tinDeity.setText(tl.get(0).getPrimaryDeity());
@@ -141,8 +148,10 @@ public class TempleDetailFragment extends Fragment {
                 txtContactPerson.setText(tl.get(0).getContactPerson() + " : " + tl.get(0).getContactNumber() ) ;
                 txtCreator.setText(tl.get(0).getCreator());
                 txtCompletionPeriod.setText(tl.get(0).getCompletionPerios());
-                txtWiki.setText(tl.get(0).getWiki_link());
 
+
+
+                strWiki = tl.get(0).getWiki_link();
 
              /*
                  = root.findViewById(R.id.txtPrimaryDeity);
@@ -154,7 +163,7 @@ public class TempleDetailFragment extends Fragment {
                  = root.findViewById(R.id.txtWiki);
 
 
-              */
+
 
 
 
@@ -174,7 +183,7 @@ public class TempleDetailFragment extends Fragment {
                                 Toast.makeText(getContext(), "Piccaso Error "  + e.getMessage(), Toast.LENGTH_LONG).show();
                             }
                         });
-
+  */
 
 
             }
@@ -188,4 +197,16 @@ public class TempleDetailFragment extends Fragment {
         // TODO: Use the ViewModel
     }
 
+    @Override
+    public void onClick(View v) {
+
+        switch (v.getId()) {
+            case R.id.btnWikiLink:
+                // Do something
+                Toast.makeText(this.getContext(), "wiki link crossed" + strWiki, Toast.LENGTH_SHORT).show();
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(strWiki));
+                startActivity(browserIntent);
+
+        }
+    }
 }

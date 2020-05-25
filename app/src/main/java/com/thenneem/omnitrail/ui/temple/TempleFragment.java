@@ -89,10 +89,6 @@ public class TempleFragment extends Fragment {
                 recyclerView.setAdapter(new TempleAdaptor(rl,R.layout.templelist_layout,getContext()));
 
 
-                //Log.d(TAG ,"No of religion revivd " + rl.size());
-                //Log.d(TAG ,"No of religion revivd " + religinoSingle.getReligionName());
-
-                //Toast.makeText(getApplication(), "No of Religion " + rl.size(), Toast.LENGTH_LONG).show();
             }
 
             @Override

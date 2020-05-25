@@ -61,15 +61,15 @@ public class SaintFragment extends Fragment {
         //android.widget.Toolbar  topToolBar = (Toolbar)root.findViewById(R.id.toptoolbar);
 
 
-        recyclerView = (RecyclerView) root.findViewById(R.id.rv_religions);
+            recyclerView = (RecyclerView) root.findViewById(R.id.rv_religions);
 
-        // use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
-        recyclerView.setHasFixedSize(true);
+            // use this setting to improve performance if you know that changes
+            // in content do not change the layout size of the RecyclerView
+            recyclerView.setHasFixedSize(true);
 
-        // use a linear layout manager
-        layoutManager = new LinearLayoutManager(this.getContext());
-        recyclerView.setLayoutManager(layoutManager);
+            // use a linear layout manager
+            layoutManager = new LinearLayoutManager(this.getContext());
+            recyclerView.setLayoutManager(layoutManager);
 
 
         // calling json retrofit

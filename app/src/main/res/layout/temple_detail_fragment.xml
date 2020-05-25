@@ -7,14 +7,23 @@
     tools:context=".ui.templedetail.TempleDetailFragment">
 
 
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    >
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
+
+        android:padding="10dp"
         app:cardCornerRadius="15dp"
         app:cardElevation="10dp"
+
         app:cardBackgroundColor="@color/colorPrimary"
         android:outlineAmbientShadowColor="@color/colorPrimaryDark"
         >
@@ -24,122 +33,10 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             >
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="10"
-                android:layout_margin="5dp"
-                >
-
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginLeft="10dp"
-                    app:cardCornerRadius="15dp"
-                    app:cardElevation="10dp"
-                    android:layout_weight="7"
-                    app:cardBackgroundColor="@color/text_Header"
-                    android:outlineAmbientShadowColor="@color/colorPrimaryDark"
-                    >
-
-                    <ImageView
-                        android:id="@+id/templeThumb"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:src="@drawable/ic_launcher_background"
-                        android:tag="image_tag" />
-                </androidx.cardview.widget.CardView>
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:padding="2dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/txtTempleName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="start"
-                        android:gravity="left"
-                        android:text="Temple Name"
-                        android:textColor="#FFFFFF"
-                        android:textAppearance="?android:attr/textAppearanceLarge" />
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_weight="10"
-                        >
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-
-                            android:layout_weight="5"
-                            >
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-
-                                app:srcCompat="@drawable/ic_home_white_24dp"></ImageView>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:id="@+id/txtLocation"
-                                android:text="Location"
-                                android:layout_marginStart="10dp"
-                                android:layout_gravity="center_vertical"
-                                android:layout_weight="3"
-                                android:textColor="@color/text_Header"
-
-                                android:textAppearance="?android:attr/textAppearanceMedium"
-                                ></TextView>
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:layout_weight="5"
-                            >
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-
-                                app:srcCompat="@drawable/ic_account_circle_white_24dp"></ImageView>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:id="@+id/txtAddress"
-                                android:text="Address"
-                                android:layout_weight="3"
-                                android:textColor="@color/text_Header"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginStart="10dp"
-
-                                android:textAppearance="?android:attr/textAppearanceMedium"
-                                ></TextView>
-                        </LinearLayout>
-
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
                 android:orientation="vertical"
                 >
 
@@ -147,15 +44,48 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
+                    android:layout_weight="5"
+                    >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        app:srcCompat="@drawable/ic_account_circle_white_24dp"></ImageView>
+                    <TextView
+                        android:id="@+id/txtContactPerson"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_weight="3"
+                        android:layout_marginStart="10dp"
+                        android:textColor="@color/text_Header"
+                        android:text="Contact Person - Number"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/text_Header"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="10dp"
                     android:layout_weight="100">
+
 
                     <TextView
                         android:id="@+id/LblPrimaryDeity"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="start"
-                        android:layout_marginTop="1dp"
-                        android:textColor="@color/text_Header"
+                        android:padding="5dp"
+
+                        android:textColor="@color/colorPrimaryDark"
+                        android:background="@color/text_Header"
                         android:text="Primary Deity :  "
                         android:layout_weight="60"
                         android:textAppearance="?android:attr/textAppearanceMedium" />
@@ -167,10 +97,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="start"
-                        android:layout_marginTop="1dp"
+                        android:padding="5dp"
+
                         android:textColor="@color/text_Header"
                         android:text="Primary Deity"
+
                         android:layout_weight="40"
+                        android:background="@drawable/back"
                         android:textAppearance="?android:attr/textAppearanceMedium" />
 
 
@@ -182,6 +115,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
+                    android:padding="10dp"
                     android:layout_weight="100">
 
                     <TextView
@@ -189,43 +123,30 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="start"
-                        android:layout_marginTop="1dp"
-                        android:textColor="@color/text_Header"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:background="@color/text_Header"
+                        android:padding="5dp"
                         android:text="Governing Body : "
                         android:layout_weight="60"
                         android:textAppearance="?android:attr/textAppearanceMedium" />
+
+
+
 
                     <TextView
                     android:id="@+id/txtGoverningBody"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
-                    android:layout_marginTop="1dp"
+
                     android:textColor="@color/text_Header"
+                        android:background="@drawable/back"
+                        android:padding="5dp"
                     android:text="Governing Body"
                         android:layout_weight="40"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
                 </LinearLayout>
-                <TextView
-                    android:id="@+id/lblContactPerson"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="start"
-                    android:layout_marginTop="1dp"
-                    android:textColor="@color/text_Header"
-                    android:text="Contact Person : "
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
 
-                <TextView
-                    android:id="@+id/txtContactPerson"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="start"
-                    android:layout_marginTop="1dp"
-android:layout_marginStart="10dp"
-                    android:textColor="@color/text_Header"
-                    android:text="Contact Person - Number"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
 
 
 
@@ -233,6 +154,7 @@ android:layout_marginStart="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
+                    android:padding="10dp"
                     android:layout_weight="100">
 
 
@@ -241,8 +163,9 @@ android:layout_marginStart="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="start"
-                        android:layout_marginTop="1dp"
-                        android:textColor="@color/text_Header"
+                        android:padding="5dp"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:background="@color/text_Header"
                         android:text="Creator"
                         android:layout_weight="60"
                         android:textAppearance="?android:attr/textAppearanceMedium" />
@@ -253,8 +176,10 @@ android:layout_marginStart="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
-                    android:layout_marginTop="1dp"
+
                     android:textColor="@color/text_Header"
+                        android:background="@drawable/back"
+                        android:padding="5dp"
                     android:text="Creator"
                         android:layout_weight="40"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
@@ -266,6 +191,7 @@ android:layout_marginStart="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
+                    android:padding="10dp"
                     android:layout_weight="100">
 
                     <TextView
@@ -273,9 +199,10 @@ android:layout_marginStart="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="start"
-                        android:layout_marginTop="1dp"
-                        android:textColor="@color/text_Header"
-                        android:text="Completion Period"
+                        android:padding="5dp"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:background="@color/text_Header"
+                        android:text="Completion"
                         android:layout_weight="60"
                         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -285,27 +212,57 @@ android:layout_marginStart="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
-                    android:layout_marginTop="1dp"
+                    android:padding="5dp"
                     android:textColor="@color/text_Header"
-                    android:text="Completion Period"
-                        android:layout_weight="40"
+                    android:background="@drawable/back"
+                    android:text="Completion"
+                    android:layout_weight="40"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 </LinearLayout>
 
 
-                <TextView
-                    android:id="@+id/txtWiki"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="start"
-                    android:layout_marginTop="1dp"
-                    android:textColor="@color/text_Header"
-                    android:text="Wiki Link"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    android:orientation="horizontal"
+                    android:padding="10dp"
+                    android:layout_weight="100">
+
+                    <TextView
+                        android:id="@+id/lblAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:padding="5dp"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:background="@color/text_Header"
+                        android:text="Completion"
+                        android:layout_weight="60"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
 
 
+                    <TextView
+                        android:id="@+id/txtFullAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:padding="5dp"
+                        android:textColor="@color/text_Header"
+                        android:background="@drawable/back"
+                        android:text="Full Address"
+                        android:layout_weight="40"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
 
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="10dp"
+                    android:layout_weight="100">
 
 
                 <TextView
@@ -313,11 +270,23 @@ android:layout_marginStart="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
-                    android:layout_marginTop="1dp"
-                    android:textColor="@color/text_Header"
+                    android:padding="5dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:background="@color/text_Header"
                     android:text="Temple Story"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
+                </LinearLayout>
 
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btnWikiLink"
+                    android:text="Open Wiki Link..."
+                    android:background="@color/colorAccent"
+
+                    android:shadowColor="@color/text_Header">
+
+                </com.google.android.material.button.MaterialButton>
 
 
 
@@ -332,5 +301,7 @@ android:layout_marginStart="10dp"
 
     </androidx.cardview.widget.CardView>
 
+
+</ScrollView>
 
 </FrameLayout>

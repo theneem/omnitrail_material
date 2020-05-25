@@ -238,10 +238,5 @@ public class FullscreenActivity extends AppCompatActivity {
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
     }
 
-    public void onItemClick(View view) {
 
-       //  Toast.makeText(this, "item clicked", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, ReligionHome.class);
-        startActivity(intent);
-    }
 }

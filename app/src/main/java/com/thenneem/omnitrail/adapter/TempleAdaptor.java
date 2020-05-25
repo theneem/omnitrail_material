@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.button.MaterialButton;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.thenneem.omnitrail.FullscreenActivity;
@@ -38,7 +39,9 @@ public class TempleAdaptor  extends RecyclerView.Adapter<TempleAdaptor.TempleVie
         TextView txtTempleName;
         TextView txtTempleStory;
         TextView txtLocation;
-        TextView txtAddress;
+        TextView txtPrimaryDeity;
+        MaterialButton btnMore;
+
 
 
         private ItemClickListner itemClickListner;
@@ -50,8 +53,9 @@ public class TempleAdaptor  extends RecyclerView.Adapter<TempleAdaptor.TempleVie
             imgTempleView = (ImageView)itemView.findViewById(R.id.templeThumb);
             txtTempleName = (TextView) itemView.findViewById(R.id.txtTempleName);
             txtTempleStory =(TextView)itemView.findViewById(R.id.txtTempleStory);
-            txtLocation = (TextView) itemView.findViewById(R.id.txtLocation);
-            txtAddress = (TextView) itemView.findViewById(R.id.txtAddress);
+            txtLocation = (TextView) itemView.findViewById(R.id.txtMyLocation);
+            txtPrimaryDeity = (TextView) itemView.findViewById(R.id.txtPrimaryDeity);
+            btnMore = (MaterialButton) itemView.findViewById(R.id.btnMore);
 
             itemView.setOnClickListener(this);
 
@@ -91,8 +95,9 @@ public class TempleAdaptor  extends RecyclerView.Adapter<TempleAdaptor.TempleVie
         holder.txtTempleName.setText(temples.get(position).getTempleName());
         holder.txtTempleStory.setText(temples.get(position).getTempleName());
         holder.txtTempleStory.setText(temples.get(position).getTempleStory());
+
         holder.txtLocation.setText(temples.get(position).getCity_name() + ", " +  temples.get(position).getState_name() + "," + temples.get(position).getCountry_name()  );
-        holder.txtAddress.setText(temples.get(position).getAddress());
+        holder.txtPrimaryDeity.setText(temples.get(position).getPrimaryDeity());
 
 
 
@@ -114,8 +119,24 @@ public class TempleAdaptor  extends RecyclerView.Adapter<TempleAdaptor.TempleVie
                     }
                 });
 
+       /*
+        final Temple tmpl = temples.get(position);
 
 
+holder.btnMore.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent(context, TempleHome.class);
+
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra("Temple",tmpl);
+
+
+        context.startActivity(intent);
+    }
+});
+
+        */
 
 
         //estup item click listner
@@ -123,7 +144,7 @@ public class TempleAdaptor  extends RecyclerView.Adapter<TempleAdaptor.TempleVie
             @Override
             public void onClick(View view, int position) {
 
-                Toast.makeText(context, " Clicked " + temples.get(position).getTempleName(), Toast.LENGTH_SHORT).show();
+               // Toast.makeText(context, " Clicked " + temples.get(position).getTempleName(), Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(context, TempleHome.class);
 
