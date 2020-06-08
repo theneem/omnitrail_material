@@ -4,9 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
+    android:background="@color/primaryDarkColor"
     tools:context=".TempleHome">
-
 
     <!-- The primary full-screen view. This can be replaced with whatever view
          is needed to present your content, e.g. VideoView, SurfaceView,
@@ -17,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/primaryDarkColor"
         android:gravity="start"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
@@ -28,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="0dp"
-            android:background="@color/colorPrimaryDark"
+            android:background="@color/primaryDarkColor"
             android:contentInsetStart="10dp"
             android:contentInsetLeft="10dp"
             android:contentInsetRight="10dp"
@@ -39,7 +38,7 @@
             app:contentInsetStart="10dp"
             app:logo="@mipmap/ic_logo_notext"
             app:title="@string/app_name"
-            app:titleTextColor="@color/text_Header"></com.google.android.material.appbar.MaterialToolbar>
+            app:titleTextColor="@color/primaryTextColor"></com.google.android.material.appbar.MaterialToolbar>
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -48,8 +47,8 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
-            android:outlineAmbientShadowColor="@color/colorPrimaryDark"
-            app:cardBackgroundColor="@color/colorPrimary"
+            android:outlineAmbientShadowColor="@color/primaryDarkColor"
+            app:cardBackgroundColor="@color/primaryColor"
             app:cardCornerRadius="15dp"
             app:cardElevation="10dp">
 
@@ -73,7 +72,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/text_Header" />
+                    android:background="@color/primaryTextColor" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -93,8 +92,8 @@
                         app:cardCornerRadius="15dp"
                         app:cardElevation="10dp"
                         android:layout_weight="7"
-                        app:cardBackgroundColor="@color/colorPrimary"
-                        android:outlineAmbientShadowColor="@color/colorPrimaryDark"
+                        app:cardBackgroundColor="@color/primaryColor"
+                        android:outlineAmbientShadowColor="@color/primaryDarkColor"
                         >
 
                      -->
@@ -145,7 +144,7 @@
                                     android:layout_weight="3"
                                     android:text="Locatin"
                                     android:textAppearance="?android:attr/textAppearanceMedium"
-                                    android:textColor="@color/text_Header" />
+                                    android:textColor="@color/primaryTextColor" />
                             </LinearLayout>
 
 
@@ -192,10 +191,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
+        app:itemRippleColor="@color/colorWhite"
 
-        android:background="@color/colorPrimaryDark"
-        app:itemIconTint="@color/text_Header"
-        app:itemTextColor="@color/text_Header"
+        android:background="@color/primaryDarkColor"
+        app:itemIconTint="@drawable/bottom_navigation"
+        app:itemTextColor="@drawable/bottom_navigation"
         app:layout_constraintBottom_toBottomOf="@+id/frameLayout"
         app:menu="@menu/temple_menu" />
     <!-- This FrameLayout insets its children based on system windows using
@@ -207,7 +207,6 @@
         android:fitsSystemWindows="true">
 
         <LinearLayout
-            android:id="@+id/fullscreen_content_controlsTemple"
             style="?metaButtonBarStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -217,7 +216,6 @@
             tools:ignore="UselessParent">
 
             <Button
-                android:id="@+id/dummy_button1"
                 style="?metaButtonBarButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
