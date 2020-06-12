@@ -18,8 +18,8 @@
         android:layout_marginLeft="10dp"
         app:cardCornerRadius="15dp"
         app:cardElevation="10dp"
-        app:cardBackgroundColor="@color/colorPrimary"
-        android:outlineAmbientShadowColor="@color/colorPrimaryDark"
+        app:cardBackgroundColor="@color/primaryColor"
+        android:outlineAmbientShadowColor="@color/primaryDarkColor"
         >
 
         <LinearLayout
@@ -48,7 +48,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="21"
-                    android:textColor="@color/text_Header"
+                  style="@style/HeaderText"
                     android:textSize="33dp" />
 
                 <TextView
@@ -56,7 +56,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Jan"
-                    android:textColor="@color/text_Header"
+                   style="@style/NormalText"
                     android:textSize="22dp" />
 
 
@@ -109,9 +109,8 @@
                             android:layout_marginStart="10dp"
                             android:text="Event time"
 
-                            android:textAppearance="?android:attr/textAppearanceSmall"
-
-                            android:textColor="@color/text_Header"></TextView>
+                          style="@style/NormalText"
+                            ></TextView>
                     </LinearLayout>
 
 
@@ -127,10 +126,8 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
-                android:outlineAmbientShadowColor="@color/colorPrimaryDark"
-                app:cardBackgroundColor="@color/text_Header"
-                app:cardCornerRadius="15dp"
-                app:cardElevation="10dp">
+                  style="@style/ImageCard"
+                >
 
                 <ImageView
                     android:id="@+id/imgeventThumb"
@@ -146,24 +143,33 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/text_Header"/>
+                android:background="@color/primaryTextColor"/>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="5dp">
 
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:minHeight="40dp"
+
+
+                >
             <TextView
                 android:id="@+id/txtEventDetails"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:layout_marginTop="1dp"
                 android:text="Event Details"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/text_Header" />
+                style="@style/NormalLable" />
 
+
+            </com.google.android.material.card.MaterialCardView>
 
         </LinearLayout>
 

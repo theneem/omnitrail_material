@@ -67,7 +67,7 @@ public class TempleReviewFragment extends Fragment {
         ApiInterface apiService =
                 ApiClient.getClient().create(ApiInterface.class);
 
-        Call<List<Event>> call = apiService.getEventList(getArguments().getString("TempleId"));
+        Call<List<Event>> call = apiService.getEventList("temple", getArguments().getString("TempleId"));
 
         //
         call.enqueue(new Callback<List<Event>>() {

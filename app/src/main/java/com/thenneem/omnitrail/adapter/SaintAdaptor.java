@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.net.Uri;
 import android.nfc.Tag;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -111,6 +112,7 @@ public class SaintAdaptor  extends RecyclerView.Adapter<SaintAdaptor.SaintViewHo
         holder.txtSectName.setText("Sect: " + saints.get(position).getSectName() );
         holder.txtSamudai.setText("Samudai: " + saints.get(position).getSamudai() );
         holder.txtSaintDesc.setText(saints.get(position).getSaintDesc());
+
 
 
 

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/colorPrimaryDark"
+    android:background="@color/primaryDarkColor"
     tools:context=".FullscreenActivity">
 
     <LinearLayout
@@ -23,8 +23,8 @@
             android:layout_marginLeft="2dp"
             app:cardCornerRadius="10dp"
 
-            app:cardBackgroundColor="@color/colorPrimaryDark"
-            android:outlineAmbientShadowColor="@color/colorPrimaryDark"
+            app:cardBackgroundColor="@color/primaryDarkColor"
+            android:outlineAmbientShadowColor="@color/primaryDarkColor"
             >
 
         <ImageView

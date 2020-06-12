@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -186,12 +187,20 @@ public class ReligionHome extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_temple:
                     openFragment(TempleFragment.newInstance());
+                    item.setChecked(true);
+                    //bottomNavigation.setItemTextColor(android.R.color.holo_red_dark);
+
                     return true;
                 case R.id.navigain_saint:
                     openFragment(SaintFragment.newInstance());
+                    item.setChecked(true);
+
+
                     return true;
                 case R.id.navigation_book:
                     openFragment(BookFragment.newInstance());
+                    item.setChecked(true);
+
                     return true;
 
             }

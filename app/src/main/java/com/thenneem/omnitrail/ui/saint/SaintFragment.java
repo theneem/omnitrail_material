@@ -3,6 +3,7 @@ package com.thenneem.omnitrail.ui.saint;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -20,6 +21,9 @@ import android.widget.Toolbar;
 
 import com.thenneem.omnitrail.FullscreenActivity;
 import com.thenneem.omnitrail.R;
+import com.thenneem.omnitrail.SaintHome;
+import com.thenneem.omnitrail.TempleHome;
+import com.thenneem.omnitrail.adapter.RecyclerItemClickListner;
 import com.thenneem.omnitrail.adapter.ReligionAdaptor;
 import com.thenneem.omnitrail.adapter.SaintAdaptor;
 import com.thenneem.omnitrail.model.Religion;
@@ -40,6 +44,8 @@ public class SaintFragment extends Fragment {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
+
+    List<Saint> rl;
 
 
     private SaintViewModel mViewModel;
@@ -87,7 +93,7 @@ public class SaintFragment extends Fragment {
             public void onResponse(Call<List<Saint>> call, Response<List<Saint>> response) {
                 //religinoSingle = response.body();
 
-                List<Saint> rl = (List<Saint>) response.body();
+                 rl = (List<Saint>) response.body();
                 recyclerView.setAdapter(new SaintAdaptor(rl,R.layout.saintlist_layout,getContext()));
 
 
@@ -105,6 +111,36 @@ public class SaintFragment extends Fragment {
         });
 
         //
+
+
+
+
+
+        recyclerView.addOnItemTouchListener(new RecyclerItemClickListner(this.getContext(), recyclerView, new RecyclerItemClickListner
+                .OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                //handle click events here
+
+                Intent intent = new Intent(getContext(), SaintHome.class);
+
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("Saint",rl.get(position));
+
+
+                getContext().startActivity(intent);
+
+            }
+
+            @Override
+            public void onItemLongClick(View view, int position) {
+                //handle longClick if any
+                //Toast.makeText(getContext(), "Item long click " + String.valueOf(position), Toast.LENGTH_SHORT).show();
+
+            }
+        }));
+
+
 
         return root;
     }

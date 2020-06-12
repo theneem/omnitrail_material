@@ -13,10 +13,13 @@ import android.os.Handler;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.thenneem.omnitrail.model.Saint;
 import com.thenneem.omnitrail.ui.book.BookFragment;
@@ -27,6 +30,19 @@ import com.thenneem.omnitrail.ui.saintreview.SaintReviewFragment;
 import com.thenneem.omnitrail.ui.temple.TempleFragment;
 import com.thenneem.omnitrail.ui.templedetail.TempleDetailFragment;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+
+
+
+import java.security.cert.CertificateNotYetValidException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
@@ -41,6 +57,7 @@ public class SaintHome extends AppCompatActivity {
 
     private MaterialToolbar topToolBar;
     private Saint saint;
+    ImageView imgSThumb;
 
     BottomNavigationView bottomNavigation;
 
@@ -158,6 +175,8 @@ public class SaintHome extends AppCompatActivity {
         getIncomingIntent();
 
 
+
+
     }
 
 
@@ -169,34 +188,71 @@ public class SaintHome extends AppCompatActivity {
 
         saint = (Saint)  getIntent().getSerializableExtra("Saint");
         TextView txtName = (TextView) findViewById(R.id.fullscreen_content);
-        //ImageView imgRThumb = (ImageView) findViewById(R.id.imgTempleBanner);
 
-        topToolBar.setTitle( saint.getReligionName() +  "-> " +   saint.getSaintName());
+        imgSThumb = (ImageView) findViewById(R.id.imgSaint);
 
         Picasso.Builder builder = new Picasso.Builder(getApplicationContext());
-
-        /*
-
-        builder.build().load(temple.getTempleIMG())
+        builder.build().load(saint.getSaintIMG())
                 .placeholder((R.drawable.ic_launcher_background))
                 .error(R.drawable.ic_launcher_foreground)
-                .into(imgRThumb, new Callback() {
+                .into(imgSThumb, new Callback() {
                     @Override
-                    public void onSuccess() {
-                        //holder.mMediaEvidencePb.setVisibility(View.GONE);
-                        //Log.d("test1","piccaso Success" );
-                        //Toast.makeText(context, "Piccaso success ", Toast.LENGTH_LONG).show();
-                    }
+                    public void onSuccess() {                    }
 
                     @Override
                     public void onError(Exception e) {
-                        //Log.d("test1","piccaso error" + e.getMessage() );
                         Toast.makeText(getApplicationContext(), "Piccaso Error "  + e.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
 
 
-        */
+        topToolBar.setTitle( saint.getReligionName() +  "-> " +   saint.getSaintName());
+
+
+
+        TextView txtSaintName = (TextView) findViewById(R.id.txtSaintName);
+        txtSaintName.setText(saint.getSaintName());
+
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        Date BirthDate = null;
+        Date DeathDate = null;
+        String strBirthDate = "";
+        String strDeathDate = "";
+
+
+        try {
+
+
+            if(saint.getBirthDate() != null  )
+                BirthDate = format.parse(saint.getBirthDate());
+            if(saint.getDeathDate() != null )
+                DeathDate = format.parse(saint.getDeathDate());
+
+            format = new SimpleDateFormat("MMM dd, yyyy");
+
+            if(saint.getBirthDate() != null  )
+                strBirthDate = format.format(BirthDate);
+
+            if(saint.getDeathDate() != null )
+                strDeathDate = format.format(DeathDate);
+
+
+
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+            Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
+        }
+
+
+        TextView txtLifeSpan = (TextView) findViewById(R.id.txtLifeSpan);
+
+        if(strDeathDate != "")
+             txtLifeSpan.setText(strBirthDate + " to " +  strDeathDate );
+        else
+            txtLifeSpan.setText(strBirthDate);
+
+
 
 
 
@@ -212,7 +268,7 @@ public class SaintHome extends AppCompatActivity {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         Bundle bundle = new Bundle();
         // NEED TO GET RELIGION ID TO PASS
-        //bundle.putString("rid", String.valueOf(  religion.getReligionID()));
+        bundle.putString("SaintId", String.valueOf(  saint.getSaintID()));
         fragment.setArguments(bundle);
         transaction.replace(R.id.container, fragment);
         transaction.addToBackStack(null);

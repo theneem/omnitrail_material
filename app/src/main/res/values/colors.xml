@@ -3,9 +3,9 @@
 <!-- YELLOW  COLOR -->
 <!--
 <resources>
-    <color name="colorPrimary">#FFEB3B</color>
-    <color name="colorPrimaryDark">#FBC02D</color>
-    <color name="colorAccent">#FFF59D</color>
+    <color name="primaryColor">#FFEB3B</color>
+    <color name="primaryDarkColor">#FBC02D</color>
+    <color name="primaryLightColor">#FFF59D</color>
 
     <color name="black_overlay">#66000000</color>
 </resources>
@@ -14,9 +14,9 @@
 <!-- gREEB  COLOR -->
 <!--
 <resources>
-<color name="colorPrimary">#4CAF50</color>
-<color name="colorPrimaryDark">#388E3C</color>
-<color name="colorAccent">#A5D6A7</color>
+<color name="primaryColor">#4CAF50</color>
+<color name="primaryDarkColor">#388E3C</color>
+<color name="primaryLightColor">#A5D6A7</color>
 
 <color name="black_overlay">#66000000</color>
 </resources>
@@ -25,9 +25,9 @@
 <!-- ORANNGE BHAGAVA COLOR
 
 <resources>
-    <color name="colorPrimary">#FF5722</color>
-    <color name="colorPrimaryDark">#E64A19</color>
-    <color name="colorAccent">#FFAB91</color>
+    <color name="primaryColor">#FF5722</color>
+    <color name="primaryDarkColor">#E64A19</color>
+    <color name="primaryLightColor">#FFAB91</color>
 
     <color name="black_overlay">#66000000</color>
     <color name="text_Header">#FFFFFF</color>
@@ -36,17 +36,56 @@
 </resources>
 
 -->
+<!--
+
+LIVE COLOR -->
 
 
+<!--
 <resources>
-    <color name="colorPrimary">#50797A</color>
-    <color name="colorPrimaryDark">#375657</color>
-    <color name="colorAccent">#A5BCBC</color>
+    <color name="primaryColor">#50797A</color>
+    <color name="primaryDarkColor">#375657</color>
+    <color name="primaryLightColor">#A5BCBC</color>
 
     <color name="black_overlay">#66000000</color>
     <color name="text_Header">#FFFFFF</color>
-    <color name="text_Second">#000000</color>
+
+
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorGray">#CCCCCC</color>
+
+
+
 
 </resources>
+
+
+-->
+
+
+
+<resources>
+    <color name="primaryColor">#50797a</color>
+    <color name="primaryLightColor">#7ea8a9</color>
+    <color name="primaryDarkColor">#244d4e</color>
+    <color name="secondaryColor">#607d8b</color>
+    <color name="secondaryLightColor">#8eacbb</color>
+    <color name="secondaryDarkColor">#34515e</color>
+    <color name="primaryTextColor">#ffffff</color>
+    <color name="secondaryTextColor">#000000</color>
+
+
+    <color name="black_overlay">#66000000</color>
+    <color name="text_Header">#000000</color>
+
+
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorGray">#CCCCCC</color>
+
+
+
+
+</resources>
+
 
 

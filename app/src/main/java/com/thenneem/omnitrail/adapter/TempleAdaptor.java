@@ -40,6 +40,7 @@ public class TempleAdaptor  extends RecyclerView.Adapter<TempleAdaptor.TempleVie
         TextView txtTempleStory;
         TextView txtLocation;
         TextView txtPrimaryDeity;
+        LinearLayout llDeity;
         MaterialButton btnMore;
 
 
@@ -56,7 +57,7 @@ public class TempleAdaptor  extends RecyclerView.Adapter<TempleAdaptor.TempleVie
             txtLocation = (TextView) itemView.findViewById(R.id.txtMyLocation);
             txtPrimaryDeity = (TextView) itemView.findViewById(R.id.txtPrimaryDeity);
             btnMore = (MaterialButton) itemView.findViewById(R.id.btnMore);
-
+            llDeity = (LinearLayout)itemView.findViewById(R.id.layoutDeity);
             itemView.setOnClickListener(this);
 
         }
@@ -97,13 +98,20 @@ public class TempleAdaptor  extends RecyclerView.Adapter<TempleAdaptor.TempleVie
         holder.txtTempleStory.setText(temples.get(position).getTempleStory());
 
         holder.txtLocation.setText(temples.get(position).getCity_name() + ", " +  temples.get(position).getState_name() + "," + temples.get(position).getCountry_name()  );
-        holder.txtPrimaryDeity.setText(temples.get(position).getPrimaryDeity());
+        if(temples.get(position).getPrimaryDeity()!="")
+        {
+            holder.llDeity.setVisibility(View.VISIBLE);
+            holder.txtPrimaryDeity.setText(temples.get(position).getPrimaryDeity());}
+        else {
+            holder.llDeity.setVisibility(View.GONE);
+        }
 
 
 
 
         Picasso.Builder builder = new Picasso.Builder(this.context);
         builder.build().load(temples.get(position).getTempleIMG())
+                .fit()
                 .placeholder((R.drawable.ic_launcher_background))
                 .error(R.drawable.ic_launcher_foreground)
                 .into(holder.imgTempleView, new Callback() {

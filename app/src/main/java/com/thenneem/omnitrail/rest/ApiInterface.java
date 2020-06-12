@@ -47,15 +47,21 @@ public interface ApiInterface {
 
 
 
+
+    @POST("getsaint.php")
+    @FormUrlEncoded
+    Call<List<Saint>> getSaint(@Field("sid") String sid);
+
+
+
+
     //get event list for the temples ? (may be we can use the same in future for saints
     @POST("eventlist.php")
-    @FormUrlEncoded
-    Call<List<Event>> getEventList(@Field("tid") String tid);
+    Call<List<Event>> getEventList(@Query("ptype") String ptype, @Query("pid") String pid);
 
     //get event list for the temples ? (may be we can use the same in future for saints
     @POST("featurelist.php")
-    @FormUrlEncoded
-    Call<List<Feature>> getFeatureList(@Field("tid") String tid);
+    Call<List<Feature>> getFeatureList(@Query("ptype") String ptype, @Query("pid") String pid);
 
 
 

@@ -69,7 +69,7 @@ public class TempleFeatureFragment extends Fragment  implements View.OnClickList
         ApiInterface apiService =
                 ApiClient.getClient().create(ApiInterface.class);
 
-        Call<List<Feature>> call = apiService.getFeatureList(getArguments().getString("TempleId"));
+        Call<List<Feature>> call = apiService.getFeatureList("temple", getArguments().getString("TempleId"));
 
 //
         call.enqueue(new Callback<List<Feature>>() {

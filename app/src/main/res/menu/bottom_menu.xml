@@ -5,13 +5,18 @@
     <item
         android:id="@+id/navigation_temple"
         android:icon="@drawable/ic_temple"
+        android:enabled="true"
         android:title="Temple" />
     <item
         android:id="@+id/navigain_saint"
         android:icon="@drawable/ic_saint"
+        android:enabled="true"
+
         android:title="Saint" />
     <item
         android:id="@+id/navigation_book"
         android:icon="@drawable/ic_books"
+        android:enabled="true"
+
         android:title="Book" />
 </menu>

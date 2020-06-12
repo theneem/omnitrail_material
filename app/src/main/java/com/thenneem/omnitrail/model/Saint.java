@@ -15,6 +15,10 @@ public class Saint   implements Serializable {
     @SerializedName("SaintName")
     private String SaintName;
 
+
+    @SerializedName("ParentSaintName")
+    private String ParentSaintName;
+
     @SerializedName("ReligionName")
     private String ReligionName;
 
@@ -34,29 +38,45 @@ public class Saint   implements Serializable {
     private String SaintStory;
 
 
-
     @SerializedName("BirthDate")
-    private Date BirthDate;
+    private String BirthDate;
 
 
     @SerializedName("SaintDate")
-    private Date SaintDate;
+    private String SaintDate;
 
 
     @SerializedName("DeathDate")
-    private Date DeathDate;
+    private String DeathDate;
 
 
     @SerializedName("SaintIMG")
     private String SaintIMG;
 
+    @SerializedName("CurrentAddress")
+    private String CurrentAddress;
 
-    public Saint (int SaintID, String SaintName, String  ReligionName ,String SectName, String Samudai, String SaintDesc,
-                  String SaintStory,Date BirthDate, Date SaintDate, Date DeathDate, String SaintIMG) {
+
+    @SerializedName("wiki_link")
+    private String wiki_link;
+
+
+    @SerializedName("ChiefFollower")
+    private String ChiefFollower;
+
+
+    @SerializedName("ChiefFollowerContact")
+    private String ChiefFollowerContact;
+
+
+    public Saint (int SaintID, String SaintName, String ParentSaintName,  String  ReligionName ,String SectName, String Samudai, String SaintDesc,
+                  String SaintStory,String BirthDate, String SaintDate, String DeathDate, String SaintIMG, String CurrentAddress, String wiki_link,
+                  String ChiefFollower, String ChiefFollowerContact) {
 
 
         this.SaintID = SaintID;
         this.SaintName = SaintName;
+        this.ParentSaintName = ParentSaintName;
         this.ReligionName = ReligionName;
         this.Samudai = Samudai;
         this.SectName = SectName;
@@ -66,6 +86,10 @@ public class Saint   implements Serializable {
         this.SaintDate = SaintDate;
         this.DeathDate = DeathDate;
         this.SaintIMG = SaintIMG;
+        this.CurrentAddress = CurrentAddress;
+        this.wiki_link = wiki_link;
+        this.ChiefFollower = ChiefFollower;
+        this.ChiefFollowerContact = ChiefFollowerContact;
 
 
     }
@@ -76,6 +100,10 @@ public class Saint   implements Serializable {
 
     public String getSaintName() {
         return SaintName;
+    }
+
+    public String getParentSaintName() {
+        return ParentSaintName;
     }
 
     public String getReligionName() {
@@ -98,19 +126,38 @@ public class Saint   implements Serializable {
         return SaintStory;
     }
 
-    public Date getBirthDate() {
+    public String getBirthDate() {
         return BirthDate;
     }
 
-    public Date getSaintDate() {
+    public String getSaintDate() {
         return SaintDate;
     }
 
-    public Date getDeathDate() {
+    public String getDeathDate() {
         return DeathDate;
     }
 
     public String getSaintIMG() {
         return SaintIMG;
     }
+
+    public String getCurrentAddress() {
+        return CurrentAddress;
+    }
+
+    public String getWiki_link() {
+        return wiki_link;
+    }
+
+    public String getChiefFollower() {
+        return ChiefFollower;
+    }
+
+    public String getChiefFollowerContact() {
+        return ChiefFollowerContact;
+    }
+
+
+
 }

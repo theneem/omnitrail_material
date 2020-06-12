@@ -5,14 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
+    android:background="@color/primaryDarkColor"
     tools:context=".ReligionHome">
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/primaryDarkColor"
         android:orientation="vertical">
 
         <com.google.android.material.appbar.MaterialToolbar
@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="0dp"
-            android:background="@color/colorPrimaryDark"
+            android:background="@color/primaryDarkColor"
             android:contentInsetStart="5dp"
             android:contentInsetLeft="5dp"
             android:contentInsetRight="5dp"
@@ -31,7 +31,7 @@
             app:contentInsetStart="5dp"
             app:logo="@mipmap/ic_logo_notext"
             app:title="@string/app_name"
-            app:titleTextColor="@color/text_Header"/>
+            app:titleTextColor="@color/primaryTextColor"/>
 
 
         <ImageView
@@ -73,9 +73,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:background="@color/colorPrimaryDark"
-        app:itemIconTint="@color/text_Header"
-        app:itemTextColor="@color/text_Header"
+        app:itemRippleColor="@color/colorWhite"
+
+        android:background="@color/primaryDarkColor"
+
+        app:itemIconTint="@drawable/bottom_navigation"
+        app:itemTextColor="@drawable/bottom_navigation"
         app:menu="@menu/bottom_menu" />
     <!-- This FrameLayout insets its children based on system windows using
          android:fitsSystemWindows. -->

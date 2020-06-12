@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
+    android:background="@color/primaryDarkColor"
     tools:context=".SplashActivity">
 
     <RelativeLayout
@@ -19,7 +19,6 @@
             android:layout_height="wrap_content"/>
 
         <ImageView
-            android:id="@+id/logo"
             android:layout_marginTop="45dp"
             android:src="@mipmap/ic_omnitrail_circle"
             android:layout_centerInParent="true"

@@ -2,6 +2,7 @@ package com.thenneem.omnitrail.ui.temple;
 
 import androidx.lifecycle.ViewModelProviders;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -17,6 +18,8 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.thenneem.omnitrail.R;
+import com.thenneem.omnitrail.TempleHome;
+import com.thenneem.omnitrail.adapter.RecyclerItemClickListner;
 import com.thenneem.omnitrail.adapter.SaintAdaptor;
 import com.thenneem.omnitrail.adapter.TempleAdaptor;
 import com.thenneem.omnitrail.model.Saint;
@@ -42,6 +45,7 @@ public class TempleFragment extends Fragment {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
 
+    List<Temple> rl;
 
 
 
@@ -66,9 +70,15 @@ public class TempleFragment extends Fragment {
         // in content do not change the layout size of the RecyclerView
         recyclerView.setHasFixedSize(true);
 
+
+
         // use a linear layout manager
         layoutManager = new LinearLayoutManager(this.getContext());
         recyclerView.setLayoutManager(layoutManager);
+
+
+
+
 
 
         // calling json retrofit
@@ -85,7 +95,7 @@ public class TempleFragment extends Fragment {
             public void onResponse(Call<List<Temple>> call, Response<List<Temple>> response) {
                 //religinoSingle = response.body();
 
-                List<Temple> rl = (List<Temple>) response.body();
+               rl = (List<Temple>) response.body();
                 recyclerView.setAdapter(new TempleAdaptor(rl,R.layout.templelist_layout,getContext()));
 
 
@@ -99,6 +109,37 @@ public class TempleFragment extends Fragment {
         });
 
         //
+
+
+
+        recyclerView.addOnItemTouchListener(new RecyclerItemClickListner(this.getContext(), recyclerView, new RecyclerItemClickListner
+                .OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                //handle click events here
+
+                Intent intent = new Intent(getContext(), TempleHome.class);
+
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("Temple",rl.get(position));
+
+
+                getContext().startActivity(intent);
+
+            }
+
+            @Override
+            public void onItemLongClick(View view, int position) {
+                //handle longClick if any
+                //Toast.makeText(getContext(), "Item long click " + String.valueOf(position), Toast.LENGTH_SHORT).show();
+
+            }
+        }));
+
+
+
+
+
         return root;
 
     }

@@ -5,10 +5,12 @@ import android.annotation.SuppressLint;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MenuItem;
@@ -18,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.squareup.picasso.Callback;
@@ -43,6 +46,12 @@ public class TempleHome extends AppCompatActivity {
     private static final boolean AUTO_HIDE = true;
 
     private MaterialToolbar topToolBar;
+     private MaterialToolbar toolbar;
+
+
+    //private  Toolbar toolbar;
+
+
 
     private Temple temple;
     ImageView imgRThumb;
@@ -141,22 +150,41 @@ public class TempleHome extends AppCompatActivity {
         bottomNavigation = findViewById(R.id.bottom_navigation);
         bottomNavigation.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
 
+        CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout)findViewById(R.id.collapsingToolbar);
 
+        //collapsingToolbarLayout.setContentScrimColor(Color.WHITE);
+
+        //collapsingToolbarLayout.setStatusBarScrimColor(Color.WHITE);
+
+
+/*
         topToolBar = (com.google.android.material.appbar.MaterialToolbar ) findViewById(R.id.toptoolbar);
-
-
         topToolBar.setNavigationIcon(R.drawable.ic_back);
-
-
         topToolBar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 finish();
-
             }
         });
+*/
 
+
+        toolbar = (MaterialToolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("this sis test");
+        setSupportActionBar(toolbar);
+        if(getSupportActionBar() != null )
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+        toolbar.setBackgroundColor(Color.GREEN);
+        toolbar.setTitleTextColor(Color.WHITE);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
 
         getIncomingIntent();
@@ -187,12 +215,16 @@ public class TempleHome extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_temple_detail:
                     openFragment(TempleDetailFragment.newInstance());
+
+                    item.setChecked(true);
                     return true;
                 case R.id.navigain_temple_review:
                     openFragment(TempleReviewFragment.newInstance());
+                    item.setChecked(true);
                     return true;
                 case R.id.navigation_temple_feature:
                     openFragment(TempleFeatureFragment.newInstance());
+                    item.setChecked(true);
                     return true;
 
             }
@@ -211,22 +243,29 @@ public class TempleHome extends AppCompatActivity {
 
         temple = (Temple)  getIntent().getSerializableExtra("Temple");
         TextView txtName = (TextView) findViewById(R.id.fullscreen_content);
-         imgRThumb = (ImageView) findViewById(R.id.imgTempleBanner);
+         //imgRThumb = (ImageView) findViewById(R.id.imgTempleBanner);
 
-         TextView txtTempleName = (TextView) findViewById(R.id.txtTempleName);
-         txtTempleName.setText(temple.getTempleName());
+         //TextView txtTempleName = (TextView) findViewById(R.id.txtTempleName);
+         //txtTempleName.setText(temple.getTempleName());
 
-         TextView txtMyLocation = (TextView) findViewById(R.id.txtMyLocation);
-         txtMyLocation.setText(temple.getCity_name() + ", " +  temple.getState_name() + "," + temple.getCountry_name()  );
+         //TextView txtMyLocation = (TextView) findViewById(R.id.txtMyLocation);
+         //txtMyLocation.setText(temple.getCity_name() + ", " +  temple.getState_name() + "," + temple.getCountry_name()  );
 
-        topToolBar.setTitle(  temple.getReligionName() + " -> " +  temple.getTempleName());
+        //topToolBar.setTitle(  temple.getReligionName() + " -> " +  temple.getTempleName());
+
+    toolbar.setTitle(temple.getReligionName() + " -> " +  temple.getTempleName());
+    toolbar.setTitleTextColor(Color.WHITE);
+         ImageView imgtopbar = (ImageView) findViewById(R.id.imgTopBar);
+
+
+
 
 
         Picasso.Builder builder = new Picasso.Builder(getApplicationContext());
         builder.build().load(temple.getTempleIMG())
                 .placeholder((R.drawable.ic_launcher_background))
                 .error(R.drawable.ic_launcher_foreground)
-                .into(imgRThumb, new Callback() {
+                .into(imgtopbar, new Callback() {
                     @Override
                     public void onSuccess() {                    }
 

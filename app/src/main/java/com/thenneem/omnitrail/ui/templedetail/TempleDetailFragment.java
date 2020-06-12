@@ -132,59 +132,16 @@ public class TempleDetailFragment extends Fragment implements View.OnClickListen
             if(tl.size() >0 )
             {
 
-
-
-
-
-                //txtTempleName.setText(tl.get(0).getTempleName());
-
-               // txtLocation.setText(tl.get(0).getCity_name() + ", " + tl.get(0).getState_name()+ ", " +  tl.get(0).getCountry_name()  );
                 txtFullAddress.setText(tl.get(0).getAddress() + " " + tl.get(0).getCity_name() + ", " + tl.get(0).getState_name()+ ", " +  tl.get(0).getCountry_name() );
                 txtTempleStory.setText(tl.get(0).getTempleStory());
 
-               // tinDeity.setText(tl.get(0).getPrimaryDeity());
                 txtPrimaryDeity.setText(tl.get(0).getPrimaryDeity());
                 txtGoverningBody.setText(tl.get(0).getGoverningBody());
                 txtContactPerson.setText(tl.get(0).getContactPerson() + " : " + tl.get(0).getContactNumber() ) ;
                 txtCreator.setText(tl.get(0).getCreator());
                 txtCompletionPeriod.setText(tl.get(0).getCompletionPerios());
 
-
-
                 strWiki = tl.get(0).getWiki_link();
-
-             /*
-                 = root.findViewById(R.id.txtPrimaryDeity);
-                 = root.findViewById(R.id.txtGoverningBody);
-                 = root.findViewById(R.id.txtContactPerson);
-                 = root.findViewById(R.id.txtCreator);
-                 = root.findViewById(R.id.txtContactPerson);
-                 = root.findViewById(R.id.txtCompletionPeriod);
-                 = root.findViewById(R.id.txtWiki);
-
-
-
-
-
-
-                Picasso.Builder builder = new Picasso.Builder(getContext());
-                builder.build().load(tl.get(0).getTempleIMG())
-                        .placeholder((R.drawable.ic_launcher_background))
-                        .error(R.drawable.ic_launcher_foreground)
-                        .into(templeThumb, new com.squareup.picasso.Callback() {
-                            @Override
-                            public void onSuccess() {
-                                //Log.d("Image temple","piccaso Success" );
-                            }
-
-                            @Override
-                            public void onError(Exception e) {
-                                //Log.d("Image Temple","piccaso error" + e.getMessage() );
-                                Toast.makeText(getContext(), "Piccaso Error "  + e.getMessage(), Toast.LENGTH_LONG).show();
-                            }
-                        });
-  */
-
 
             }
 

@@ -8,8 +8,9 @@
         android:title="Detail" />
     <item
         android:id="@+id/navigain_saint_review"
-        android:icon="@drawable/ic_saint"
-        android:title="Review" />
+        android:icon="@drawable/ic_event"
+        android:title="Events" />
+
     <item
         android:id="@+id/navigation_saint_quality"
         android:icon="@drawable/ic_books"
