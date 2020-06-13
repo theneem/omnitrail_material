@@ -1,0 +1,23 @@
+INSERT INTO `wikilinks` (`wikilinkid`, `type`, `ReligionID`, `wikilink`, `processed`, `optout`) VALUES 
+(NULL, 'temple', '4', 'https://en.wikipedia.org/wiki/Mahabodhi_Temple', '0', '0'),
+(NULL, 'temple', '4', 'https://en.wikipedia.org/wiki/Nalanda', '0', '0'),
+(NULL, 'temple', '4', 'https://en.wikipedia.org/wiki/Rajgir', '0', '0'),
+(NULL, 'temple', '4', 'https://en.wikipedia.org/wiki/Dhankar_Gompa', '0', '0'),
+(NULL, 'temple', '4', 'https://en.wikipedia.org/wiki/Gandhola_Monastery', '0', '0'),
+(NULL, 'temple', '4', 'https://en.wikipedia.org/wiki/Key_Monastery', '0', '0'),
+(NULL, 'temple', '4', 'https://en.wikipedia.org/wiki/Kibber', '0', '0'),
+(NULL, 'temple', '4', 'https://en.wikipedia.org/wiki/Lhalung_Monastery', '0', '0'),
+(NULL, 'temple', '4', 'https://en.wikipedia.org/wiki/Shashur_Monastery', '0', '0'),
+(NULL, 'temple', '4', 'https://en.wikipedia.org/wiki/Tabo_Monastery', '0', '0'),
+(NULL, 'temple', '4', 'https://en.wikipedia.org/wiki/Tangyud_Monastery', '0', '0'),
+(NULL, 'temple', '4', 'https://en.wikipedia.org/wiki/Tayul_Monastery', '0', '0'),
+
+
+
+
+
+
+
+
+
+

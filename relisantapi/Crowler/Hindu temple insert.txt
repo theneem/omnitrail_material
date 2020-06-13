@@ -1,0 +1,20 @@
+INSERT INTO `wikilinks` (`wikilinkid`, `type`, `ReligionID`, `wikilink`, `processed`, `optout`) VALUES 
+(NULL, 'temple', '3', 'https://en.wikipedia.org/wiki/Bhalka', '0', '0'),
+(NULL, 'temple', '3', 'https://en.wikipedia.org/wiki/Dwarkadhish_Temple', '0', '0'),
+(NULL, 'temple', '3', 'https://en.wikipedia.org/wiki/Hanuman_temple,_Salangpur', '0', '0'),
+(NULL, 'temple', '3', 'https://en.wikipedia.org/wiki/Kalika_Mata_Temple,_Pavagadh', '0', '0'),
+(NULL, 'temple', '3', 'https://en.wikipedia.org/wiki/Nageshvara_Jyotirlinga', '0', '0'),
+(NULL, 'temple', '3', 'https://en.wikipedia.org/wiki/Rudra_Mahalaya_Temple', '0', '0'),
+(NULL, 'temple', '3', 'https://en.wikipedia.org/wiki/Shamlaji', '0', '0'),
+(NULL, 'temple', '3', 'https://en.wikipedia.org/wiki/Shiva_temple,_Kera', '0', '0'),
+(NULL, 'temple', '3', 'https://en.wikipedia.org/wiki/Somnath_temple', '0', '0'),
+(NULL, 'temple', '3', 'https://en.wikipedia.org/wiki/Sun_Temple,_Modhera', '0', '0'),
+(NULL, 'temple', '3', 'https://en.wikipedia.org/wiki/Umiya_Temple,_Unjha', '0', '0')
+
+
+
+
+
+
+
+

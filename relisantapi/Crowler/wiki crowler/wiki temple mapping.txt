@@ -1,0 +1,22 @@
+
+Summary -  https://en.wikipedia.org/api/rest_v1/page/summary/Girnar_Jain_temples
+infobox - http://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&format=json&titles=Girnar_Jain_temples&rvsection=0
+
+
+  `ReligionID` int(11) NOT NULL,		== hard code 1
+  `TempleName` varchar(8000) NOT NULL,		== summary.title	
+  `TempleStory` varchar(8000) NOT NULL,		== summary.extract
+  `TempleIMG` varchar(8000) NOT NULL,		== summary.originalimage
+  `address` varchar(2000) NOT NULL,		==
+  `CityID` int(100) NOT NULL,
+  `country_code` char(2) NOT NULL,
+  `zip` varchar(10) NOT NULL,
+  `lang` decimal(11,8) NOT NULL,
+  `lat` decimal(11,8) NOT NULL,
+  `wiki_link` varchar(1000) NOT NULL,		== summary.content_urls.mobile.page
+  `PrimaryDeity` varchar(2000) NOT NULL,	== info.query.pages.xxxx.revisions.contentmodel => deity
+  `GoverningBody` varchar(2000) NOT NULL,	== info.query.pages.xxxx.revisions.contentmodel => governing_body 
+  `ContactPerson` varchar(2000) NOT NULL,
+  `ContactNumber` varchar(2000) NOT NULL,
+  `Creator` varchar(2000) NOT NULL,		== info.query.pages.xxxx.revisions.contentmodel => creator
+  `CompletionPerios` varchar(2000) NOT NULL     == info.query.pages.xxxx.revisions.contentmodel => year_completed
