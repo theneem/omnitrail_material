@@ -13,11 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".BookActivity"></activity>
         <activity
             android:name=".SaintHome"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_saint_home"
-            android:theme="@style/FullscreenTheme"></activity>
+            android:theme="@style/FullscreenTheme" />
         <activity
             android:name=".TempleHome"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -51,8 +52,6 @@
             android:theme="@style/FullscreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
-
             </intent-filter>
         </activity>
     </application>

@@ -6,9 +6,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -45,13 +47,7 @@ public class TempleHome extends AppCompatActivity {
      */
     private static final boolean AUTO_HIDE = true;
 
-    private MaterialToolbar topToolBar;
-     private MaterialToolbar toolbar;
-
-
-    //private  Toolbar toolbar;
-
-
+    private MaterialToolbar toolbar;
 
     private Temple temple;
     ImageView imgRThumb;
@@ -152,32 +148,22 @@ public class TempleHome extends AppCompatActivity {
 
         CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout)findViewById(R.id.collapsingToolbar);
 
+
         //collapsingToolbarLayout.setContentScrimColor(Color.WHITE);
 
-        //collapsingToolbarLayout.setStatusBarScrimColor(Color.WHITE);
+        collapsingToolbarLayout.setStatusBarScrimColor(Color.GREEN);
+        collapsingToolbarLayout.setContentScrimColor(Color.GREEN);
 
-
-/*
-        topToolBar = (com.google.android.material.appbar.MaterialToolbar ) findViewById(R.id.toptoolbar);
-        topToolBar.setNavigationIcon(R.drawable.ic_back);
-        topToolBar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-*/
+        Context context = this;
+        collapsingToolbarLayout.setContentScrimColor(ContextCompat.getColor(context,R.color.primaryDarkColor));
 
 
         toolbar = (MaterialToolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("this sis test");
         setSupportActionBar(toolbar);
-        if(getSupportActionBar() != null )
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationIcon(R.drawable.ic_back);
 
-
-        toolbar.setBackgroundColor(Color.GREEN);
-        toolbar.setTitleTextColor(Color.WHITE);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -185,6 +171,8 @@ public class TempleHome extends AppCompatActivity {
                 finish();
             }
         });
+
+
 
 
         getIncomingIntent();
@@ -243,18 +231,10 @@ public class TempleHome extends AppCompatActivity {
 
         temple = (Temple)  getIntent().getSerializableExtra("Temple");
         TextView txtName = (TextView) findViewById(R.id.fullscreen_content);
-         //imgRThumb = (ImageView) findViewById(R.id.imgTempleBanner);
 
-         //TextView txtTempleName = (TextView) findViewById(R.id.txtTempleName);
-         //txtTempleName.setText(temple.getTempleName());
 
-         //TextView txtMyLocation = (TextView) findViewById(R.id.txtMyLocation);
-         //txtMyLocation.setText(temple.getCity_name() + ", " +  temple.getState_name() + "," + temple.getCountry_name()  );
+        toolbar.setTitle(temple.getReligionName() + " -> " +  temple.getTempleName());
 
-        //topToolBar.setTitle(  temple.getReligionName() + " -> " +  temple.getTempleName());
-
-    toolbar.setTitle(temple.getReligionName() + " -> " +  temple.getTempleName());
-    toolbar.setTitleTextColor(Color.WHITE);
          ImageView imgtopbar = (ImageView) findViewById(R.id.imgTopBar);
 
 

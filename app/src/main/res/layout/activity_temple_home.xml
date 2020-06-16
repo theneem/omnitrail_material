@@ -7,68 +7,60 @@
     android:background="@color/primaryDarkColor"
     tools:context=".TempleHome">
 
-<!-- https://www.youtube.com/watch?v=BTYuLho5_rE
-https://github.com/eddydn/AndroidCollapsingToolBar/blob/master/app/src/main/res/layout/activity_main.xml
+    <!-- https://www.youtube.com/watch?v=BTYuLho5_rE
+    https://github.com/eddydn/AndroidCollapsingToolBar/blob/master/app/src/main/res/layout/activity_main.xml
 
--->
-
+    -->
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"
         android:fitsSystemWindows="true"
+        android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"
+
 
 
         >
 
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
-           android:id="@+id/collapsingToolbar"
+            android:id="@+id/collapsingToolbar"
             android:layout_width="match_parent"
             android:layout_height="350dp"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:contentScrim="?attr/colorPrimary"
-            app:statusBarScrim="@android:color/transparent"
             android:fitsSystemWindows="true"
+            app:collapsedTitleTextAppearance="@style/collapsedappbar"
+            app:contentScrim="@color/primaryDarkColor"
+            app:expandedTitleTextAppearance="@style/expandedappbar"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+
+
 
             >
 
+
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:navigationIcon="@drawable/ic_back"
+                app:title= "This is test"
+                app:titleTextColor="@color/colorWhite"
+                app:logo="@mipmap/ic_logo_notext"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+
+                />
+
             <ImageView
                 android:id="@+id/imgTopBar"
-                app:layout_collapseMode="parallax"
-                android:src="@drawable/jainism"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
                 android:contentDescription="@string/app_name"
                 android:scaleType="centerCrop"
-                android:layout_width="match_parent"
-                android:layout_height="350dp" />
-
-            <!--
-
-                        <androidx.appcompat.widget.Toolbar
-                            android:id="@+id/toolbar"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            app:title="@string/app_name"
-                            app:layout_collapseMode="pin"
-                            app:titleTextColor="@color/colorWhite"
-                            app:subtitleTextColor="@color/colorWhite"
-                            ></androidx.appcompat.widget.Toolbar>
-
-
-              -->
-                      <com.google.android.material.appbar.MaterialToolbar
-                            android:id="@+id/toolbar"
-                            android:layout_width="match_parent"
-                            android:layout_height="?attr/actionBarSize"
-                            app:title="@string/app_name"
-                            app:layout_collapseMode="pin"
-                             app:titleTextColor="@color/colorWhite"
-                          app:subtitleTextColor="@color/colorWhite"
-
-                            />
-
-
+                android:src="@drawable/jainism"
+                app:layout_collapseMode="none"
+                />
 
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -83,10 +75,10 @@ https://github.com/eddydn/AndroidCollapsingToolBar/blob/master/app/src/main/res/
         android:clipToPadding="false"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
 
+        app:layout_constraintBottom_toBottomOf="@+id/frameLayout"
 
         >
 
-        app:layout_constraintBottom_toBottomOf="@+id/frameLayout"
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -108,9 +100,6 @@ https://github.com/eddydn/AndroidCollapsingToolBar/blob/master/app/src/main/res/
                 app:layout_constraintTop_toTopOf="@+id/frameLayout">
 
 
-
-
-
                 <!-- The primary full-screen view. This can be replaced with whatever view
              is needed to present your content, e.g. VideoView, SurfaceView,
              TextureView, etc. -->
@@ -126,7 +115,7 @@ https://github.com/eddydn/AndroidCollapsingToolBar/blob/master/app/src/main/res/
                     android:textStyle="bold"
                     android:visibility="gone" />
 
-             
+
                 <FrameLayout
                     android:id="@+id/container"
                     android:layout_width="match_parent"
@@ -162,7 +151,8 @@ https://github.com/eddydn/AndroidCollapsingToolBar/blob/master/app/src/main/res/
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/dummy_button" />
+                        android:text="@string/dummy_button"
+                        android:visibility="gone" />
 
                 </LinearLayout>
             </FrameLayout>
@@ -213,8 +203,7 @@ https://github.com/eddydn/AndroidCollapsingToolBar/blob/master/app/src/main/res/
         app:itemTextColor="@drawable/bottom_navigation"
         app:layout_constraintBottom_toBottomOf="@+id/frameLayout"
         app:menu="@menu/temple_menu" />
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
-<!-- commenting old temple home -->
+</androidx.coordinatorlayout.widget.CoordinatorLayout><!-- commenting old temple home -->
 
 
 

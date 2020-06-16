@@ -26,6 +26,9 @@ import com.thenneem.omnitrail.rest.ApiInterface;
 
 import org.w3c.dom.Text;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
@@ -45,6 +48,10 @@ public class SaintDetailFragment extends Fragment  implements View.OnClickListen
     TextView txtContactPerson;
     MaterialButton btnWikiLink;
 
+    TextView txtSaintDeatilName;
+    TextView txtLifeSpan;
+
+
     String strWiki;
 
 
@@ -59,6 +66,10 @@ public class SaintDetailFragment extends Fragment  implements View.OnClickListen
         final View root  =  inflater.inflate(R.layout.saint_detail_fragment, container, false);
 
         String mySID = "";
+
+
+        txtSaintDeatilName = root.findViewById(R.id.txtSaintDetailName);
+        txtLifeSpan = root.findViewById(R.id.txtLifeSpan);
 
         txtSect = root.findViewById(R.id.txtSect);
 
@@ -123,6 +134,7 @@ public class SaintDetailFragment extends Fragment  implements View.OnClickListen
         if(sl.size() >0 )
         {
 
+            txtSaintDeatilName.setText(sl.get(0).getSaintName());
             txtSect.setText(sl.get(0).getSectName());
             txtSamudai.setText(sl.get(0).getSamudai());
             txtParentSaint.setText(sl.get(0).getParentSaintName());
@@ -131,6 +143,49 @@ public class SaintDetailFragment extends Fragment  implements View.OnClickListen
             txtFullAddress.setText(sl.get(0).getCurrentAddress());
             strWiki = sl.get(0).getWiki_link();
             txtContactPerson.setText(sl.get(0).getChiefFollower() + " : " + sl.get(0).getChiefFollowerContact());
+
+
+            // TextView txtSaintName = (TextView) findViewById(R.id.txtSaintName);
+            // txtSaintName.setText(saint.getSaintName());
+
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+            Date BirthDate = null;
+            Date DeathDate = null;
+            String strBirthDate = "";
+            String strDeathDate = "";
+
+
+            try {
+
+
+                if(sl.get(0).getBirthDate() != null  )
+                    BirthDate = format.parse(sl.get(0).getBirthDate());
+                if(sl.get(0).getDeathDate() != null )
+                    DeathDate = format.parse(sl.get(0).getDeathDate());
+
+                format = new SimpleDateFormat("MMM dd, yyyy");
+
+                if(sl.get(0).getBirthDate() != null  )
+                    strBirthDate = format.format(BirthDate);
+
+                if(sl.get(0).getDeathDate() != null )
+                    strDeathDate = format.format(DeathDate);
+
+
+
+
+            } catch (ParseException e) {
+                e.printStackTrace();
+                //Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
+            }
+
+
+        if(strDeathDate != "")
+            txtLifeSpan.setText(strBirthDate + " to " +  strDeathDate );
+        else
+            txtLifeSpan.setText(strBirthDate);
+
+
 
 
 

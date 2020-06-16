@@ -154,10 +154,11 @@ public class SaintHome extends AppCompatActivity {
         bottomNavigation.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
 
 
-        topToolBar = (com.google.android.material.appbar.MaterialToolbar ) findViewById(R.id.toptoolbar);
+        topToolBar = (com.google.android.material.appbar.MaterialToolbar ) findViewById(R.id.saintTopToolbar);
 
 
 
+        /*
         topToolBar.setNavigationIcon(R.drawable.ic_back);
 
 
@@ -169,6 +170,7 @@ public class SaintHome extends AppCompatActivity {
 
             }
         });
+*/
 
 
 
@@ -206,51 +208,9 @@ public class SaintHome extends AppCompatActivity {
                 });
 
 
+        //topToolBar.setTitle(  "-> " +   saint.getSaintName());
         topToolBar.setTitle( saint.getReligionName() +  "-> " +   saint.getSaintName());
 
-
-
-        TextView txtSaintName = (TextView) findViewById(R.id.txtSaintName);
-        txtSaintName.setText(saint.getSaintName());
-
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        Date BirthDate = null;
-        Date DeathDate = null;
-        String strBirthDate = "";
-        String strDeathDate = "";
-
-
-        try {
-
-
-            if(saint.getBirthDate() != null  )
-                BirthDate = format.parse(saint.getBirthDate());
-            if(saint.getDeathDate() != null )
-                DeathDate = format.parse(saint.getDeathDate());
-
-            format = new SimpleDateFormat("MMM dd, yyyy");
-
-            if(saint.getBirthDate() != null  )
-                strBirthDate = format.format(BirthDate);
-
-            if(saint.getDeathDate() != null )
-                strDeathDate = format.format(DeathDate);
-
-
-
-
-        } catch (ParseException e) {
-            e.printStackTrace();
-            Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
-        }
-
-
-        TextView txtLifeSpan = (TextView) findViewById(R.id.txtLifeSpan);
-
-        if(strDeathDate != "")
-             txtLifeSpan.setText(strBirthDate + " to " +  strDeathDate );
-        else
-            txtLifeSpan.setText(strBirthDate);
 
 
 
