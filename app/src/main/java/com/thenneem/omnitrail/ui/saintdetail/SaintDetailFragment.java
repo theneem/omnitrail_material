@@ -125,7 +125,6 @@ public class SaintDetailFragment extends Fragment  implements View.OnClickListen
         //
 
         return root;
-
     }
 
 

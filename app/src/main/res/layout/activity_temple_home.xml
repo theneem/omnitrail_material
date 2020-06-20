@@ -1,4 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primaryDarkColor"
+    tools:context=".TempleHome">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primaryDarkColor"
+        android:orientation="vertical">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="0dp"
+            android:background="@color/primaryDarkColor"
+            android:contentInsetStart="5dp"
+            android:contentInsetLeft="5dp"
+            android:contentInsetRight="5dp"
+            android:padding="0dp"
+            android:theme="@style/MaterialAlertDialog.MaterialComponents.Title.Icon.CenterStacked"
+            app:contentInsetLeft="5dp"
+            app:contentInsetRight="5dp"
+            app:contentInsetStart="5dp"
+            app:logo="@mipmap/ic_logo_notext"
+            app:title="@string/app_name"
+            app:titleTextColor="@color/primaryTextColor"/>
+
+
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -15,7 +50,7 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fitsSystemWindows="true"
+        android:fitsSystemWindows="false"
         android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"
 
 
@@ -37,8 +72,27 @@
 
             >
 
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbarinside"
 
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_margin="0dp"
+                android:background="@color/primaryDarkColor"
+                android:contentInsetStart="5dp"
+                android:contentInsetLeft="5dp"
+                android:contentInsetRight="5dp"
+                android:padding="0dp"
+                android:theme="@style/MaterialAlertDialog.MaterialComponents.Title.Icon.CenterStacked"
+                app:contentInsetLeft="5dp"
+                app:contentInsetRight="5dp"
+                app:contentInsetStart="5dp"
+                app:logo="@mipmap/ic_logo_notext"
+                app:title="@string/app_name"
+                app:layout_collapseMode="pin"
+                app:titleTextColor="@color/primaryTextColor"/>
 
+<!--
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
@@ -51,7 +105,7 @@
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
 
                 />
-
+-->
             <ImageView
                 android:id="@+id/imgTopBar"
                 android:layout_width="match_parent"
@@ -205,6 +259,8 @@
         app:menu="@menu/temple_menu" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout><!-- commenting old temple home -->
 
+    </LinearLayout>
+</FrameLayout>
 
 
 
