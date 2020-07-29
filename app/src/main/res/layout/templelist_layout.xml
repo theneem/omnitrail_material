@@ -63,21 +63,49 @@
                     android:padding="2dp"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/txtTempleName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="start"
-                        android:gravity="left"
-                        android:text="Temple Name"
-                        android:textColor="#FFFFFF"
-                        android:textAppearance="?android:attr/textAppearanceLarge" />
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:layout_weight="10"
                         >
+                        <TextView
+                            android:id="@+id/txtTempleName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:gravity="left"
+                            android:text="Temple Name"
+                            android:textColor="#FFFFFF"
+                            android:textAppearance="?android:attr/textAppearanceLarge" />
+                        <!--
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_weight="5"
+                            android:id="@+id/layoutSect"
+                            >
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+
+                                app:srcCompat="@drawable/ic_sect"></ImageView>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/txtSect"
+                                android:text="Sect"
+                                android:layout_weight="3"
+                                android:textColor="@color/primaryTextColor"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="10dp"
+
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                ></TextView>
+                        </LinearLayout>
+                    -->
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -180,7 +208,9 @@
                     android:id="@+id/btnMore"
                     android:text="More"
                     app:icon="@drawable/ic_more"
+                    android:tint="@color/primaryDarkColor"
                     app:iconGravity="end"
+
                     style="@style/ButtonMain"
 
                     ></com.google.android.material.button.MaterialButton>

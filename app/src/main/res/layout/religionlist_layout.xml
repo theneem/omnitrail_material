@@ -40,8 +40,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:orientation="vertical">
-
+                android:weightSum="10"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="5"
+                    >
                 <TextView
                     android:id="@+id/txtReligionName"
                     android:layout_width="wrap_content"
@@ -51,13 +57,20 @@
                     android:text="Android Name"
                     android:textColor="#FFFFFF"
                     android:textAppearance="?android:attr/textAppearanceLarge" />
-<LinearLayout
+                </LinearLayout>
+
+                    <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:layout_weight="10"
+    android:orientation="vertical"
+    android:layout_weight="5"
     >
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="10"
+        >
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -71,10 +84,17 @@
         android:layout_gravity="center_vertical"
         android:layout_weight="3"
         android:textColor="#FFFFFF"
-
+        android:paddingStart="10dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         ></TextView>
-    <ImageView
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="10"
+        >
+        <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
@@ -87,22 +107,24 @@
         android:layout_weight="3"
         android:textColor="#FFFFFF"
         android:layout_gravity="center_vertical"
-
+        android:paddingStart="10dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         ></TextView>
-
+    </LinearLayout>
 </LinearLayout>
-                <TextView
-                    android:id="@+id/txtReligionDesc"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="start"
-                    android:layout_marginTop="1dp"
-
-                    android:text="Android Version"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
 
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/txtReligionDesc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginTop="1dp"
+
+                android:text="Android Version"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.thenneem.omnitrail.R;
@@ -39,6 +40,8 @@ public class SaintQualityFragment extends Fragment {
     private RecyclerView.LayoutManager layoutManager;
     private static final String TAG = SaintQualityFragment.class.getSimpleName();
 
+    View root;
+
 
     public static SaintQualityFragment newInstance() {
         return new SaintQualityFragment();
@@ -47,10 +50,10 @@ public class SaintQualityFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View root =  inflater.inflate(R.layout.saint_quality_fragment, container, false);
+         root =  inflater.inflate(R.layout.saint_quality_fragment, container, false);
 
 
-        recyclerView = (RecyclerView) root.findViewById(R.id.rv_saintfeature);
+        recyclerView = root.findViewById(R.id.rv_saintfeature);
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
@@ -71,8 +74,23 @@ public class SaintQualityFragment extends Fragment {
             @Override
             public void onResponse(Call<List<Feature>> call, Response<List<Feature>> response) {
                 //religinoSingle = response.body();
-                List<Feature> rl = (List<Feature>) response.body();
-                recyclerView.setAdapter(new FeatureAdaptor(rl,R.layout.featurelist_layout,getContext()));
+                List<Feature> rl = response.body();
+
+                if(rl.size() <= 0 ) {
+
+                    TextView tv = root.findViewById(R.id.empty_view);
+                    //recyclerView = (RecyclerView) root.findViewById(R.id.rv_templeevent);
+                    tv.setVisibility(View.VISIBLE);
+                }
+                else
+                {
+
+                    recyclerView.setAdapter(new FeatureAdaptor(rl,R.layout.featurelist_layout,getContext()));
+
+
+                }
+
+
 
 
             }

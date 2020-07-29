@@ -118,7 +118,7 @@ public class ReligionHome extends AppCompatActivity {
 
         setContentView(R.layout.activity_religion_home);
 
-        topToolBar = (com.google.android.material.appbar.MaterialToolbar) findViewById(R.id.toptoolbar);
+        topToolBar = findViewById(R.id.toptoolbar);
 
         // setSupportActionBar(topToolBar);
         //topToolBar.setLogo(R.drawable.ic_account_circle_white_24dp);
@@ -215,8 +215,8 @@ public class ReligionHome extends AppCompatActivity {
 
 
         religion = (Religion) getIntent().getSerializableExtra("Religion");
-        TextView txtName = (TextView) findViewById(R.id.fullscreen_content);
-        ImageView imgRThumb = (ImageView) findViewById(R.id.imgReligionThumb);
+        TextView txtName = findViewById(R.id.fullscreen_content);
+        ImageView imgRThumb = findViewById(R.id.imgReligionThumb);
 
         txtName.setText(religion.getReligionName());
         topToolBar.setTitle(getString(R.string.app_name) + " -> " + religion.getReligionName());

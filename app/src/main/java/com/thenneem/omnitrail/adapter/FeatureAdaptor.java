@@ -37,10 +37,10 @@ public class FeatureAdaptor   extends  RecyclerView.Adapter<FeatureAdaptor.Featu
         public FeatureViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            featureLayout  = (LinearLayout) itemView.findViewById(R.id.featureLayout);
+            featureLayout  = itemView.findViewById(R.id.featureLayout);
             //featureLayout = (ImageView)itemView.findViewById(R.id.imgeventThumb);
-            txtFeatureName = (TextView) itemView.findViewById(R.id.txtFeatureName);
-            txtFeatureDescription =(MaterialTextView)itemView.findViewById(R.id.txtFeatureDescription);
+            txtFeatureName = itemView.findViewById(R.id.txtFeatureName);
+            txtFeatureDescription = itemView.findViewById(R.id.txtFeatureDescription);
 
 
             itemView.setOnClickListener(this);

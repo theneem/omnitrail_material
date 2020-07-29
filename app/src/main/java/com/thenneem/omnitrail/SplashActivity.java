@@ -68,7 +68,7 @@ public class SplashActivity extends AppCompatActivity {
 
 
 	public boolean isInternetAvailable(Context context) {
-		NetworkInfo info = (NetworkInfo) ((ConnectivityManager)
+		NetworkInfo info = ((ConnectivityManager)
 				context.getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo();
 
 		if (info == null) {

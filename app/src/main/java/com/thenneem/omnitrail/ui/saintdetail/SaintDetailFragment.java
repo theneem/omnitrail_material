@@ -108,7 +108,7 @@ public class SaintDetailFragment extends Fragment  implements View.OnClickListen
             public void onResponse(Call<List<Saint>> call, Response<List<Saint>> response) {
 
 
-                List<Saint> sl = (List<Saint>) response.body();
+                List<Saint> sl = response.body();
                 ///recyclerView.setAdapter(new TempleAdaptor(rl,R.layout.templelist_layout,getContext()));
                 BindSaintDetail(sl);
 

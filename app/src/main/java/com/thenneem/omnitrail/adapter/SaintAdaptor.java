@@ -62,12 +62,12 @@ public class SaintAdaptor  extends RecyclerView.Adapter<SaintAdaptor.SaintViewHo
             super(itemView);
 
 
-            saintLayout  = (LinearLayout) itemView.findViewById(R.id.saint_layout);
-            imgSaintView = (ImageView)itemView.findViewById(R.id.saintThumb);
-            txtSName = (TextView) itemView.findViewById(R.id.txtSaintName);
-            txtSaintDesc =(TextView)itemView.findViewById(R.id.txtSaintDesc);
-            txtSectName =(TextView)itemView.findViewById(R.id.txtSectName);
-            txtSamudai =(TextView)itemView.findViewById(R.id.txtSamudai);
+            saintLayout  = itemView.findViewById(R.id.saint_layout);
+            imgSaintView = itemView.findViewById(R.id.saintThumb);
+            txtSName = itemView.findViewById(R.id.txtSaintName);
+            txtSaintDesc = itemView.findViewById(R.id.txtSaintDesc);
+            txtSectName = itemView.findViewById(R.id.txtSectName);
+            txtSamudai = itemView.findViewById(R.id.txtSamudai);
 
             itemView.setOnClickListener(this);
 

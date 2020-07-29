@@ -81,7 +81,7 @@ public class TempleDetailFragment extends Fragment implements View.OnClickListen
         templeThumb = root.findViewById(R.id.templeThumb);
 
 
-        MaterialButton btnWiki = (MaterialButton) root.findViewById(R.id.btnWikiLink);
+        MaterialButton btnWiki = root.findViewById(R.id.btnWikiLink);
                 btnWiki.setOnClickListener(this);
 
         Bundle bundle = this.getArguments();
@@ -107,7 +107,7 @@ public class TempleDetailFragment extends Fragment implements View.OnClickListen
             public void onResponse(Call<List<Temple>> call, Response<List<Temple>> response) {
 
 
-                List<Temple> tl = (List<Temple>) response.body();
+                List<Temple> tl = response.body();
                 ///recyclerView.setAdapter(new TempleAdaptor(rl,R.layout.templelist_layout,getContext()));
                 BindTempleDetail(tl);
 

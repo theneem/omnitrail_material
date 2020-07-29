@@ -64,7 +64,7 @@ public class TempleFragment extends Fragment {
         //Toast.makeText(this.getContext(), "rid : "  + getArguments().getString("rid"), Toast.LENGTH_SHORT).show();
 
 
-        recyclerView = (RecyclerView) root.findViewById(R.id.rv_temples);
+        recyclerView = root.findViewById(R.id.rv_temples);
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
@@ -95,7 +95,7 @@ public class TempleFragment extends Fragment {
             public void onResponse(Call<List<Temple>> call, Response<List<Temple>> response) {
                 //religinoSingle = response.body();
 
-               rl = (List<Temple>) response.body();
+               rl = response.body();
                 recyclerView.setAdapter(new TempleAdaptor(rl,R.layout.templelist_layout,getContext()));
 
 

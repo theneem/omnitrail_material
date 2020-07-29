@@ -53,7 +53,7 @@ public class BookFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
 
         View root =  inflater.inflate(R.layout.book_fragment, container, false);
-        recyclerView = (RecyclerView) root.findViewById(R.id.rv_book);
+        recyclerView = root.findViewById(R.id.rv_book);
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
@@ -75,7 +75,7 @@ public class BookFragment extends Fragment {
             public void onResponse(Call<List<Book>> call, Response<List<Book>> response) {
                 //religinoSingle = response.body();
 
-                List<Book> bl = (List<Book>) response.body();
+                List<Book> bl = response.body();
                 recyclerView.setAdapter(new BookAdaptor(bl,R.layout.booklist_layout,getContext()));
 
 

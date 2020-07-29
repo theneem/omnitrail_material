@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -24,13 +26,55 @@ import com.thenneem.omnitrail.model.Saint;
 import com.thenneem.omnitrail.model.Temple;
 import com.thenneem.omnitrail.rest.ItemClickListner;
 
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
 import java.util.List;
 
-public class TempleAdaptor  extends RecyclerView.Adapter<TempleAdaptor.TempleViewHolder> {
+public class TempleAdaptor  extends RecyclerView.Adapter<TempleAdaptor.TempleViewHolder>
+implements Filterable
+{
 
     private List<Temple> temples;
+    private List<Temple> templesFiltered;
+
     private int rowLayout;
     private Context context;
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                String charString = charSequence.toString();
+                if (charString.isEmpty()) {
+                    templesFiltered = temples;
+                } else {
+                    List<Temple> TemplefilteredList = new ArrayList<>();
+                    for (Temple row : temples) {
+
+                        // name match condition. this might differ depending on your requirement
+                        // here we are looking for name or phone number match
+                        if (row.getTempleName().toLowerCase().contains(charString.toLowerCase()) || row.getAddress().contains(charSequence)) {
+                            TemplefilteredList.add(row);
+                        }
+                    }
+
+                    templesFiltered = TemplefilteredList;
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = templesFiltered;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                templesFiltered = (ArrayList<Temple>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
+    }
 
     public static  class TempleViewHolder extends RecyclerView.ViewHolder implements   View.OnClickListener {
 
@@ -40,24 +84,27 @@ public class TempleAdaptor  extends RecyclerView.Adapter<TempleAdaptor.TempleVie
         TextView txtTempleStory;
         TextView txtLocation;
         TextView txtPrimaryDeity;
+        TextView txtSect;
         LinearLayout llDeity;
         MaterialButton btnMore;
 
 
 
         private ItemClickListner itemClickListner;
+
         public TempleViewHolder(@NonNull View itemView) {
             super(itemView);
 
 
-            templeLayout  = (LinearLayout) itemView.findViewById(R.id.templelist_layout);
-            imgTempleView = (ImageView)itemView.findViewById(R.id.templeThumb);
-            txtTempleName = (TextView) itemView.findViewById(R.id.txtTempleName);
-            txtTempleStory =(TextView)itemView.findViewById(R.id.txtTempleStory);
-            txtLocation = (TextView) itemView.findViewById(R.id.txtMyLocation);
-            txtPrimaryDeity = (TextView) itemView.findViewById(R.id.txtPrimaryDeity);
-            btnMore = (MaterialButton) itemView.findViewById(R.id.btnMore);
-            llDeity = (LinearLayout)itemView.findViewById(R.id.layoutDeity);
+            templeLayout  = itemView.findViewById(R.id.templelist_layout);
+            imgTempleView = itemView.findViewById(R.id.templeThumb);
+            txtTempleName = itemView.findViewById(R.id.txtTempleName);
+            txtTempleStory = itemView.findViewById(R.id.txtTempleStory);
+           // txtSect = (TextView)itemView.findViewById(R.id.txtSect);
+            txtLocation = itemView.findViewById(R.id.txtMyLocation);
+            txtPrimaryDeity = itemView.findViewById(R.id.txtPrimaryDeity);
+            btnMore = itemView.findViewById(R.id.btnMore);
+            llDeity = itemView.findViewById(R.id.layoutDeity);
             itemView.setOnClickListener(this);
 
         }
@@ -77,6 +124,7 @@ public class TempleAdaptor  extends RecyclerView.Adapter<TempleAdaptor.TempleVie
     public TempleAdaptor(List<Temple> temples, int rowLayout, Context context)
     {
         this.temples = temples;
+        this.templesFiltered = temples;
         this.rowLayout = rowLayout;
         this.context = context;
     }
@@ -96,6 +144,7 @@ public class TempleAdaptor  extends RecyclerView.Adapter<TempleAdaptor.TempleVie
         holder.txtTempleName.setText(temples.get(position).getTempleName());
         holder.txtTempleStory.setText(temples.get(position).getTempleName());
         holder.txtTempleStory.setText(temples.get(position).getTempleStory());
+        ///holder.txtSect.setText(temples.get(position).);
 
         holder.txtLocation.setText(temples.get(position).getCity_name() + ", " +  temples.get(position).getState_name() + "," + temples.get(position).getCountry_name()  );
         if(temples.get(position).getPrimaryDeity()!="")

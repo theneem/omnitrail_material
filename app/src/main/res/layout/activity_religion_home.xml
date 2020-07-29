@@ -31,18 +31,43 @@
             app:contentInsetStart="5dp"
             app:logo="@mipmap/ic_logo_notext"
             app:title="@string/app_name"
-            app:titleTextColor="@color/primaryTextColor"/>
+            app:titleTextColor="@color/primaryTextColor">
 
 
-        <ImageView
-            android:id="@+id/imgReligionThumb"
+        </com.google.android.material.appbar.MaterialToolbar>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/banner"
-
+            android:layout_height="match_parent"
             >
 
-        </ImageView>
+            <ImageView
+                android:id="@+id/imgReligionThumb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/banner"
+
+                app:layout_constraintBottom_toBottomOf="parent">
+
+
+            </ImageView>
+        <androidx.appcompat.widget.SearchView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            app:queryHint="Search Temple"
+            android:outlineAmbientShadowColor="@color/colorWhite"
+            android:outlineSpotShadowColor="@color/colorWhite"
+            app:layout_constraintBottom_toBottomOf="@id/imgReligionThumb"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:theme="@style/AppSearchView"
+            app:searchHintIcon="@drawable/ic_temple"
+            android:layoutDirection="rtl"
+            />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         <!-- The primary full-screen view. This can be replaced with whatever view
          is needed to present your content, e.g. VideoView, SurfaceView,

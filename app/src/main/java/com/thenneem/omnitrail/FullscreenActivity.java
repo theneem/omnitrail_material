@@ -143,7 +143,7 @@ public class FullscreenActivity extends AppCompatActivity {
 
 
 
-        recyclerView = (RecyclerView) findViewById(R.id.rv_religions);
+        recyclerView = findViewById(R.id.rv_religions);
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
@@ -165,7 +165,7 @@ public class FullscreenActivity extends AppCompatActivity {
             public void onResponse(Call<List<Religion>> call, Response<List<Religion>> response) {
                  //religinoSingle = response.body();
 
-                List<Religion> rl = (List<Religion>) response.body();
+                List<Religion> rl = response.body();
                 recyclerView.setAdapter(new ReligionAdaptor(rl,R.layout.religionlist_layout,getApplicationContext()));
 
 

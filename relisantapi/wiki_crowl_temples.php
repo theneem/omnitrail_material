@@ -17,7 +17,7 @@ header("Access-Control-Allow-Origin: *");
 
 	$query = "SELECT 
     `wikilinkid`, `type`, `ReligionID`, `wikilink`
-    FROM `wikilinks` WHERE `processed` = 0 and `ReligionID`  = ".$relegionid;
+    FROM `wikilinks` WHERE `processed` = 0 and  type = 'temple' and  `ReligionID`  = ".$relegionid;
 
 $conn=mysqli_connect("localhost","scienceclub_sclub","S=Pj,i5nNf~@","scienceclub_relisant");
     if (mysqli_connect_errno())

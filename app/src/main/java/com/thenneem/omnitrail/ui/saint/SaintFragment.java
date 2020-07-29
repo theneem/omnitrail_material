@@ -67,7 +67,7 @@ public class SaintFragment extends Fragment {
         //android.widget.Toolbar  topToolBar = (Toolbar)root.findViewById(R.id.toptoolbar);
 
 
-            recyclerView = (RecyclerView) root.findViewById(R.id.rv_religions);
+            recyclerView = root.findViewById(R.id.rv_religions);
 
             // use this setting to improve performance if you know that changes
             // in content do not change the layout size of the RecyclerView
@@ -93,7 +93,7 @@ public class SaintFragment extends Fragment {
             public void onResponse(Call<List<Saint>> call, Response<List<Saint>> response) {
                 //religinoSingle = response.body();
 
-                 rl = (List<Saint>) response.body();
+                 rl = response.body();
                 recyclerView.setAdapter(new SaintAdaptor(rl,R.layout.saintlist_layout,getContext()));
 
 

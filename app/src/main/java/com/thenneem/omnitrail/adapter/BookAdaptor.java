@@ -47,11 +47,11 @@ public static class      BookViewHolder  extends RecyclerView.ViewHolder impleme
     public BookViewHolder(@NonNull View itemView) {
         super(itemView);
 
-        bookLayout  = (LinearLayout) itemView.findViewById(R.id.book_layout);
-        imgBookThumb = (ImageView)itemView.findViewById(R.id.bookThumb);
-        txtBookName = (TextView) itemView.findViewById(R.id.txtBookName);
-        txtAuthortName =(TextView)itemView.findViewById(R.id.txtAuthortName);
-        txtBookDesc =(TextView)itemView.findViewById(R.id.txtBookDesc);
+        bookLayout  = itemView.findViewById(R.id.book_layout);
+        imgBookThumb = itemView.findViewById(R.id.bookThumb);
+        txtBookName = itemView.findViewById(R.id.txtBookName);
+        txtAuthortName = itemView.findViewById(R.id.txtAuthortName);
+        txtBookDesc = itemView.findViewById(R.id.txtBookDesc);
 
         itemView.setOnClickListener(this);
 

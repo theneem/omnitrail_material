@@ -33,6 +33,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:padding="10dp"
                 >
 
                 <LinearLayout
@@ -116,13 +117,20 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@color/text_Header"/>
+                        android:background="@color/colorWhite"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:padding="10dp"
+                        android:layout_weight="100">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingStart="0dp"
+                        android:background="@color/colorWhite"
                         android:layout_weight="100">
 
 
@@ -156,12 +164,23 @@
 
                     </LinearLayout>
 
+                    </LinearLayout>
+
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:padding="10dp"
+                        android:layout_weight="100">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="0dp"
+                        android:background="@color/colorWhite"
                         android:layout_weight="100">
 
                         <TextView
@@ -191,6 +210,7 @@
                     </LinearLayout>
 
 
+</LinearLayout>
 
 
                     <LinearLayout
@@ -200,13 +220,21 @@
                         android:padding="10dp"
                         android:layout_weight="100">
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="0dp"
+                        android:background="@color/colorWhite"
+                        android:layout_weight="100">
+
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="start"
                             android:padding="5dp"
-                            android:text="Guru"
+                            android:text="Guru :"
                             android:layout_weight="60"
                             style="@style/NormalLable"/>
 
@@ -226,6 +254,7 @@
 
                     </LinearLayout>
 
+                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -234,12 +263,20 @@
                         android:padding="10dp"
                         android:layout_weight="100">
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="0dp"
+                        android:background="@color/colorWhite"
+                        android:layout_weight="100">
+
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="start"
                             android:padding="5dp"
-                            android:text="Saint Date"
+                            android:text="Saint Date :"
                             android:layout_weight="60"
                             style="@style/NormalLable"/>
 
@@ -258,12 +295,20 @@
 
                     </LinearLayout>
 
+                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:padding="10dp"
+                        android:layout_weight="100">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="0dp"
+                    android:background="@color/colorWhite"
                         android:layout_weight="100">
 
                         <TextView
@@ -290,6 +335,8 @@
 
                     </LinearLayout>
 
+                    </LinearLayout>
+
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -311,10 +358,11 @@
                     </LinearLayout>
 
                     <com.google.android.material.button.MaterialButton
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/btnWikiLink"
                         android:text="Open Wiki Link..."
+                        android:layout_gravity="center_horizontal"
                         style="@style/ButtonMain">
 
                     </com.google.android.material.button.MaterialButton>

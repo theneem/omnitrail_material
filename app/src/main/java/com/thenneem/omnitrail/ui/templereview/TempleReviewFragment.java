@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.thenneem.omnitrail.R;
@@ -42,6 +43,8 @@ public class TempleReviewFragment extends Fragment {
 
     private static final String TAG = TempleReviewFragment.class.getSimpleName();
 
+    View root;
+
 
     public static TempleReviewFragment newInstance() {
         return new TempleReviewFragment();
@@ -51,9 +54,9 @@ public class TempleReviewFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        View root =  inflater.inflate(R.layout.temple_review_fragment, container, false);
+         root =  inflater.inflate(R.layout.temple_review_fragment, container, false);
 
-        recyclerView = (RecyclerView) root.findViewById(R.id.rv_templeevent);
+        recyclerView = root.findViewById(R.id.rv_templeevent);
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
@@ -74,9 +77,20 @@ public class TempleReviewFragment extends Fragment {
             @Override
             public void onResponse(Call<List<Event>> call, Response<List<Event>> response) {
                 //religinoSingle = response.body();
-                List<Event> rl = (List<Event>) response.body();
-                recyclerView.setAdapter(new EventAdaptor(rl,R.layout.eventlist_layout, R.layout.empltyrv_layout,  getContext()));
+                List<Event> rl = response.body();
+                //Toast.makeText(getContext(), "before size check ", Toast.LENGTH_SHORT).show();
+                if(rl.size() <= 0 ) {
 
+                    TextView tv = root.findViewById(R.id.empty_view);
+                    //recyclerView = (RecyclerView) root.findViewById(R.id.rv_templeevent);
+                    tv.setVisibility(View.VISIBLE);
+                }
+                else
+                {
+                    recyclerView.setAdapter(new EventAdaptor(rl, R.layout.eventlist_layout, R.layout.empltyrv_layout, getContext()));
+
+
+                }
 
 
             }

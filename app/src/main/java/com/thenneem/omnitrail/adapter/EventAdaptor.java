@@ -50,13 +50,13 @@ public class EventAdaptor extends RecyclerView.Adapter<EventAdaptor.EventViewHol
             super(itemView);
 
 
-            eventLayout = (LinearLayout) itemView.findViewById(R.id.eventLayout);
-            imgeventThumb = (ImageView) itemView.findViewById(R.id.imgeventThumb);
-            txtEventName = (TextView) itemView.findViewById(R.id.txtEventName);
-            txtEventDetails = (TextView) itemView.findViewById(R.id.txtEventDetails);
-            txtEventTime = (TextView) itemView.findViewById(R.id.txtEventTime);
-            txtEventDay = (TextView) itemView.findViewById(R.id.txtEventDay);
-            txtEventMonth = (TextView) itemView.findViewById(R.id.txtEventMonth);
+            eventLayout = itemView.findViewById(R.id.eventLayout);
+            imgeventThumb = itemView.findViewById(R.id.imgeventThumb);
+            txtEventName = itemView.findViewById(R.id.txtEventName);
+            txtEventDetails = itemView.findViewById(R.id.txtEventDetails);
+            txtEventTime = itemView.findViewById(R.id.txtEventTime);
+            txtEventDay = itemView.findViewById(R.id.txtEventDay);
+            txtEventMonth = itemView.findViewById(R.id.txtEventMonth);
 
             itemView.setOnClickListener(this);
 

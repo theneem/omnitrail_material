@@ -103,6 +103,14 @@
                     android:padding="10dp"
                     android:layout_weight="100">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="0dp"
+                    android:background="@color/colorWhite"
+                    android:layout_weight="100">
+
 
                     <TextView
                         android:layout_width="match_parent"
@@ -134,12 +142,21 @@
 
                 </LinearLayout>
 
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:padding="10dp"
+                    android:layout_weight="100">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="0dp"
+                    android:background="@color/colorWhite"
                     android:layout_weight="100">
 
                     <TextView
@@ -165,8 +182,7 @@
                         android:layout_weight="40"
                         style="@style/NormalText"/>
                 </LinearLayout>
-
-
+                </LinearLayout>
 
 
                 <LinearLayout
@@ -176,13 +192,21 @@
                     android:padding="10dp"
                     android:layout_weight="100">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="0dp"
+                    android:background="@color/colorWhite"
+                    android:layout_weight="100">
+
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="start"
                         android:padding="5dp"
-                        android:text="Creator"
+                        android:text="Creator :"
                         android:layout_weight="60"
                         style="@style/NormalLable"/>
 
@@ -201,6 +225,8 @@
 
                 </LinearLayout>
 
+                </LinearLayout>
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -209,12 +235,20 @@
                     android:padding="10dp"
                     android:layout_weight="100">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="0dp"
+                    android:background="@color/colorWhite"
+                    android:layout_weight="100">
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="start"
                         android:padding="5dp"
-                        android:text="Completion"
+                        android:text="Completion :"
                         android:layout_weight="60"
                         style="@style/NormalLable"/>
 
@@ -232,12 +266,21 @@
 
                 </LinearLayout>
 
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:padding="10dp"
+                    android:layout_weight="100">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="0dp"
+                android:background="@color/colorWhite"
                     android:layout_weight="100">
 
                     <TextView
@@ -263,6 +306,7 @@
 
                 </LinearLayout>
 
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -282,16 +326,25 @@
                     style="@style/NormalLable"/>
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:layout_gravity="center_horizontal"
+                    >
                 <com.google.android.material.button.MaterialButton
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/btnWikiLink"
+                    android:layout_gravity="center_horizontal"
                     android:text="Open Wiki Link..."
+                    android:padding="10dp"
                     style="@style/ButtonMain">
 
 
                 </com.google.android.material.button.MaterialButton>
 
+                </LinearLayout>
 
 
 

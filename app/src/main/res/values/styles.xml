@@ -50,8 +50,10 @@
     </style>
 
     <style name="ButtonMain">
-        <item name="backgroundTint">@color/primaryDarkColor</item>
-        <item name="android:textColor">@color/primaryTextColor</item>
+        <item name="backgroundTint">@color/primaryTextColor</item>
+        <item name="android:textColor">@color/primaryDarkColor</item>
+
+
     </style>
 
     <style name="NormalText">
@@ -104,6 +106,19 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+
+
+
+    <style name="AppSearchView" parent="Widget.AppCompat.SearchView" >
+        <!-- Text Size -->
+        <item name="android:textSize">25dp</item>
+        <!-- Query Text Color -->
+        <item name="android:textColorPrimary">@color/colorWhite</item>
+        <!-- Hint Color -->
+        <item name="android:textColorHint">@color/colorWhite</item>
+        <!-- Icon Color -->
+        <item name="android:tint">@color/colorWhite</item>
+    </style>
 
 
 

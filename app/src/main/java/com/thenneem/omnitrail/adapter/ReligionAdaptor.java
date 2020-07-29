@@ -53,12 +53,12 @@ public class ReligionAdaptor extends RecyclerView.Adapter<ReligionAdaptor.Religi
         public ReligionViewHolder(View v) {
 
             super(v);
-            religionLayout  = (LinearLayout) v.findViewById(R.id.religion_layout);
-            imgView = (ImageView)v.findViewById(R.id.religionThumb);
-            txtRName = (TextView) v.findViewById(R.id.txtReligionName);
-            txtRDesc =(TextView)v.findViewById(R.id.txtReligionDesc);
-            txtRSaint =(TextView)v.findViewById(R.id.txtRSaint);
-            txtRTemple =(TextView)v.findViewById(R.id.txtRTemple);
+            religionLayout  = v.findViewById(R.id.religion_layout);
+            imgView = v.findViewById(R.id.religionThumb);
+            txtRName = v.findViewById(R.id.txtReligionName);
+            txtRDesc = v.findViewById(R.id.txtReligionDesc);
+            txtRSaint = v.findViewById(R.id.txtRSaint);
+            txtRTemple = v.findViewById(R.id.txtRTemple);
 
             v.setOnClickListener(this);
 

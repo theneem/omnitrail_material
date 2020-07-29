@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
@@ -44,6 +45,9 @@ public class TempleFeatureFragment extends Fragment  implements View.OnClickList
 
     private TempleFeatureViewModel mViewModel;
 
+    View root;
+
+
     public static TempleFeatureFragment newInstance() {
         return new TempleFeatureFragment();
     }
@@ -52,10 +56,10 @@ public class TempleFeatureFragment extends Fragment  implements View.OnClickList
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        View root =  inflater.inflate(R.layout.temple_feature_fragment, container, false);
+         root =  inflater.inflate(R.layout.temple_feature_fragment, container, false);
 
 
-         recyclerView = (RecyclerView) root.findViewById(R.id.rv_templefeature);
+         recyclerView = root.findViewById(R.id.rv_templefeature);
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
@@ -76,10 +80,22 @@ public class TempleFeatureFragment extends Fragment  implements View.OnClickList
             @Override
             public void onResponse(Call<List<Feature>> call, Response<List<Feature>> response) {
 
-                List<Feature> rl = (List<Feature>) response.body();
+                List<Feature> rl = response.body();
+
+                if(rl.size() <= 0 ) {
+
+                    TextView tv = root.findViewById(R.id.empty_view);
+                    //recyclerView = (RecyclerView) root.findViewById(R.id.rv_templeevent);
+                    tv.setVisibility(View.VISIBLE);
+                }
+                else
+                {
+
+                    recyclerView.setAdapter(new FeatureAdaptor(rl,R.layout.featurelist_layout,getContext()));
 
 
-               recyclerView.setAdapter(new FeatureAdaptor(rl,R.layout.featurelist_layout,getContext()));
+                }
+
 
             }
 
