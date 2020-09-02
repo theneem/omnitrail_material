@@ -97,7 +97,8 @@ public class ReligionAdaptor extends RecyclerView.Adapter<ReligionAdaptor.Religi
     public void onBindViewHolder(@NonNull ReligionViewHolder holder, int position) {
 
 
-
+        Toast.makeText(context, "Displaying Religion name", Toast.LENGTH_LONG).show();
+        Toast.makeText(context, religions.get(position).getReligionName(), Toast.LENGTH_LONG).show();
         holder.txtRName.setText(religions.get(position).getReligionName());
         holder.txtRDesc.setText(religions.get(position).getReligionDesc());
         holder.txtRSaint.setText("Saints (" + religions.get(position).getNoofsaint() + ")");

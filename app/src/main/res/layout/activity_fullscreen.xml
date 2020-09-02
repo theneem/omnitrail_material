@@ -58,7 +58,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/rv_religions"
         android:onClick="onItemClick"
-        >
+        tools:ignore="OnClick">
 
 
     </androidx.recyclerview.widget.RecyclerView>

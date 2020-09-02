@@ -57,7 +57,7 @@ public class TempleHome extends AppCompatActivity {
 
 
         // initiate and perform click event on button's
-        ImageButton search = (ImageButton)findViewById(R.id.imgbtnMax);
+        ImageButton search = findViewById(R.id.imgbtnMax);
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

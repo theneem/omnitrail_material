@@ -154,35 +154,71 @@ public class FullscreenActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
 
-        // calling json retrofit
-        ApiInterface apiService =
-                ApiClient.getClient().create(ApiInterface.class);
 
-        Call<List<Religion>> call = apiService.getReligionList();
-
-        call.enqueue(new Callback<List<Religion>>() {
-            @Override
-            public void onResponse(Call<List<Religion>> call, Response<List<Religion>> response) {
-                 //religinoSingle = response.body();
-
-                List<Religion> rl = response.body();
-                recyclerView.setAdapter(new ReligionAdaptor(rl,R.layout.religionlist_layout,getApplicationContext()));
+        try {
 
 
-                //Log.d(TAG ,"No of religion revivd " + rl.size());
-                //Log.d(TAG ,"No of religion revivd " + religinoSingle.getReligionName());
+            Toast.makeText(this, "Calling Rest Api ", Toast.LENGTH_SHORT).show();
+            // calling json retrofit
+            ApiInterface apiService =
+                    ApiClient.getClient().create(ApiInterface.class);
 
-                //Toast.makeText(getApplication(), "No of Religion " + rl.size(), Toast.LENGTH_LONG).show();
-            }
+            Call<List<Religion>> call = apiService.getReligionList();
 
-            @Override
-            public void onFailure(Call<List<Religion>> call, Throwable t) {
-                //Log.d(TAG , t.toString());
-                Toast.makeText(getApplication(), "Error" +  t.toString(),Toast.LENGTH_LONG).show();
-            }
-        });
+            call.enqueue(new Callback<List<Religion>>() {
+                @Override
+                public void onResponse(Call<List<Religion>> call, Response<List<Religion>> response) {
+                    //religinoSingle = response.body();
+
+                    try {
+
+                    Toast.makeText(FullscreenActivity.this, "Religion list recevied", Toast.LENGTH_SHORT).show();
+                    List<Religion> rl = response.body();
+
+                    Toast.makeText(FullscreenActivity.this, String.valueOf(rl.size()), Toast.LENGTH_SHORT).show();
+
+                    Toast.makeText(FullscreenActivity.this, "Response body : ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(FullscreenActivity.this, response.body().toString(), Toast.LENGTH_SHORT).show();
+                    recyclerView.setAdapter(new ReligionAdaptor(rl, R.layout.religionlist_layout, getApplicationContext()));
+
+                    }
+                    catch (Exception e) {
+                        // This will catch any exception, because they are all descended from Exception
+                        //Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(, "Error" +  t.toString(),Toast.LENGTH_LONG).show();
+
+                        Toast.makeText(FullscreenActivity.this, "exception ", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(FullscreenActivity.this, e.getMessage().toString(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(FullscreenActivity.this, e.getStackTrace().toString(), Toast.LENGTH_SHORT).show();
+                    }
 
 
+
+                    //Log.d(TAG ,"No of religion revivd " + rl.size());
+                    //Log.d(TAG ,"No of religion revivd " + religinoSingle.getReligionName());
+
+                    //Toast.makeText(getApplication(), "No of Religion " + rl.size(), Toast.LENGTH_LONG).show();
+                }
+
+                @Override
+                public void onFailure(Call<List<Religion>> call, Throwable t) {
+                    //Log.d(TAG , t.toString());
+                    Toast.makeText(getApplication(), "Error" + t.toString(), Toast.LENGTH_LONG).show();
+                }
+            });
+
+        }
+        catch (Exception e) {
+            Log.e("Fail 2", e.toString());
+            //At the level Exception Class handle the error in Exception Table
+            // Exception Create That Error  Object and throw it
+            //E.g: FileNotFoundException ,etc
+            Toast.makeText(this, "Exception occured", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+
+            Toast.makeText(this, "Error" + e.toString(), Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
