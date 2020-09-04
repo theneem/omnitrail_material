@@ -68,7 +68,14 @@ public class BookFragment extends Fragment {
         ApiInterface apiService =
                 ApiClient.getClient().create(ApiInterface.class);
 
-        Call<List<Book>> call = apiService.getBookList(getArguments().getString("rid"));
+        String rid = getArguments().getString("rid");
+        Call<List<Book>> call;
+        if(getArguments().containsKey("query")) {
+            String query = getArguments().getString("query");
+            call = apiService.booksSearch(rid, query);
+        }else{
+            call = apiService.getBookList(rid);
+        }
 
         call.enqueue(new Callback<List<Book>>() {
             @Override

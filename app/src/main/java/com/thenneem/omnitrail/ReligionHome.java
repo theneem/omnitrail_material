@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -29,6 +30,8 @@ import com.thenneem.omnitrail.ui.book.BookFragment;
 import com.thenneem.omnitrail.ui.saint.SaintFragment;
 import com.thenneem.omnitrail.ui.temple.TempleFragment;
 
+import static androidx.fragment.app.FragmentManager.POP_BACK_STACK_INCLUSIVE;
+
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
@@ -43,6 +46,7 @@ public class ReligionHome extends AppCompatActivity {
     private static final boolean AUTO_HIDE = true;
     private MaterialToolbar topToolBar;
     private Religion religion;
+    private SearchView searchView;
 
 
     BottomNavigationView bottomNavigation;
@@ -144,6 +148,25 @@ public class ReligionHome extends AppCompatActivity {
             }
         });
 
+        searchView = findViewById(R.id.searchView);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                showSearchResult(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+
+        searchView.setOnCloseListener(() -> {
+            getSupportFragmentManager().popBackStack("search", POP_BACK_STACK_INCLUSIVE);
+            return false;
+        });
 
         // Set up the user interaction to manually show or hide the system UI.
         mContentView.setOnClickListener(new View.OnClickListener() {
@@ -179,34 +202,62 @@ public class ReligionHome extends AppCompatActivity {
         transaction.commit();
     }
 
+    public void showSearchResult(String query){
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        Bundle bundle = new Bundle();
+        bundle.putString("rid", String.valueOf(religion.getReligionID()));
+        bundle.putString("query", query);
+        Fragment fragment = null;
+        int itemId = bottomNavigation.getSelectedItemId();
+        switch (itemId){
+            case R.id.navigation_temple:
+                fragment = TempleFragment.newInstance();
+                break;
+            case R.id.navigain_saint:
+                fragment = SaintFragment.newInstance();
+                break;
+            case R.id.navigation_book:
+                fragment = BookFragment.newInstance();
+                break;
+        }
+        if(fragment != null){
+            fragment.setArguments(bundle);
+            transaction.replace(R.id.container, fragment);
+            transaction.addToBackStack("search");
+            transaction.commit();
+        }
+    }
+
+    private String hint = "Search Temple";
+
     BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-
+            boolean result = false;
             switch (item.getItemId()) {
                 case R.id.navigation_temple:
                     openFragment(TempleFragment.newInstance());
                     item.setChecked(true);
                     //bottomNavigation.setItemTextColor(android.R.color.holo_red_dark);
-
-                    return true;
+                    hint = "Search Temple";
+                    result = true;
+                    break;
                 case R.id.navigain_saint:
                     openFragment(SaintFragment.newInstance());
                     item.setChecked(true);
-
-
-                    return true;
+                    hint = "Search Saint";
+                    result = true;
+                    break;
                 case R.id.navigation_book:
                     openFragment(BookFragment.newInstance());
                     item.setChecked(true);
-
-                    return true;
+                    hint = "Search Book";
+                    result = true;
+                    break;
 
             }
-
-
-            return false;
+            searchView.setQueryHint(hint);
+            return result;
         }
     };
 

@@ -84,12 +84,21 @@ public class TempleFragment extends Fragment {
         // calling json retrofit
         ApiInterface apiService =
                 ApiClient.getClient().create(ApiInterface.class);
+        String rid = getArguments().getString("rid");
+        Call<List<Temple>> call;
+        if(getArguments().containsKey("query")){
+            String query = getArguments().getString("query");
+            call = apiService.templateSearch(rid, query);
+        }else{
+            call = apiService.getTempleList(rid);
+        }
 
-       Call<List<Temple>> call = apiService.getTempleList(getArguments().getString("rid"));
         //Call<List<Temple>> call = apiService.getTempleList("1");
 
 
         //
+        if(call == null) return null;
+
         call.enqueue(new Callback<List<Temple>>() {
             @Override
             public void onResponse(Call<List<Temple>> call, Response<List<Temple>> response) {

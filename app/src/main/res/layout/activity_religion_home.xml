@@ -52,19 +52,22 @@
 
 
             </ImageView>
-        <androidx.appcompat.widget.SearchView
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            app:queryHint="Search Temple"
-            android:outlineAmbientShadowColor="@color/colorWhite"
-            android:outlineSpotShadowColor="@color/colorWhite"
-            app:layout_constraintBottom_toBottomOf="@id/imgReligionThumb"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:theme="@style/AppSearchView"
-            app:searchHintIcon="@drawable/ic_temple"
-            android:layoutDirection="rtl"
-            />
+
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/searchView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layoutDirection="rtl"
+                android:outlineAmbientShadowColor="@color/colorWhite"
+                android:outlineSpotShadowColor="@color/colorWhite"
+                android:theme="@style/AppSearchView"
+                app:layout_constraintBottom_toBottomOf="@id/imgReligionThumb"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:searchHintIcon="@null"
+                app:queryHint="Search Temple" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -187,6 +187,7 @@
                 android:layout_height="100dp"
                 android:layout_gravity="start"
                 android:layout_marginTop="1dp"
+                android:layout_margin="5dp"
                 android:text="Android Version"
                 style="@style/NormalText"
                 />
@@ -210,10 +211,9 @@
                     app:icon="@drawable/ic_more"
                     android:tint="@color/primaryDarkColor"
                     app:iconGravity="end"
-
+                    android:layout_margin="5dp"
                     style="@style/ButtonMain"
-
-                    ></com.google.android.material.button.MaterialButton>
+                    />
 
             </LinearLayout>
 

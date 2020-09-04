@@ -28,6 +28,7 @@ import com.thenneem.omnitrail.adapter.ReligionAdaptor;
 import com.thenneem.omnitrail.adapter.SaintAdaptor;
 import com.thenneem.omnitrail.model.Religion;
 import com.thenneem.omnitrail.model.Saint;
+import com.thenneem.omnitrail.model.Temple;
 import com.thenneem.omnitrail.rest.ApiClient;
 import com.thenneem.omnitrail.rest.ApiInterface;
 
@@ -82,12 +83,14 @@ public class SaintFragment extends Fragment {
         ApiInterface apiService =
                 ApiClient.getClient().create(ApiInterface.class);
 
-        Call<List<Saint>> call = apiService.getSaintList(getArguments().getString("rid"));
-
-
-
-
-        //
+        String rid = getArguments().getString("rid");
+        Call<List<Saint>> call;
+        if(getArguments().containsKey("query")) {
+            String query = getArguments().getString("query");
+            call = apiService.saintSearch(rid, query);
+        }else{
+            call = apiService.getSaintList(rid);
+        }
         call.enqueue(new Callback<List<Saint>>() {
             @Override
             public void onResponse(Call<List<Saint>> call, Response<List<Saint>> response) {
