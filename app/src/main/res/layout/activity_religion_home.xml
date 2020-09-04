@@ -25,12 +25,13 @@
             android:contentInsetLeft="5dp"
             android:contentInsetRight="5dp"
             android:padding="0dp"
-            android:theme="@style/MaterialAlertDialog.MaterialComponents.Title.Icon.CenterStacked"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:contentInsetLeft="5dp"
             app:contentInsetRight="5dp"
             app:contentInsetStart="5dp"
             app:logo="@mipmap/ic_logo_notext"
             app:title="@string/app_name"
+            app:menu="@menu/search"
             app:titleTextColor="@color/primaryTextColor">
 
 
@@ -54,6 +55,7 @@
             </ImageView>
 
             <androidx.appcompat.widget.SearchView
+                android:visibility="gone"
                 android:id="@+id/searchView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

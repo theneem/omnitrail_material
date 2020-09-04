@@ -14,6 +14,8 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
@@ -117,14 +119,27 @@ public class ReligionHome extends AppCompatActivity {
     };
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.search, menu);
+
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        //searchView = (SearchView) searchItem.getActionView();
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_religion_home);
 
         topToolBar = findViewById(R.id.toptoolbar);
-
-        // setSupportActionBar(topToolBar);
+        Menu menu = topToolBar.getMenu();
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        searchView = (SearchView) searchItem.getActionView();
+        searchView.setQueryHint(hint);
+        //setSupportActionBar(topToolBar);
         //topToolBar.setLogo(R.drawable.ic_account_circle_white_24dp);
 
 
@@ -148,7 +163,7 @@ public class ReligionHome extends AppCompatActivity {
             }
         });
 
-        searchView = findViewById(R.id.searchView);
+        //searchView = findViewById(R.id.searchView);
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
