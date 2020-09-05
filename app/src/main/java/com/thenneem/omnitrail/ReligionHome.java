@@ -1,16 +1,20 @@
 package com.thenneem.omnitrail;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -23,6 +27,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.squareup.picasso.Callback;
@@ -32,13 +39,80 @@ import com.thenneem.omnitrail.ui.book.BookFragment;
 import com.thenneem.omnitrail.ui.saint.SaintFragment;
 import com.thenneem.omnitrail.ui.temple.TempleFragment;
 
+import permissions.dispatcher.NeedsPermission;
+import permissions.dispatcher.OnShowRationale;
+import permissions.dispatcher.PermissionRequest;
+import permissions.dispatcher.RuntimePermissions;
+
 import static androidx.fragment.app.FragmentManager.POP_BACK_STACK_INCLUSIVE;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
+@RuntimePermissions
 public class ReligionHome extends AppCompatActivity {
+
+    private FusedLocationProviderClient fusedLocationClient;
+
+    @SuppressLint("MissingPermission")
+    @NeedsPermission(Manifest.permission.ACCESS_FINE_LOCATION)
+    public void geoSearch(){
+        fusedLocationClient.getLastLocation().addOnSuccessListener(location -> {
+            String[] radius = new String[]{"5 KM", "10 KM", "50 KM", "100 KM"};
+            new AlertDialog.Builder(ReligionHome.this)
+                    .setTitle("Select search radius")
+                    .setItems(radius, (dialog, which) -> {
+                        showLocationSearchResult(location, radius[which].split(" ")[0]);
+                    })
+                    .show();
+        });
+    }
+
+    public void showLocationSearchResult(Location location, String radius){
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        Bundle bundle = new Bundle();
+        bundle.putString("rid", String.valueOf(religion.getReligionID()));
+        bundle.putString("radius", radius);
+        bundle.putString("lon", Double.toString(location.getLongitude()));
+        bundle.putString("lat", Double.toString(location.getLatitude()));
+        Fragment fragment = null;
+        int itemId = bottomNavigation.getSelectedItemId();
+        switch (itemId){
+            case R.id.navigation_temple:
+                fragment = TempleFragment.newInstance();
+                break;
+            case R.id.navigain_saint:
+                fragment = SaintFragment.newInstance();
+                break;
+        }
+        if(fragment != null){
+            fragment.setArguments(bundle);
+            transaction.replace(R.id.container, fragment);
+            transaction.addToBackStack("searchGeo");
+            transaction.commit();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        ReligionHomePermissionsDispatcher.onRequestPermissionsResult(this, requestCode, grantResults);
+    }
+
+    @OnShowRationale(Manifest.permission.ACCESS_FINE_LOCATION)
+    public void rationaleGEO(PermissionRequest request){
+        new AlertDialog.Builder(this)
+                .setPositiveButton("OK", (dialog, which) -> {
+                    request.proceed();
+                })
+                .setNegativeButton("Cancel", (dialog, which) -> {
+                    request.cancel();
+                })
+                .setCancelable(false)
+                .setMessage("to use the search for objects closest to you, allow the application to get your geo position")
+                .show();
+    }
 
 
     /**
@@ -119,24 +193,23 @@ public class ReligionHome extends AppCompatActivity {
     };
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.search, menu);
-
-        MenuItem searchItem = menu.findItem(R.id.action_search);
-        //searchView = (SearchView) searchItem.getActionView();
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_religion_home);
-
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         topToolBar = findViewById(R.id.toptoolbar);
+
         Menu menu = topToolBar.getMenu();
         MenuItem searchItem = menu.findItem(R.id.action_search);
+        menu.findItem(R.id.action_geo).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                if(bottomNavigation.getSelectedItemId() == R.id.navigation_book) return false;
+                ReligionHomePermissionsDispatcher.geoSearchWithPermissionCheck(ReligionHome.this);
+                return false;
+            }
+        });
         searchView = (SearchView) searchItem.getActionView();
         searchView.setQueryHint(hint);
         //setSupportActionBar(topToolBar);
@@ -285,7 +358,7 @@ public class ReligionHome extends AppCompatActivity {
         ImageView imgRThumb = findViewById(R.id.imgReligionThumb);
 
         txtName.setText(religion.getReligionName());
-        topToolBar.setTitle(getString(R.string.app_name) + " -> " + religion.getReligionName());
+        topToolBar.setTitle(religion.getReligionName());
 
         Picasso.Builder builder = new Picasso.Builder(getApplicationContext());
 

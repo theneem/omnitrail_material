@@ -9,4 +9,10 @@
         app:showAsAction="always"
         app:actionViewClass="androidx.appcompat.widget.SearchView"
         android:title="Search"/>
+
+    <item
+        android:id="@+id/action_geo"
+        android:icon="@drawable/ic_location"
+        app:showAsAction="always"
+        android:title="Search GEO"/>
 </menu>

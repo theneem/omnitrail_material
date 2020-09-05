@@ -60,4 +60,10 @@ public interface ApiInterface {
 
     @POST("saintsearch.php")
     Call<List<Saint>> saintSearch(@Query("rid") String rid, @Query("query") String query);
+
+    @POST("templegeosearch.php")
+    Call<List<Temple>> templateGeoSearch(@Query("rid") String rid, @Query("lang") String lon, @Query("lat") String lat, @Query("within") String radius);
+
+    @POST("saintgeosearch.php")
+    Call<List<Saint>> saintGeoSearch(@Query("rid") String rid, @Query("lang") String lon, @Query("lat") String lat, @Query("within") String radius);
 }

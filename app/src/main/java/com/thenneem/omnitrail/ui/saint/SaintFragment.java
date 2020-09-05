@@ -88,6 +88,11 @@ public class SaintFragment extends Fragment {
         if(getArguments().containsKey("query")) {
             String query = getArguments().getString("query");
             call = apiService.saintSearch(rid, query);
+        }else if(getArguments().containsKey("radius")){
+            String radius = getArguments().getString("radius");
+            String lat = getArguments().getString("lat");
+            String lon = getArguments().getString("lon");
+            call = apiService.saintGeoSearch(rid, lon, lat, radius);
         }else{
             call = apiService.getSaintList(rid);
         }

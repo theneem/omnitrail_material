@@ -89,6 +89,11 @@ public class TempleFragment extends Fragment {
         if(getArguments().containsKey("query")){
             String query = getArguments().getString("query");
             call = apiService.templateSearch(rid, query);
+        }else if(getArguments().containsKey("radius")){
+            String radius = getArguments().getString("radius");
+            String lat = getArguments().getString("lat");
+            String lon = getArguments().getString("lon");
+            call = apiService.templateGeoSearch(rid, lon, lat, radius);
         }else{
             call = apiService.getTempleList(rid);
         }
