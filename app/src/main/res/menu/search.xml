@@ -6,7 +6,7 @@
     <item
         android:id="@+id/action_search"
         android:icon="@android:drawable/ic_menu_search"
-        app:showAsAction="always"
+        app:showAsAction="ifRoom"
         app:actionViewClass="androidx.appcompat.widget.SearchView"
         android:title="Search"/>
 
@@ -14,5 +14,20 @@
         android:id="@+id/action_geo"
         android:icon="@drawable/ic_location"
         app:showAsAction="always"
-        android:title="Search GEO"/>
+        android:title="Search GEO">
+        <menu>
+            <item android:id="@+id/one"
+                app:showAsAction="withText"
+                android:title="5 KM"/>
+            <item android:id="@+id/two"
+                app:showAsAction="withText"
+                android:title="10 KM"/>
+            <item android:id="@+id/three"
+                app:showAsAction="withText"
+                android:title="50 KM"/>
+            <item android:id="@+id/four"
+                app:showAsAction="withText"
+                android:title="100 KM"/>
+        </menu>
+    </item>
 </menu>

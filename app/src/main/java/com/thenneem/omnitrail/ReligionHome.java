@@ -57,15 +57,16 @@ public class ReligionHome extends AppCompatActivity {
 
     @SuppressLint("MissingPermission")
     @NeedsPermission(Manifest.permission.ACCESS_FINE_LOCATION)
-    public void geoSearch(){
+    public void geoSearch(String radius){
         fusedLocationClient.getLastLocation().addOnSuccessListener(location -> {
-            String[] radius = new String[]{"5 KM", "10 KM", "50 KM", "100 KM"};
-            new AlertDialog.Builder(ReligionHome.this)
-                    .setTitle("Select search radius")
-                    .setItems(radius, (dialog, which) -> {
-                        showLocationSearchResult(location, radius[which].split(" ")[0]);
-                    })
-                    .show();
+            if(location == null){
+                new AlertDialog.Builder(ReligionHome.this)
+                        .setMessage("Could not determine location")
+                        .setPositiveButton("OK", null)
+                        .show();
+                return;
+            }
+            showLocationSearchResult(location, radius);
         });
     }
 
@@ -202,19 +203,29 @@ public class ReligionHome extends AppCompatActivity {
 
         Menu menu = topToolBar.getMenu();
         MenuItem searchItem = menu.findItem(R.id.action_search);
-        menu.findItem(R.id.action_geo).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                if(bottomNavigation.getSelectedItemId() == R.id.navigation_book) return false;
-                ReligionHomePermissionsDispatcher.geoSearchWithPermissionCheck(ReligionHome.this);
-                return false;
-            }
-        });
+        Menu submenu = menu.findItem(R.id.action_geo).getSubMenu();
+        submenu.findItem(R.id.one).setOnMenuItemClickListener(item ->{
+                    ReligionHomePermissionsDispatcher.geoSearchWithPermissionCheck(ReligionHome.this, "5");
+                    return false;
+                }
+        );
+        submenu.findItem(R.id.two).setOnMenuItemClickListener(item ->{
+                    ReligionHomePermissionsDispatcher.geoSearchWithPermissionCheck(ReligionHome.this, "10");
+                    return false;
+                }
+        );
+        submenu.findItem(R.id.three).setOnMenuItemClickListener(item ->{
+                    ReligionHomePermissionsDispatcher.geoSearchWithPermissionCheck(ReligionHome.this, "50");
+                    return false;
+                }
+        );
+        submenu.findItem(R.id.four).setOnMenuItemClickListener(item ->{
+                    ReligionHomePermissionsDispatcher.geoSearchWithPermissionCheck(ReligionHome.this, "100");
+                    return false;
+                }
+        );
         searchView = (SearchView) searchItem.getActionView();
         searchView.setQueryHint(hint);
-        //setSupportActionBar(topToolBar);
-        //topToolBar.setLogo(R.drawable.ic_account_circle_white_24dp);
-
 
         mVisible = true;
         mControlsView = findViewById(R.id.fullscreen_content_controls);
