@@ -15,6 +15,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDRSI7cPxm5e82Bfrv-KP7YxVGAwxOtmic"/>
+
         <activity android:name=".BookActivity"></activity>
         <activity
             android:name=".SaintHome"
@@ -56,6 +61,7 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
+        <activity android:name=".NewObjectActivity"/>
     </application>
 
 </manifest>

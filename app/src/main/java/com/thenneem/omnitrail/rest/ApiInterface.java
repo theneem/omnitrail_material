@@ -10,11 +10,16 @@ import com.thenneem.omnitrail.model.Temple;
 
 import java.util.List;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -66,4 +71,13 @@ public interface ApiInterface {
 
     @POST("saintgeosearch.php")
     Call<List<Saint>> saintGeoSearch(@Query("rid") String rid, @Query("lang") String lon, @Query("lat") String lat, @Query("within") String radius);
+
+    @POST("uploadimage.php")
+    Call<UploadResult> uploadImage(@Query("itype") String type, @Body RequestBody image);
+
+    @POST("templeadd.php")
+    Call<Void> templeAdd(@Query("rid") String rid, @Query("TempleName") String templeName,
+                         @Query("TempleIMG") String templeImage, @Query("PrimaryDeity") String deity,
+                         @Query("TempleStory") String story, @Query("lang") Double lang, @Query("lat") Double lat);
+
 }

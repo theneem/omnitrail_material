@@ -46,7 +46,6 @@ public class FullscreenActivity extends AppCompatActivity {
     private static final String TAG = FullscreenActivity.class.getSimpleName();
 
 
-
     /**
      * Whether or not the system UI should be auto-hidden after
      * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
@@ -142,7 +141,6 @@ public class FullscreenActivity extends AppCompatActivity {
         findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
 
 
-
         recyclerView = findViewById(R.id.rv_religions);
 
         // use this setting to improve performance if you know that changes
@@ -152,7 +150,6 @@ public class FullscreenActivity extends AppCompatActivity {
         // use a linear layout manager
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-
 
 
         try {
@@ -172,17 +169,16 @@ public class FullscreenActivity extends AppCompatActivity {
 
                     try {
 
-                    Toast.makeText(FullscreenActivity.this, "Religion list recevied", Toast.LENGTH_SHORT).show();
-                    List<Religion> rl = response.body();
+                        Toast.makeText(FullscreenActivity.this, "Religion list recevied", Toast.LENGTH_SHORT).show();
+                        List<Religion> rl = response.body();
 
-                    Toast.makeText(FullscreenActivity.this, String.valueOf(rl.size()), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(FullscreenActivity.this, String.valueOf(rl.size()), Toast.LENGTH_SHORT).show();
 
-                    Toast.makeText(FullscreenActivity.this, "Response body : ", Toast.LENGTH_SHORT).show();
-                    Toast.makeText(FullscreenActivity.this, response.body().toString(), Toast.LENGTH_SHORT).show();
-                    recyclerView.setAdapter(new ReligionAdaptor(rl, R.layout.religionlist_layout, getApplicationContext()));
+                        Toast.makeText(FullscreenActivity.this, "Response body : ", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(FullscreenActivity.this, response.body().toString(), Toast.LENGTH_SHORT).show();
+                        recyclerView.setAdapter(new ReligionAdaptor(rl, R.layout.religionlist_layout, getApplicationContext()));
 
-                    }
-                    catch (Exception e) {
+                    } catch (Exception e) {
                         // This will catch any exception, because they are all descended from Exception
                         //Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
                         //Toast.makeText(, "Error" +  t.toString(),Toast.LENGTH_LONG).show();
@@ -191,7 +187,6 @@ public class FullscreenActivity extends AppCompatActivity {
                         Toast.makeText(FullscreenActivity.this, e.getMessage().toString(), Toast.LENGTH_SHORT).show();
                         Toast.makeText(FullscreenActivity.this, e.getStackTrace().toString(), Toast.LENGTH_SHORT).show();
                     }
-
 
 
                     //Log.d(TAG ,"No of religion revivd " + rl.size());
@@ -207,8 +202,7 @@ public class FullscreenActivity extends AppCompatActivity {
                 }
             });
 
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             Log.e("Fail 2", e.toString());
             //At the level Exception Class handle the error in Exception Table
             // Exception Create That Error  Object and throw it

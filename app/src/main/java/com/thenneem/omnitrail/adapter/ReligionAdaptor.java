@@ -11,10 +11,13 @@ import android.net.Uri;
 import android.nfc.Tag;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +26,7 @@ import java.util.List;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.thenneem.omnitrail.FullscreenActivity;
+import com.thenneem.omnitrail.NewObjectActivity;
 import com.thenneem.omnitrail.R;
 import com.thenneem.omnitrail.ReligionHome;
 import com.thenneem.omnitrail.model.Religion;
@@ -31,15 +35,14 @@ import com.thenneem.omnitrail.rest.ItemClickListner;
 import org.w3c.dom.Text;
 
 
-public class ReligionAdaptor extends RecyclerView.Adapter<ReligionAdaptor.ReligionViewHolder>   {
+public class ReligionAdaptor extends RecyclerView.Adapter<ReligionAdaptor.ReligionViewHolder> {
 
     private List<Religion> religions;
     private int rowLayout;
     private Context context;
 
 
-
-    public static class ReligionViewHolder extends RecyclerView.ViewHolder implements   View.OnClickListener {
+    public static class ReligionViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         LinearLayout religionLayout;
         ImageView imgView;
@@ -47,18 +50,20 @@ public class ReligionAdaptor extends RecyclerView.Adapter<ReligionAdaptor.Religi
         TextView txtRDesc;
         TextView txtRSaint;
         TextView txtRTemple;
+        ImageView moreButton;
 
         private ItemClickListner itemClickListner;
 
         public ReligionViewHolder(View v) {
 
             super(v);
-            religionLayout  = v.findViewById(R.id.religion_layout);
+            religionLayout = v.findViewById(R.id.religion_layout);
             imgView = v.findViewById(R.id.religionThumb);
             txtRName = v.findViewById(R.id.txtReligionName);
             txtRDesc = v.findViewById(R.id.txtReligionDesc);
             txtRSaint = v.findViewById(R.id.txtRSaint);
             txtRTemple = v.findViewById(R.id.txtRTemple);
+            moreButton = v.findViewById(R.id.moreButton);
 
             v.setOnClickListener(this);
 
@@ -66,8 +71,7 @@ public class ReligionAdaptor extends RecyclerView.Adapter<ReligionAdaptor.Religi
         }
 
 
-        public void     setItemClickListner(ItemClickListner itemClickListner)
-        {
+        public void setItemClickListner(ItemClickListner itemClickListner) {
             this.itemClickListner = itemClickListner;
 
         }
@@ -75,10 +79,11 @@ public class ReligionAdaptor extends RecyclerView.Adapter<ReligionAdaptor.Religi
         @Override
         public void onClick(View v) {
 
-            itemClickListner.onClick(v,getAdapterPosition());
+            itemClickListner.onClick(v, getAdapterPosition());
         }
     }
-    public ReligionAdaptor(List<Religion> religions, int rowLayout, Context context ) {
+
+    public ReligionAdaptor(List<Religion> religions, int rowLayout, Context context) {
         this.religions = religions;
         this.rowLayout = rowLayout;
         this.context = context;
@@ -114,18 +119,39 @@ public class ReligionAdaptor extends RecyclerView.Adapter<ReligionAdaptor.Religi
                     @Override
                     public void onSuccess() {
                         //holder.mMediaEvidencePb.setVisibility(View.GONE);
-                    //Log.d("test1","piccaso Success" );
+                        //Log.d("test1","piccaso Success" );
                         //Toast.makeText(context, "Piccaso success ", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
                     public void onError(Exception e) {
                         //Log.d("test1","piccaso error" + e.getMessage() );
-                        Toast.makeText(context, "Piccaso Error "  + e.getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(context, "Piccaso Error " + e.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
 
-
+        holder.moreButton.setOnClickListener(v -> {
+            PopupMenu menu = new PopupMenu(v.getContext(), v);
+            menu.getMenu().add(0, 0, 0, "Add Temple");
+            menu.getMenu().add(0, 1, 1, "Add Saint");
+            menu.setOnMenuItemClickListener(item -> {
+                Intent intent = new Intent(v.getContext(), NewObjectActivity.class);
+                intent.putExtra("religion", religions.get(position));
+                switch (item.getItemId()){
+                    case 0:{
+                        intent.putExtra("type", 0);
+                        break;
+                    }
+                    case 1:{
+                        intent.putExtra("type", 1);
+                        break;
+                    }
+                }
+                v.getContext().startActivity(intent);
+                return false;
+            });
+            menu.show();
+        });
 
 
         //estup item click listner
@@ -138,10 +164,9 @@ public class ReligionAdaptor extends RecyclerView.Adapter<ReligionAdaptor.Religi
                 Intent intent = new Intent(context, ReligionHome.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("Religion_Name", religions.get(position).getReligionName());
-                intent.putExtra("Religion",religions.get(position));
+                intent.putExtra("Religion", religions.get(position));
 
                 context.startActivity(intent);
-
 
 
             }
