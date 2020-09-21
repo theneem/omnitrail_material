@@ -2,7 +2,6 @@ package com.thenneem.omnitrail;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.location.Location;
@@ -32,8 +31,6 @@ import com.thenneem.omnitrail.rest.ApiClient;
 import com.thenneem.omnitrail.rest.ApiInterface;
 import com.thenneem.omnitrail.rest.UploadResult;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -48,7 +45,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 @RuntimePermissions
-public class NewObjectActivity extends AppCompatActivity {
+public class AddSaintActivity extends AppCompatActivity {
 
     private FusedLocationProviderClient fusedLocationClient;
     private Location currentLocation;
@@ -102,7 +99,7 @@ public class NewObjectActivity extends AppCompatActivity {
         int type = getIntent().getIntExtra("type", -1);
         if(type == -1)return;
 
-        topToolBar.setTitle(type == 0 ? "Suggest adding a Temple" : "Suggest adding a Saint");
+        topToolBar.setTitle("Suggest adding a Saint");
 
         ImageView imgRThumb = findViewById(R.id.imgReligionThumb);
         Picasso.Builder builder = new Picasso.Builder(getApplicationContext());
@@ -128,7 +125,7 @@ public class NewObjectActivity extends AppCompatActivity {
                 }
             }
         });
-        NewObjectActivityPermissionsDispatcher.checkLocationWithPermissionCheck(this);
+        AddSaintActivityPermissionsDispatcher.checkLocationWithPermissionCheck(this);
         manualAddressRadioButton = findViewById(R.id.manualAddress);
         currentLocationRadioButton = findViewById(R.id.currentLocation);
         templeName = findViewById(R.id.title);
@@ -146,7 +143,7 @@ public class NewObjectActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        NewObjectActivityPermissionsDispatcher.onRequestPermissionsResult(this, requestCode, grantResults);
+        AddSaintActivityPermissionsDispatcher.onRequestPermissionsResult(this, requestCode, grantResults);
     }
 
     private Uri uploadImage;
@@ -204,22 +201,6 @@ public class NewObjectActivity extends AppCompatActivity {
                     String name = templeName.getText().toString();
                     String deityString = deity.getText().toString();
                     String storyString = story.getText().toString();
-                    apiService.templeAdd(String.valueOf(religion.getReligionID()),
-                            name, imageUrl, deityString, storyString,
-                            currentLocation.getLongitude(), currentLocation.getLatitude())
-                            .enqueue(new Callback<Void>() {
-                                @Override
-                                public void onResponse(Call<Void> call, Response<Void> response) {
-                                    saveDialog.dismiss();
-                                    finish();
-                                }
-
-                                @Override
-                                public void onFailure(Call<Void> call, Throwable t) {
-                                    saveDialog.dismiss();
-                                }
-                            });
-
                 }
 
 

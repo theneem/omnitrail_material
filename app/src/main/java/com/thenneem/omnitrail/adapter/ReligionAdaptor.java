@@ -1,20 +1,14 @@
 package com.thenneem.omnitrail.adapter;
 
-import android.content.ClipData;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.net.Uri;
-import android.nfc.Tag;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
@@ -25,14 +19,12 @@ import java.util.List;
 
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
-import com.thenneem.omnitrail.FullscreenActivity;
-import com.thenneem.omnitrail.NewObjectActivity;
+import com.thenneem.omnitrail.AddSaintActivity;
+import com.thenneem.omnitrail.AddTempleActivity;
 import com.thenneem.omnitrail.R;
 import com.thenneem.omnitrail.ReligionHome;
 import com.thenneem.omnitrail.model.Religion;
 import com.thenneem.omnitrail.rest.ItemClickListner;
-
-import org.w3c.dom.Text;
 
 
 public class ReligionAdaptor extends RecyclerView.Adapter<ReligionAdaptor.ReligionViewHolder> {
@@ -135,18 +127,22 @@ public class ReligionAdaptor extends RecyclerView.Adapter<ReligionAdaptor.Religi
             menu.getMenu().add(0, 0, 0, "Add Temple");
             menu.getMenu().add(0, 1, 1, "Add Saint");
             menu.setOnMenuItemClickListener(item -> {
-                Intent intent = new Intent(v.getContext(), NewObjectActivity.class);
-                intent.putExtra("religion", religions.get(position));
+                Intent intent;
                 switch (item.getItemId()){
                     case 0:{
+                        intent = new Intent(v.getContext(), AddTempleActivity.class);
                         intent.putExtra("type", 0);
                         break;
                     }
                     case 1:{
+                        intent = new Intent(v.getContext(), AddSaintActivity.class);
                         intent.putExtra("type", 1);
                         break;
                     }
+                    default:
+                        intent = new Intent();
                 }
+                intent.putExtra("religion", religions.get(position));
                 v.getContext().startActivity(intent);
                 return false;
             });
