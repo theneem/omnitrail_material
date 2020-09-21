@@ -2,6 +2,7 @@ package com.thenneem.omnitrail;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.location.Location;
@@ -11,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -167,7 +169,16 @@ public class NewObjectActivity extends AppCompatActivity {
 
     }
 
+    AlertDialog saveDialog;
+
     void uploadAndSave(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this)
+                .setCancelable(false)
+                .setTitle("Send data")
+                .setView(new ProgressBar(this));
+
+        saveDialog = builder.show();
+
         ApiInterface apiService =
                 ApiClient.getClient().create(ApiInterface.class);
         if(uploadImage == null){
@@ -199,12 +210,13 @@ public class NewObjectActivity extends AppCompatActivity {
                             .enqueue(new Callback<Void>() {
                                 @Override
                                 public void onResponse(Call<Void> call, Response<Void> response) {
-
+                                    saveDialog.dismiss();
+                                    finish();
                                 }
 
                                 @Override
                                 public void onFailure(Call<Void> call, Throwable t) {
-
+                                    saveDialog.dismiss();
                                 }
                             });
 
