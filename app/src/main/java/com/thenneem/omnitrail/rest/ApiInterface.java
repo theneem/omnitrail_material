@@ -80,4 +80,14 @@ public interface ApiInterface {
                          @Query("TempleIMG") String templeImage, @Query("PrimaryDeity") String deity,
                          @Query("TempleStory") String story, @Query("lang") Double lang, @Query("lat") Double lat);
 
+    @POST("saintadd.php")
+    Call<Void> saintAdd(@Query("rid") String rid, @Query("SaintName") String saintName,
+                         @Query("SaintIMG") String saintImage, @Query("Samudai") String samudai,
+                         @Query("SaintStory") String story, @Query("lang") Double lang, @Query("lat") Double lat);
+
+    @POST("saintadd.php")
+    Call<Void> saintAddWithAddress(@Query("rid") String rid, @Query("SaintName") String saintName,
+                        @Query("SaintIMG") String saintImage, @Query("Samudai") String samudai,
+                        @Query("SaintStory") String story);
+
 }

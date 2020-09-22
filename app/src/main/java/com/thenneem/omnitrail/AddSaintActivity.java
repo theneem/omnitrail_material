@@ -52,9 +52,9 @@ public class AddSaintActivity extends AppCompatActivity {
 
     @SuppressLint("MissingPermission")
     @NeedsPermission(Manifest.permission.ACCESS_FINE_LOCATION)
-    public void checkLocation(){
+    public void checkLocation() {
         fusedLocationClient.getLastLocation().addOnSuccessListener(location -> {
-            if(location == null){
+            if (location == null) {
                 new AlertDialog.Builder(this)
                         .setMessage("Could not determine location")
                         .setPositiveButton("OK", null)
@@ -77,7 +77,7 @@ public class AddSaintActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_object);
+        setContentView(R.layout.activity_add_saint);
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         topToolBar = findViewById(R.id.toptoolbar);
 
@@ -97,7 +97,7 @@ public class AddSaintActivity extends AppCompatActivity {
 
         religion = (Religion) getIntent().getSerializableExtra("religion");
         int type = getIntent().getIntExtra("type", -1);
-        if(type == -1)return;
+        if (type == -1) return;
 
         topToolBar.setTitle("Suggest adding a Saint");
 
@@ -114,10 +114,10 @@ public class AddSaintActivity extends AppCompatActivity {
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                switch (checkedId){
+                switch (checkedId) {
                     case R.id.manualAddress:
                         addressContainer.setVisibility(View.VISIBLE);
-                    break;
+                        break;
                     case R.id.currentLocation:
                         addressContainer.setVisibility(View.GONE);
                         break;
@@ -129,12 +129,12 @@ public class AddSaintActivity extends AppCompatActivity {
         manualAddressRadioButton = findViewById(R.id.manualAddress);
         currentLocationRadioButton = findViewById(R.id.currentLocation);
         templeName = findViewById(R.id.title);
-        deity = findViewById(R.id.deity);
+        samudai = findViewById(R.id.samudai);
         story = findViewById(R.id.story);
 
 
         findViewById(R.id.sendButton).setOnClickListener(v -> {
-            if(validation()) {
+            if (validation()) {
                 uploadAndSave();
             }
         });
@@ -147,10 +147,11 @@ public class AddSaintActivity extends AppCompatActivity {
     }
 
     private Uri uploadImage;
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if(requestCode == 123){
-            if(data == null) return;
+        if (requestCode == 123) {
+            if (data == null) return;
             Uri uri = data.getData();
             uploadImage = uri;
             ImageView view = findViewById(R.id.templeThumb);
@@ -160,7 +161,7 @@ public class AddSaintActivity extends AppCompatActivity {
                     .fit()
                     .into(view);
 
-        }else {
+        } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
 
@@ -168,7 +169,7 @@ public class AddSaintActivity extends AppCompatActivity {
 
     AlertDialog saveDialog;
 
-    void uploadAndSave(){
+    void uploadAndSave() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this)
                 .setCancelable(false)
                 .setTitle("Send data")
@@ -178,7 +179,7 @@ public class AddSaintActivity extends AppCompatActivity {
 
         ApiInterface apiService =
                 ApiClient.getClient().create(ApiInterface.class);
-        if(uploadImage == null){
+        if (uploadImage == null) {
             return;
         }
         try {
@@ -186,7 +187,7 @@ public class AddSaintActivity extends AppCompatActivity {
             InputStream inputStream = resolver.openInputStream(uploadImage);
 
             RequestBody requestFile = new MultipartBody.Builder().setType(MultipartBody.FORM)
-                    .addFormDataPart("file","file.jpg",
+                    .addFormDataPart("file", "file.jpg",
                             RequestBody.create(MediaType.parse("application/octet-stream"),
                                     IOUtils.toByteArray(inputStream)))
                     .build();
@@ -199,8 +200,22 @@ public class AddSaintActivity extends AppCompatActivity {
 
                     String imageUrl = response.body().getData().getFileUrl();
                     String name = templeName.getText().toString();
-                    String deityString = deity.getText().toString();
+                    String samudaiString = samudai.getText().toString();
                     String storyString = story.getText().toString();
+                    apiService.saintAdd(String.valueOf(religion.getReligionID()),
+                            name, imageUrl, samudaiString, storyString,
+                            currentLocation.getLongitude(), currentLocation.getLatitude()).enqueue(new Callback<Void>() {
+                        @Override
+                        public void onResponse(Call<Void> call, Response<Void> response) {
+                            saveDialog.dismiss();
+                            finish();
+                        }
+
+                        @Override
+                        public void onFailure(Call<Void> call, Throwable t) {
+                            saveDialog.dismiss();
+                        }
+                    });
                 }
 
 
@@ -209,7 +224,7 @@ public class AddSaintActivity extends AppCompatActivity {
                     Log.d("Andrey", "Error");
                 }
             });
-        }catch (FileNotFoundException ex){
+        } catch (FileNotFoundException ex) {
             ex.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
@@ -217,27 +232,28 @@ public class AddSaintActivity extends AppCompatActivity {
     }
 
     EditText templeName;
-    EditText deity;
+    EditText samudai;
     EditText story;
-    boolean validation(){
+
+    boolean validation() {
         boolean result = true;
-        if(templeName.getText().toString().isEmpty()){
+        if (templeName.getText().toString().isEmpty()) {
             templeName.setError("");
             result = false;
         }
-        if(deity.getText().toString().isEmpty()){
-            deity.setError("");
+        if (samudai.getText().toString().isEmpty()) {
+            samudai.setError("");
             result = false;
         }
-        if(story.getText().toString().isEmpty()){
+        if (story.getText().toString().isEmpty()) {
             story.setError("");
             result = false;
         }
-        if(currentLocationRadioButton.isSelected() && currentLocation == null){
+        if (currentLocationRadioButton.isSelected() && currentLocation == null) {
             Toast.makeText(this, "Could not determine location", Toast.LENGTH_LONG).show();
             result = false;
         }
-        if(uploadImage == null){
+        if (uploadImage == null) {
             Toast.makeText(this, "Select image", Toast.LENGTH_LONG).show();
             result = false;
         }
