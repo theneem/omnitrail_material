@@ -150,50 +150,92 @@
         </RadioGroup>
 
         <LinearLayout
-            android:visibility="gone"
             android:id="@+id/addressContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:orientation="vertical"
+            android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/radioGroup">
 
-            <com.google.android.material.textfield.TextInputLayout
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/country"
+                <View
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Country" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="60dp"
+                    android:background="@color/colorGray" />
 
-            <com.google.android.material.textfield.TextInputLayout
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/primaryColor"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginStart="10dp"
+                    android:textSize="12sp"
+                    android:text="Country"/>
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/countrySpinner"
+                    style="@style/AppSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_gravity="bottom"
+                    android:layout_height="50dp" />
+            </FrameLayout>
+
+
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp">
 
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/state"
+                <View
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="State" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="60dp"
+                    android:background="@color/colorGray" />
 
-            <com.google.android.material.textfield.TextInputLayout
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/primaryColor"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginStart="10dp"
+                    android:textSize="12sp"
+                    android:text="State"/>
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/stateSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp" />
+            </FrameLayout>
+
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp">
 
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/city"
+                <View
                     android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:background="@color/colorGray" />
+
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="City" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:textColor="@color/primaryColor"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginStart="10dp"
+                    android:textSize="12sp"
+                    android:text="City"/>
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/citySpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp" />
+            </FrameLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"

@@ -2,10 +2,13 @@ package com.thenneem.omnitrail.rest;
 
 
 import com.thenneem.omnitrail.model.Book;
+import com.thenneem.omnitrail.model.City;
+import com.thenneem.omnitrail.model.Country;
 import com.thenneem.omnitrail.model.Event;
 import com.thenneem.omnitrail.model.Feature;
 import com.thenneem.omnitrail.model.Religion;
 import com.thenneem.omnitrail.model.Saint;
+import com.thenneem.omnitrail.model.State;
 import com.thenneem.omnitrail.model.Temple;
 
 import java.util.List;
@@ -80,14 +83,33 @@ public interface ApiInterface {
                          @Query("TempleIMG") String templeImage, @Query("PrimaryDeity") String deity,
                          @Query("TempleStory") String story, @Query("lang") Double lang, @Query("lat") Double lat);
 
+    @POST("templeadd.php")
+    Call<Void> templeAdd(@Query("rid") String rid, @Query("TempleName") String templeName,
+                         @Query("TempleIMG") String templeImage, @Query("PrimaryDeity") String deity,
+                         @Query("TempleStory") String story, @Query("CityID") String cityId, @Query("address") String address, @Query("zip") String zip);
+
     @POST("saintadd.php")
     Call<Void> saintAdd(@Query("rid") String rid, @Query("SaintName") String saintName,
                          @Query("SaintIMG") String saintImage, @Query("Samudai") String samudai,
                          @Query("SaintStory") String story, @Query("lang") Double lang, @Query("lat") Double lat);
 
     @POST("saintadd.php")
+    Call<Void> saintAdd(@Query("rid") String rid, @Query("SaintName") String saintName,
+                        @Query("SaintIMG") String saintImage, @Query("Samudai") String samudai,
+                        @Query("SaintStory") String story, @Query("CityID") String cityId, @Query("address") String address, @Query("zip") String zip);
+
+    @POST("saintadd.php")
     Call<Void> saintAddWithAddress(@Query("rid") String rid, @Query("SaintName") String saintName,
                         @Query("SaintIMG") String saintImage, @Query("Samudai") String samudai,
                         @Query("SaintStory") String story);
+
+    @POST("countrylist.php")
+    Call<List<Country>> countryList();
+
+    @POST("statelist.php")
+    Call<List<State>> stateList(@Query("countrycode") String countryCode);
+
+    @POST("citylist.php")
+    Call<List<City>> getCityList(@Query("statecode") String stateCode, @Query("countrycode") String countryCode);
 
 }

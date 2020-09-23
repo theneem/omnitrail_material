@@ -6,6 +6,12 @@
         <item name="colorPrimary">@color/primaryColor</item>
         <item name="colorPrimaryDark">@color/primaryDarkColor</item>
         <item name="colorAccent">@color/primaryLightColor</item>
+        <item name="android:spinnerStyle">@style/AppSpinner</item>
+    </style>
+
+    <style name="AppSpinner" parent="Widget.AppCompat.Spinner">
+        <item name="backgroundColor">@color/colorGray</item>
+        <item name="background">@color/colorGray</item>
     </style>
 
     <style name="TB" parent="ThemeOverlay.AppCompat.Dark.ActionBar">

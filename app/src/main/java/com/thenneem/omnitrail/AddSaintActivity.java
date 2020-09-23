@@ -9,6 +9,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -19,6 +21,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatSpinner;
 
 import com.google.android.gms.common.util.IOUtils;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -26,7 +29,10 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.radiobutton.MaterialRadioButton;
 import com.squareup.picasso.Picasso;
+import com.thenneem.omnitrail.model.City;
+import com.thenneem.omnitrail.model.Country;
 import com.thenneem.omnitrail.model.Religion;
+import com.thenneem.omnitrail.model.State;
 import com.thenneem.omnitrail.rest.ApiClient;
 import com.thenneem.omnitrail.rest.ApiInterface;
 import com.thenneem.omnitrail.rest.UploadResult;
@@ -34,6 +40,7 @@ import com.thenneem.omnitrail.rest.UploadResult;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -49,6 +56,7 @@ public class AddSaintActivity extends AppCompatActivity {
 
     private FusedLocationProviderClient fusedLocationClient;
     private Location currentLocation;
+    private ApiInterface apiService;
 
     @SuppressLint("MissingPermission")
     @NeedsPermission(Manifest.permission.ACCESS_FINE_LOCATION)
@@ -80,6 +88,7 @@ public class AddSaintActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_saint);
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         topToolBar = findViewById(R.id.toptoolbar);
+        apiService = ApiClient.getClient().create(ApiInterface.class);
 
         topToolBar.setNavigationIcon(R.drawable.ic_back);
         topToolBar.animate();
@@ -117,6 +126,7 @@ public class AddSaintActivity extends AppCompatActivity {
                 switch (checkedId) {
                     case R.id.manualAddress:
                         addressContainer.setVisibility(View.VISIBLE);
+                        initSpinners();
                         break;
                     case R.id.currentLocation:
                         addressContainer.setVisibility(View.GONE);
@@ -131,6 +141,8 @@ public class AddSaintActivity extends AppCompatActivity {
         templeName = findViewById(R.id.title);
         samudai = findViewById(R.id.samudai);
         story = findViewById(R.id.story);
+        adress = findViewById(R.id.address);
+        zipCode = findViewById(R.id.zipCode);
 
 
         findViewById(R.id.sendButton).setOnClickListener(v -> {
@@ -138,6 +150,103 @@ public class AddSaintActivity extends AppCompatActivity {
                 uploadAndSave();
             }
         });
+    }
+
+    void initSpinners(){
+        AppCompatSpinner spinner = findViewById(R.id.countrySpinner);
+        apiService.countryList().enqueue(new Callback<List<Country>>() {
+            @Override
+            public void onResponse(Call<List<Country>> call, Response<List<Country>> response) {
+                List<Country> countries = response.body();
+                if(countries == null) return;
+                ArrayAdapter<Country> adapter = new ArrayAdapter<>(AddSaintActivity.this, android.R.layout.simple_spinner_item, countries);
+                adapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
+                spinner.setAdapter( adapter );
+                spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        initStates(countries.get(position));
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+                    }
+                });
+            }
+
+            @Override
+            public void onFailure(Call<List<Country>> call, Throwable t) {
+
+            }
+        });
+    }
+
+    void initStates(Country country){
+        AppCompatSpinner spinner = findViewById(R.id.stateSpinner);
+        apiService.stateList(country.getCountryCode())
+                .enqueue(new Callback<List<State>>() {
+                    @Override
+                    public void onResponse(Call<List<State>> call, Response<List<State>> response) {
+                        List<State> states = response.body();
+                        if(states == null) return;
+                        if(states.isEmpty()){
+                            initCity(null, null);
+                        }
+                        ArrayAdapter<State> adapter = new ArrayAdapter<>(AddSaintActivity.this, android.R.layout.simple_spinner_item, states);
+                        adapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
+                        spinner.setAdapter( adapter );
+                        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                initCity(country, states.get(position));
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> parent) {
+
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<State>> call, Throwable t) {
+
+                    }
+                });
+    }
+
+    City currentCity;
+    void initCity(Country country, State state){
+        AppCompatSpinner spinner = findViewById(R.id.citySpinner);
+        apiService.getCityList(state == null ? null:state.getStateCode(),
+                country == null ? null : country.getCountryCode())
+                .enqueue(new Callback<List<City>>() {
+                    @Override
+                    public void onResponse(Call<List<City>> call, Response<List<City>> response) {
+                        List<City> cities = response.body();
+                        if(cities == null) return;
+                        ArrayAdapter<City> adapter = new ArrayAdapter<>(AddSaintActivity.this, android.R.layout.simple_spinner_item, cities);
+                        adapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
+                        spinner.setAdapter( adapter );
+                        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                currentCity = cities.get(position);
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> parent) {
+
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<City>> call, Throwable t) {
+
+                    }
+                });
     }
 
     @Override
@@ -197,14 +306,7 @@ public class AddSaintActivity extends AppCompatActivity {
             apiService.uploadImage("temple", requestFile).enqueue(new Callback<UploadResult>() {
                 @Override
                 public void onResponse(Call<UploadResult> call, Response<UploadResult> response) {
-
-                    String imageUrl = response.body().getData().getFileUrl();
-                    String name = templeName.getText().toString();
-                    String samudaiString = samudai.getText().toString();
-                    String storyString = story.getText().toString();
-                    apiService.saintAdd(String.valueOf(religion.getReligionID()),
-                            name, imageUrl, samudaiString, storyString,
-                            currentLocation.getLongitude(), currentLocation.getLatitude()).enqueue(new Callback<Void>() {
+                    Callback<Void> callback = new Callback<Void>() {
                         @Override
                         public void onResponse(Call<Void> call, Response<Void> response) {
                             saveDialog.dismiss();
@@ -215,13 +317,31 @@ public class AddSaintActivity extends AppCompatActivity {
                         public void onFailure(Call<Void> call, Throwable t) {
                             saveDialog.dismiss();
                         }
-                    });
+                    };
+                    String imageUrl = response.body().getData().getFileUrl();
+                    String name = templeName.getText().toString();
+                    String samudaiString = samudai.getText().toString();
+                    String storyString = story.getText().toString();
+                    if(manualAddressRadioButton.isChecked()){
+                        String addressString = adress.getText().toString();
+                        String zip = zipCode.getText().toString();
+                        apiService.saintAdd(String.valueOf(religion.getReligionID()),
+                                name, imageUrl, samudaiString, storyString,
+                                String.valueOf(currentCity.getCityId()), addressString, zip)
+                                .enqueue(callback);
+                    }else{
+                        apiService.saintAdd(String.valueOf(religion.getReligionID()),
+                                name, imageUrl, samudaiString, storyString,
+                                currentLocation.getLongitude(), currentLocation.getLatitude())
+                                .enqueue(callback);
+                    }
                 }
 
 
                 @Override
                 public void onFailure(Call<UploadResult> call, Throwable t) {
-                    Log.d("Andrey", "Error");
+                    saveDialog.dismiss();
+                    Toast.makeText(AddSaintActivity.this, "Upload image error", Toast.LENGTH_SHORT).show();
                 }
             });
         } catch (FileNotFoundException ex) {
@@ -234,6 +354,8 @@ public class AddSaintActivity extends AppCompatActivity {
     EditText templeName;
     EditText samudai;
     EditText story;
+    EditText adress;
+    EditText zipCode;
 
     boolean validation() {
         boolean result = true;
@@ -249,13 +371,25 @@ public class AddSaintActivity extends AppCompatActivity {
             story.setError("");
             result = false;
         }
-        if (currentLocationRadioButton.isSelected() && currentLocation == null) {
+        if (currentLocationRadioButton.isChecked() && currentLocation == null) {
             Toast.makeText(this, "Could not determine location", Toast.LENGTH_LONG).show();
             result = false;
         }
         if (uploadImage == null) {
             Toast.makeText(this, "Select image", Toast.LENGTH_LONG).show();
             result = false;
+        }
+
+        if(manualAddressRadioButton.isChecked()){
+            if(currentCity == null) result = false;
+            if(adress.getText().toString().isEmpty()){
+                adress.setError("");
+                result = false;
+            }
+            if(zipCode.getText().toString().isEmpty()){
+                zipCode.setError("");
+                result = false;
+            }
         }
         return result;
     }
