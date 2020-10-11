@@ -1,4 +1,4 @@
-package com.thenneem.omnitrail.rest;
+package com.thenneem.omnitrail.model;
 
 import com.google.gson.annotations.SerializedName;
 

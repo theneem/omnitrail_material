@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -35,7 +34,7 @@ import com.thenneem.omnitrail.model.Religion;
 import com.thenneem.omnitrail.model.State;
 import com.thenneem.omnitrail.rest.ApiClient;
 import com.thenneem.omnitrail.rest.ApiInterface;
-import com.thenneem.omnitrail.rest.UploadResult;
+import com.thenneem.omnitrail.model.UploadResult;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
