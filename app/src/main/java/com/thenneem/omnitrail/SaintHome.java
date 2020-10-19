@@ -6,11 +6,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.DisplayMetrics;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
@@ -18,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.squareup.picasso.Callback;
@@ -62,6 +66,10 @@ public class SaintHome extends AppCompatActivity {
     Toolbar toolbar;
     BottomNavigationView bottomNavigation;
 
+    ImageView imgHead;
+
+    AppBarLayout appBarLayout;
+    boolean isImageFitToScreen;
 
     /**
      * If {@link #AUTO_HIDE} is set, the number of milliseconds to wait after
@@ -91,22 +99,65 @@ public class SaintHome extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_saint_home);
 
-       // mVisible = true;
-       // mControlsView = findViewById(R.id.fullscreen_content_controls);
-        //mContentView = findViewById(R.id.fullscreen_content);
-
-
-
-        // Upon interacting with UI controls, delay any scheduled hide()
-        // operations to prevent the jarring behavior of controls going away
-        // while interacting with the UI.
-        //findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
 
         bottomNavigation = findViewById(R.id.bottom_navigation);
         bottomNavigation.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
+
+
+
+        imgHead = findViewById(R.id.backdrop);
+        appBarLayout = findViewById(R.id.appbar);
+
+
+
+        imgHead.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                DisplayMetrics displayMetrics = new DisplayMetrics();
+                getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+                int height = displayMetrics.heightPixels;
+                int width = displayMetrics.widthPixels;
+                int  appbarHeight = (int)  getResources().getDimension(R.dimen.appbar_height);
+
+
+
+                if(isImageFitToScreen) {
+                    isImageFitToScreen=false;
+                    //imgHead.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+                    appBarLayout.setLayoutParams(new CoordinatorLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT,appbarHeight));
+
+                    imgHead.setLayoutParams(new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT, ConstraintLayout.LayoutParams.WRAP_CONTENT));
+
+                    imgHead.setAdjustViewBounds(true);
+                    imgHead.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                    imgHead.setTooltipText("Click to Maximize");
+
+                }else{
+                    isImageFitToScreen=true;
+                    //imgHead.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
+
+                    //appBarLayout.setLayoutParams(new CoordinatorLayout.LayoutParams(CoordinatorLayout.LayoutParams.MATCH_PARENT,CoordinatorLayout.LayoutParams.MATCH_PARENT));
+                    //imgHead.setLayoutParams(new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT,ConstraintLayout.LayoutParams.MATCH_PARENT));
+
+                    appBarLayout.setLayoutParams(new CoordinatorLayout.LayoutParams(width,height));
+                    imgHead.setLayoutParams(new ConstraintLayout.LayoutParams(width,height));
+
+                    imgHead.setAdjustViewBounds(true);
+                    imgHead.setTooltipText("Click to Minimize");
+
+                    //imgHead.setScaleType(ImageView.ScaleType.FIT_XY);
+                    imgHead.setScaleType(ImageView.ScaleType.FIT_START);
+
+
+
+                }
+            }
+        });
+
+
 
 
 
@@ -121,6 +172,7 @@ public class SaintHome extends AppCompatActivity {
                 finish();
             }
         });
+
 
 
         getIncomingIntent();

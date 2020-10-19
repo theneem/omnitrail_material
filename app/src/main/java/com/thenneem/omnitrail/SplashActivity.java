@@ -38,9 +38,14 @@ public class SplashActivity extends AppCompatActivity {
 				@Override
 				public void run() {
 
+
 					Intent mainIntent = new Intent(SplashActivity.this, FullscreenActivity.class);
+					//Intent mainIntent = new Intent(SplashActivity.this, Omni);
 					SplashActivity.this.startActivity(mainIntent);
 					SplashActivity.this.finish();
+
+
+
 
 				}
 			}, 2000);

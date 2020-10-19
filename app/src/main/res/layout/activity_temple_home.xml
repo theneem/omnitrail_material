@@ -47,6 +47,8 @@
                     app:layout_constraintEnd_toEndOf="@id/backdrop"
 
                     android:id="@+id/imgbtnMax"
+                    android:visibility="invisible"
+
                     ></ImageButton>
             </androidx.constraintlayout.widget.ConstraintLayout>
 

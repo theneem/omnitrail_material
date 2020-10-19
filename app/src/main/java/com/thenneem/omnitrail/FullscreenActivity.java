@@ -7,14 +7,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.thenneem.omnitrail.adapter.ReligionAdaptor;
 import com.thenneem.omnitrail.model.Religion;
 import com.thenneem.omnitrail.rest.ApiClient;
@@ -152,10 +157,23 @@ public class FullscreenActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
 
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(FullscreenActivity.this, "Button clicked", Toast.LENGTH_SHORT).show();
+                onButtonShowPopupWindowClick(view);
+            }
+        });
+
+
+
+        // end of show navigation draswer
+
         try {
 
 
-            Toast.makeText(this, "Calling Rest Api ", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "Calling Rest Api ", Toast.LENGTH_SHORT).show();
             // calling json retrofit
             ApiInterface apiService =
                     ApiClient.getClient().create(ApiInterface.class);
@@ -169,13 +187,12 @@ public class FullscreenActivity extends AppCompatActivity {
 
                     try {
 
-                        Toast.makeText(FullscreenActivity.this, "Religion list recevied", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(FullscreenActivity.this, "Religion list recevied", Toast.LENGTH_SHORT).show();
                         List<Religion> rl = response.body();
 
-                        Toast.makeText(FullscreenActivity.this, String.valueOf(rl.size()), Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(FullscreenActivity.this, String.valueOf(rl.size()), Toast.LENGTH_SHORT).show();
 
-                        Toast.makeText(FullscreenActivity.this, "Response body : ", Toast.LENGTH_SHORT).show();
-                        Toast.makeText(FullscreenActivity.this, response.body().toString(), Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(FullscreenActivity.this, response.body().toString(), Toast.LENGTH_SHORT).show();
                         recyclerView.setAdapter(new ReligionAdaptor(rl, R.layout.religionlist_layout, getApplicationContext()));
 
                     } catch (Exception e) {
@@ -220,6 +237,7 @@ public class FullscreenActivity extends AppCompatActivity {
         super.onPostCreate(savedInstanceState);
 
         // Trigger the initial hide() shortly after the activity has been
+        // created, to briefly hint to the user that UI controls
         // created, to briefly hint to the user that UI controls
         // are available.
         delayedHide(100);
@@ -266,6 +284,40 @@ public class FullscreenActivity extends AppCompatActivity {
     private void delayedHide(int delayMillis) {
         mHideHandler.removeCallbacks(mHideRunnable);
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
+    }
+
+
+    //function for popup side bar
+    public void onButtonShowPopupWindowClick(View view) {
+
+        // inflate the layout of the popup window
+        LayoutInflater inflater = (LayoutInflater)
+                getSystemService(LAYOUT_INFLATER_SERVICE);
+        View popupView = inflater.inflate(R.layout.nav_header_main, null);
+
+        // create the popup window
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        int height = displayMetrics.heightPixels;
+        //int width = displayMetrics.widthPixels;
+
+        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+        //int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+        boolean focusable = true; // lets taps outside the popup also dismiss it
+        final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+
+        // show the popup window
+        // which view you pass in doesn't matter, it is only used for the window tolken
+        popupWindow.showAtLocation(view, Gravity.START, 0, 0);
+
+        // dismiss the popup window when touched
+        popupView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                popupWindow.dismiss();
+                return true;
+            }
+        });
     }
 
 

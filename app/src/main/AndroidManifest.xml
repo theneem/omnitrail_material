@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.thenneem.omnitrail">
+    package="com.thenneem.omnitrail" >
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -14,13 +14,28 @@
         android:roundIcon="@mipmap/ic_omnitrail_launch_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true" >
+        <activity
+            android:name=".Home"
+            android:label="@string/title_activity_home"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".Omnihome"
+            android:label="@string/title_activity_omnihome"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".OmnihomeActivity"
+            android:label="@string/title_activity_omnihome"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDRSI7cPxm5e82Bfrv-KP7YxVGAwxOtmic"/>
+            android:value="AIzaSyDRSI7cPxm5e82Bfrv-KP7YxVGAwxOtmic" />
 
-        <activity android:name=".BookActivity"></activity>
+        <activity android:name=".BookActivity" />
         <activity
             android:name=".SaintHome"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -36,7 +51,7 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_religion_home"
             android:theme="@style/FullscreenTheme"
-            android:usesCleartextTraffic="true">
+            android:usesCleartextTraffic="true" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".FullscreenActivity" />
@@ -45,7 +60,7 @@
             android:name=".SplashActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
-            android:theme="@style/FullscreenTheme">
+            android:theme="@style/FullscreenTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -56,13 +71,13 @@
             android:name=".FullscreenActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
-            android:theme="@style/FullscreenTheme">
+            android:theme="@style/FullscreenTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-        <activity android:name=".AddTempleActivity"/>
-        <activity android:name=".AddSaintActivity"/>
+        <activity android:name=".AddTempleActivity" />
+        <activity android:name=".AddSaintActivity" />
     </application>
 
 </manifest>

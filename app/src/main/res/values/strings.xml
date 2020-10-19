@@ -8,4 +8,17 @@
     <string name="title_activity_temple_home">Temple Home</string>
 
     <string name="title_activity_saint_home">SaintHome</string>
+    <string name="title_activity_drawer">drawerActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">OMNITRAIL</string>
+    <string name="nav_header_subtitle">Religions through exploring world Trails </string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="title_activity_omnihome">OmnihomeActivity</string>
+    <string name="title_activity_home">Home</string>
 </resources>

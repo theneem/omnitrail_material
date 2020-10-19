@@ -10,8 +10,9 @@
     </style>
 
     <style name="AppSpinner" parent="Widget.AppCompat.Spinner">
-        <item name="backgroundColor">@color/colorGray</item>
-        <item name="background">@color/colorGray</item>
+        <item name="backgroundColor">@color/colorWhite</item>
+        <item name="background">@color/colorWhite</item>
+        <item name="backgroundTint">@color/colorWhite</item>
     </style>
 
     <style name="TB" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
@@ -49,16 +50,18 @@
 
     <style name="ImageCard">
         <item name="cardBackgroundColor">@color/primaryLightColor</item>
-        <item name="android:outlineAmbientShadowColor" tools:ignore="NewApi">@color/primaryDarkColor</item>
+        <item name="android:outlineAmbientShadowColor" tools:ignore="NewApi">
+            @color/primaryDarkColor
+        </item>
         <item name="cardElevation">10dp</item>
-<item name="cardCornerRadius">15dp</item>
+        <item name="cardCornerRadius">15dp</item>
     </style>
 
     <style name="NormalRatingBar">
 
-            <item name="android:progressBackgroundTint">@color/primaryDarkColor</item>
+        <item name="android:progressBackgroundTint">@color/primaryDarkColor</item>
 
-            <item name="backgroundTint">@color/primaryTextColor</item>
+        <item name="backgroundTint">@color/primaryTextColor</item>
 
         <item name="colorControlActivated">@color/primaryTextColor</item>
     </style>
@@ -74,7 +77,7 @@
 
         <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
 
-        <item name="android:textColor">@color/primaryTextColor  </item>
+        <item name="android:textColor">@color/primaryTextColor</item>
     </style>
 
     <style name="NormalLable">
@@ -82,7 +85,16 @@
         <item name="android:background">@color/primaryTextColor</item>
         <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
 
-        <item name="android:textColor">@color/secondaryTextColor  </item>
+        <item name="android:textColor">@color/secondaryTextColor</item>
+    </style>
+    <style name="NormalTextBox">
+
+        <item name="android:background">@color/primaryTextColor</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+        <item name="android:textSize">40px</item>
+        <item name="android:height">60dp</item>
+
+        <item name="android:textColor">@color/secondaryTextColor</item>
     </style>
 
 
@@ -107,8 +119,8 @@
     </style>
 
 
-
-    <style name="expandedappbar" parent="@android:style/TextAppearance.Medium"> //Change Medium to Small
+    <style name="expandedappbar" parent="@android:style/TextAppearance.Medium">//Change Medium to
+        Small
         <item name="android:textSize">28sp</item>  <!--Or Change the font size -->
         <item name="android:textColor">@color/colorWhite</item>
         <item name="android:textStyle">bold</item>
@@ -121,9 +133,7 @@
     </style>
 
 
-
-
-    <style name="AppSearchView" parent="Widget.AppCompat.SearchView" >
+    <style name="AppSearchView" parent="Widget.AppCompat.SearchView">
         <!-- Text Size -->
         <item name="android:textSize">25dp</item>
         <!-- Query Text Color -->
@@ -134,6 +144,10 @@
         <item name="android:tint">@color/colorWhite</item>
     </style>
 
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
 
 
 </resources>
