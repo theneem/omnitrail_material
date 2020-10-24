@@ -7,12 +7,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -20,6 +22,7 @@ import android.widget.PopupWindow;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
 import com.thenneem.omnitrail.adapter.ReligionAdaptor;
 import com.thenneem.omnitrail.model.Religion;
 import com.thenneem.omnitrail.rest.ApiClient;
@@ -170,6 +173,11 @@ public class FullscreenActivity extends AppCompatActivity {
 
         // end of show navigation draswer
 
+        // navigation clicck tracking
+
+
+        // end of navigation click traking
+
         try {
 
 
@@ -286,6 +294,9 @@ public class FullscreenActivity extends AppCompatActivity {
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
     }
 
+    // navigation menu item click
+
+
 
     //function for popup side bar
     public void onButtonShowPopupWindowClick(View view) {
@@ -309,6 +320,43 @@ public class FullscreenActivity extends AppCompatActivity {
         // show the popup window
         // which view you pass in doesn't matter, it is only used for the window tolken
         popupWindow.showAtLocation(view, Gravity.START, 0, 0);
+
+
+        //handle menu buttons click events inside
+
+
+
+        NavigationView navigationView = (NavigationView) popupView.findViewById(R.id.nav_mainmenu);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+                int id = menuItem.getItemId();
+                if(id == R.id.nav_gallery) {
+                    Toast.makeText(FullscreenActivity.this, "nav gallary", Toast.LENGTH_SHORT).show();
+                } else if(id == R.id.nav_mytrails) {
+                    Toast.makeText(FullscreenActivity.this, "nav gallary 2" , Toast.LENGTH_SHORT).show();
+
+                } else if(id == R.id.how_work) {
+                    Toast.makeText(FullscreenActivity.this, "nav gallary 3", Toast.LENGTH_SHORT).show();
+                    Intent mainIntent = new Intent(FullscreenActivity.this, activity_about.class);
+
+                    FullscreenActivity.this.startActivity(mainIntent);
+                    FullscreenActivity.this.finish();
+
+
+
+                }
+                //drawer.closeDrawer(GravityCompat.START);
+                return true;
+            }
+        });
+
+
+
+        // end of hendle menu button click events insdie
+
+
+
 
         // dismiss the popup window when touched
         popupView.setOnTouchListener(new View.OnTouchListener() {

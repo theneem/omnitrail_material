@@ -13,7 +13,7 @@
             android:icon="@drawable/ic_menu_gallery"
             android:title="@string/menu_gallery" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_mytrails"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_slideshow" />
     </group>
@@ -28,8 +28,8 @@
             android:title="Earn your OmniBase" />
 
         <item
-            android:id="@+id/about_club"
-            android:icon="@drawable/ic_aboutus"
+            android:id="@+id/about_omnitrail"
+            android:icon="@mipmap/ic_logo_notext"
             android:title="About Omni Trail" />
 
 
