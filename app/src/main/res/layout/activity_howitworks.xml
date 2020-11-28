@@ -60,7 +60,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="cursive"
-                android:text="As Simple as 1 , 2 And 3"
+                android:text="How it works "
                 android:textAlignment="center"
                 android:textColor="@color/primaryColor"
                 android:textSize="24sp"

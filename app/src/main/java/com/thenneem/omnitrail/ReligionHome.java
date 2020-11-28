@@ -29,6 +29,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.thenneem.omnitrail.model.Religion;
+import com.thenneem.omnitrail.ui.TempleMapsFragment;
 import com.thenneem.omnitrail.ui.book.BookFragment;
 import com.thenneem.omnitrail.ui.saint.SaintFragment;
 import com.thenneem.omnitrail.ui.temple.TempleFragment;
@@ -75,7 +76,8 @@ public class ReligionHome extends AppCompatActivity {
         int itemId = bottomNavigation.getSelectedItemId();
         switch (itemId){
             case R.id.navigation_temple:
-                fragment = TempleFragment.newInstance();
+               // fragment = TempleFragment.newInstance();
+                fragment = new TempleMapsFragment();
                 break;
             case R.id.navigain_saint:
                 fragment = SaintFragment.newInstance();
@@ -89,11 +91,7 @@ public class ReligionHome extends AppCompatActivity {
         }
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        ReligionHomePermissionsDispatcher.onRequestPermissionsResult(this, requestCode, grantResults);
-    }
+
 
     @OnShowRationale(Manifest.permission.ACCESS_FINE_LOCATION)
     public void rationaleGEO(PermissionRequest request){

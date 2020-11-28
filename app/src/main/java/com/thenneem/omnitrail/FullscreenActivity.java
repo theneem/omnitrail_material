@@ -337,14 +337,20 @@ public class FullscreenActivity extends AppCompatActivity {
                     Toast.makeText(FullscreenActivity.this, "nav gallary 2" , Toast.LENGTH_SHORT).show();
 
                 } else if(id == R.id.how_work) {
-                    Toast.makeText(FullscreenActivity.this, "nav gallary 3", Toast.LENGTH_SHORT).show();
+
+                    Intent mainIntent = new Intent(FullscreenActivity.this, activity_howitworks.class);
+
+                    FullscreenActivity.this.startActivity(mainIntent);
+                   // FullscreenActivity.this.finish();
+
+
+
+                } else if(id == R.id.about_omnitrail)
+                {
+
                     Intent mainIntent = new Intent(FullscreenActivity.this, activity_about.class);
 
                     FullscreenActivity.this.startActivity(mainIntent);
-                    FullscreenActivity.this.finish();
-
-
-
                 }
                 //drawer.closeDrawer(GravityCompat.START);
                 return true;

@@ -81,6 +81,7 @@ public class TempleFragment extends Fragment {
 
 
 
+
         // calling json retrofit
         ApiInterface apiService =
                 ApiClient.getClient().create(ApiInterface.class);

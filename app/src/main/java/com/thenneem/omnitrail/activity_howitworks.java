@@ -9,22 +9,22 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class activity_about extends AppCompatActivity {
+public class activity_howitworks extends AppCompatActivity {
 
     private TextView mTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_about);
+        setContentView(R.layout.activity_howitworks);
 
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(activity_about.this, "Button clicked", Toast.LENGTH_SHORT).show();
-              activity_about.super.onBackPressed();
+
+              activity_howitworks.super.onBackPressed();
             }
         });
 

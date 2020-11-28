@@ -22,6 +22,7 @@
     <string name="title_activity_omnihome">OmnihomeActivity</string>
     <string name="title_activity_home">Home</string>
     <string name="title_activity_acbout">activity_acbout</string>
+    <string name="title_activity_howitworks">activity_howitworks</string>
     <!--
     This string is used for square devices and overridden by hello_world in
     values-round/strings.xml for round devices.
