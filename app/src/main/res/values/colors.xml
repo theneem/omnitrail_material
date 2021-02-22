@@ -1,6 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!-- YELLOW  COLOR -->
+<resources>
+    <color name="primaryColor">#50797A</color>
+    <color name="primaryDarkColor">#375657</color>
+    <color name="primaryLightColor">#A5BCBC</color>
+
+
+    <color name="secondaryColor">#607d8b</color>
+    <color name="secondaryLightColor">#8eacbb</color>
+    <color name="secondaryDarkColor">#34515e</color>
+
+    <color name="primaryTextColor">#ffffff</color>
+    <color name="secondaryTextColor">#000000</color>
+
+
+
+
+    <color name="black_overlay">#66000000</color>
+    <color name="text_Header">#000000</color>
+
+
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorGray">#CCCCCC</color>
+
+    <color name="black">#000000</color>
+
+
+
+
+
+</resources>
+
+
+
+
+    <!-- YELLOW  COLOR -->
 <!--
 <resources>
     <color name="primaryColor">#FFEB3B</color>
@@ -61,34 +95,5 @@ LIVE COLOR -->
 
 
 -->
-
-
-
-<resources>
-    <color name="primaryColor">#50797a</color>
-    <color name="primaryLightColor">#7ea8a9</color>
-    <color name="primaryDarkColor">#244d4e</color>
-    <color name="secondaryColor">#607d8b</color>
-    <color name="secondaryLightColor">#8eacbb</color>
-    <color name="secondaryDarkColor">#34515e</color>
-    <color name="primaryTextColor">#ffffff</color>
-    <color name="secondaryTextColor">#000000</color>
-
-
-    <color name="black_overlay">#66000000</color>
-    <color name="text_Header">#000000</color>
-
-
-    <color name="colorWhite">#FFFFFF</color>
-    <color name="colorGray">#CCCCCC</color>
-
-    <color name="black">#000000</color>
-
-
-
-
-
-</resources>
-
 
 

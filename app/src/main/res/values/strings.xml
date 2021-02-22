@@ -28,4 +28,13 @@
     values-round/strings.xml for round devices.
     -->
     <string name="hello_world">Hello Square World!</string>
+    <string name="title_activity_omni_home">MainActivity</string>
+    <string name="title_home">Temple</string>
+    <string name="title_dashboard">Saint></string>
+    <string name="title_notifications">Profile</string>
+
+    <!-- facebook values -->
+    <string name="facebook_app_id">449082165999605</string>
+    <string name="fb_login_protocol_scheme">fb449082165999605</string>
+
 </resources>

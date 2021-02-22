@@ -10,6 +10,7 @@
 
 
 
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -30,30 +31,20 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:weightSum="10"
                 android:layout_margin="5dp"
                 >
 
-
-                <androidx.cardview.widget.CardView
+                <ImageView
+                    android:id="@+id/templeThumb"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginLeft="10dp"
+                    android:layout_height="150dp"
+                    android:scaleType="centerCrop"
 
-                    style="@style/ImageCard"
-                    android:layout_weight="7"
-                    >
+                    android:src="@drawable/ic_launcher_background"
+                    android:tag="image_tag" />
 
-                    <ImageView
-                        android:id="@+id/templeThumb"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:src="@drawable/ic_launcher_background"
-                        android:tag="image_tag" />
-                </androidx.cardview.widget.CardView>
 
 
                 <LinearLayout
@@ -76,87 +67,75 @@
                             android:layout_gravity="start"
                             android:gravity="left"
                             android:text="Temple Name"
-                            android:textColor="#FFFFFF"
+                            android:textColor="@color/primaryTextColor"
                             android:textAppearance="?android:attr/textAppearanceLarge" />
-                        <!--
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:layout_weight="5"
-                            android:id="@+id/layoutSect"
-                            >
 
-                            <ImageView
+                        <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-
-                                app:srcCompat="@drawable/ic_sect"></ImageView>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:id="@+id/txtSect"
-                                android:text="Sect"
-                                android:layout_weight="3"
-                                android:textColor="@color/primaryTextColor"
+                                android:id="@+id/txtMyLocation"
+                                android:text="Location"
+                                android:layout_marginStart="5dp"
                                 android:layout_gravity="center_vertical"
-                                android:layout_marginStart="10dp"
 
+                                android:textColor="@color/primaryTextColor"
                                 android:textAppearance="?android:attr/textAppearanceMedium"
                                 ></TextView>
-                        </LinearLayout>
-                    -->
+
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
-                            android:layout_weight="5"
+                            android:layout_weight="6"
+                            android:layout_marginTop="@dimen/_5sdp"
                             android:id="@+id/layoutDeity"
                             >
 
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_weight="0"
+                                android:layout_gravity="start"
 
                                 app:srcCompat="@drawable/ic_account_circle_white_24dp"></ImageView>
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/txtPrimaryDeity"
                                 android:text="Deity"
-                                android:layout_weight="3"
+                                android:layout_weight="4"
                                 android:textColor="@color/primaryTextColor"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginStart="10dp"
 
                                 android:textAppearance="?android:attr/textAppearanceMedium"
                                 ></TextView>
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
 
-                            android:layout_weight="5"
-                            >
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-
-                                app:srcCompat="@drawable/ic_home_white_24dp"></ImageView>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:id="@+id/txtMyLocation"
-                                android:text="Location"
-                                android:layout_marginStart="10dp"
-                                android:layout_gravity="center_vertical"
-                                android:layout_weight="3"
+                                android:text="More..."
                                 android:textColor="@color/primaryTextColor"
+                                android:layout_gravity="center"
 
-                                android:textAppearance="?android:attr/textAppearanceMedium"
-                                ></TextView>
+                                />
+                            <com.google.android.material.button.MaterialButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/btnMore"
+                                android:visibility="gone"
+                                android:text="More"
+                                app:icon="@drawable/ic_more"
+                                android:tint="@color/primaryDarkColor"
+                                app:iconGravity="end"
+                                android:layout_gravity="center_vertical"
+
+                                android:layout_weight="1"
+
+                                style="@style/ButtonMain"
+                                />
                         </LinearLayout>
 
 
@@ -165,55 +144,6 @@
 
                 </LinearLayout>
 
-
-            </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_weight="5"
-            android:gravity="right"
-            >
-<!-- coorrect -->
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/colorWhite"/>
-            <TextView
-                android:id="@+id/txtTempleStory"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_gravity="start"
-                android:layout_marginTop="1dp"
-                android:layout_margin="5dp"
-                android:text="Android Version"
-                style="@style/NormalText"
-                />
-
-            />
-        </LinearLayout>
-        <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_weight="5"
-                android:gravity="right"
-                >
-
-
-                <com.google.android.material.button.MaterialButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/btnMore"
-                    android:text="More"
-                    app:icon="@drawable/ic_more"
-                    android:tint="@color/primaryDarkColor"
-                    app:iconGravity="end"
-                    android:layout_margin="5dp"
-                    style="@style/ButtonMain"
-                    />
 
             </LinearLayout>
 

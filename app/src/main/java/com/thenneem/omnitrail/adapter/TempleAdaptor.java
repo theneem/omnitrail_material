@@ -2,6 +2,7 @@ package com.thenneem.omnitrail.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -99,7 +100,7 @@ implements Filterable
             templeLayout  = itemView.findViewById(R.id.templelist_layout);
             imgTempleView = itemView.findViewById(R.id.templeThumb);
             txtTempleName = itemView.findViewById(R.id.txtTempleName);
-            txtTempleStory = itemView.findViewById(R.id.txtTempleStory);
+           // txtTempleStory = itemView.findViewById(R.id.txtTempleStory);
            // txtSect = (TextView)itemView.findViewById(R.id.txtSect);
             txtLocation = itemView.findViewById(R.id.txtMyLocation);
             txtPrimaryDeity = itemView.findViewById(R.id.txtPrimaryDeity);
@@ -142,8 +143,8 @@ implements Filterable
 
 
         holder.txtTempleName.setText(temples.get(position).getTempleName());
-        holder.txtTempleStory.setText(temples.get(position).getTempleName());
-        holder.txtTempleStory.setText(temples.get(position).getTempleStory());
+        //holder.txtTempleStory.setText(temples.get(position).getTempleName());
+        //holder.txtTempleStory.setText(temples.get(position).getTempleStory());
         ///holder.txtSect.setText(temples.get(position).);
 
         holder.txtLocation.setText(temples.get(position).getCity_name() + ", " +  temples.get(position).getState_name() + "," + temples.get(position).getCountry_name()  );
@@ -157,10 +158,18 @@ implements Filterable
 
 
 
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        displayMetrics = context.getResources().getDisplayMetrics();
+
+        //getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        int height = displayMetrics.heightPixels;
+        int width = displayMetrics.widthPixels;
+
 
         Picasso.Builder builder = new Picasso.Builder(this.context);
         builder.build().load(temples.get(position).getTempleIMG())
-                .fit()
+                .centerCrop()
+                .resize(height,width)
                 .placeholder((R.drawable.ic_launcher_background))
                 .error(R.drawable.ic_launcher_foreground)
                 .into(holder.imgTempleView, new Callback() {

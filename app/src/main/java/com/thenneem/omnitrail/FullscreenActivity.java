@@ -19,8 +19,11 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.login.LoginManager;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.thenneem.omnitrail.adapter.ReligionAdaptor;
@@ -33,6 +36,9 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import com.thenneem.omnitrail.utils.PreferenceManager;
+
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -49,6 +55,8 @@ public class FullscreenActivity extends AppCompatActivity {
 
     private List<Religion> religionsArray;
     private Religion religinoSingle;
+
+    PreferenceManager preferenceManager;
 
 
     private static final String TAG = FullscreenActivity.class.getSimpleName();
@@ -327,6 +335,75 @@ public class FullscreenActivity extends AppCompatActivity {
 
 
         NavigationView navigationView = (NavigationView) popupView.findViewById(R.id.nav_mainmenu);
+
+
+
+        preferenceManager = new PreferenceManager(FullscreenActivity.this);
+
+
+        MaterialButton btnLogin = popupView.findViewById(R.id.btn_login);
+        MaterialButton btnLogout = popupView.findViewById(R.id.btn_logout);
+
+        TextView txtName = popupView.findViewById(R.id.txtName);
+        TextView txtEmail = popupView.findViewById(R.id.txtEmail);
+
+        if (preferenceManager.getLoginSession()) {
+
+
+            btnLogin.setVisibility(View.GONE);
+            btnLogout.setVisibility(View.VISIBLE);
+
+            txtName.setVisibility(View.VISIBLE);
+            txtEmail.setVisibility(View.VISIBLE);
+
+            txtName.setText(preferenceManager.getuserName());
+            txtEmail.setText(preferenceManager.getemailAddress());
+
+
+            btnLogout.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(FullscreenActivity.this, "logout Button clicked", Toast.LENGTH_SHORT).show();
+                    preferenceManager.setLoginSession(false);
+                    preferenceManager.clearPreferences();
+
+                    // Facebook Logout
+                    LoginManager.getInstance().logOut();
+
+
+
+                    Intent intent = new Intent(FullscreenActivity.this, FullscreenActivity.class);
+                   intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                   startActivity(intent);
+
+                }
+            });
+
+        }
+        else {
+            btnLogin.setVisibility(View.VISIBLE);
+            btnLogout.setVisibility(View.GONE);
+            txtName.setVisibility(View.GONE);
+            txtEmail.setVisibility(View.GONE);
+
+            btnLogin.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(FullscreenActivity.this, "Button clicked", Toast.LENGTH_SHORT).show();
+
+                    Intent loginIntent = new Intent(FullscreenActivity.this, LoginActivity.class);
+                    FullscreenActivity.this.startActivity(loginIntent);
+                    FullscreenActivity.this.finish();
+
+                }
+            });
+
+
+
+        }
+
+
+
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {

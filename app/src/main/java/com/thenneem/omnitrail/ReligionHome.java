@@ -190,6 +190,7 @@ public class ReligionHome extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_religion_home);
+
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         topToolBar = findViewById(R.id.toptoolbar);
 

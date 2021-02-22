@@ -6,31 +6,14 @@
     android:background="#E2E5E9"
     tools:context=".activity.HowItWorksActivity">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cvHeader"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:layout_marginRight="2dp"
-        android:layout_marginLeft="2dp"
-        app:cardCornerRadius="10dp"
 
-        app:cardBackgroundColor="@color/primaryDarkColor"
-        android:outlineAmbientShadowColor="@color/primaryDarkColor"
-        >
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="160dp"
-            android:layout_gravity="top"
-            android:layout_margin="0dp"
-            android:src="@drawable/omnitrail_home1" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="top |start"
+            android:layout_gravity="top|start"
             android:src="@drawable/icon_back"
             android:contentDescription="Configuration"
 
@@ -41,13 +24,32 @@
 
             />
 
-    </androidx.cardview.widget.CardView>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/top"
+    android:background="@color/colorWhite"
+    >
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="cursive"
+     android:layout_margin="@dimen/_10sdp"
+        android:text="About Omnitrail"
+        android:textAlignment="center"
+        android:textColor="@color/primaryColor"
+        android:textSize="40sp"
+        android:textStyle="bold" />
+
+</LinearLayout>
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/cvHeader"
+
+        android:layout_below="@id/top"
         android:background="@drawable/bg"
+       android:paddingTop="@dimen/_20sdp"
         >
 
         <LinearLayout
@@ -55,16 +57,6 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_10sdp"
             android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="cursive"
-                android:text="As Simple as 1 , 2 And 3"
-                android:textAlignment="center"
-                android:textColor="@color/primaryColor"
-                android:textSize="24sp"
-                android:textStyle="bold" />
 
             <TableLayout
 
@@ -86,7 +78,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="cursive"
-                            android:text="01 - Find a Club"
+                            android:text="Largest Religious Database"
                             android:textColor="@android:color/black"
                             android:textSize="@dimen/_17ssp"
                             android:textStyle="bold" />
@@ -98,7 +90,7 @@
                             android:layout_below="@+id/txtStep1"
                             android:layout_marginTop="@dimen/_10sdp"
                             android:fontFamily="@font/average"
-                            android:text="Visit nearby Science club, find a suitable one and make that your home club. "
+                            android:text="Relisant OmniTrail is world's largest Religeous Database for People and places. "
                             android:textSize="16sp" />
 
                         <ImageView
@@ -109,7 +101,7 @@
                             android:layout_marginStart="@dimen/_20sdp"
                             android:layout_marginLeft="@dimen/_20sdp"
                             android:layout_toRightOf="@+id/txtDesc1"
-                            android:src="@drawable/step1"></ImageView>
+                            android:src="@drawable/allrel"></ImageView>
 
 
                     </RelativeLayout>
@@ -135,7 +127,7 @@
                             android:layout_height="153dp"
                             android:layout_alignParentStart="true"
                             android:layout_alignParentLeft="true"
-                            android:src="@drawable/step2"
+                            android:src="@drawable/badge"
                             android:layout_marginEnd="30dp"
                             ></ImageView>
 
@@ -144,7 +136,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="cursive"
-                            android:text="02 - Join a Club"
+                            android:text="Track The Trail"
                             android:layout_toRightOf="@+id/imgStep2"
                             android:textColor="@android:color/black"
                             android:textSize="@dimen/_17ssp"
@@ -152,12 +144,12 @@
 
                         <TextView
                             android:layout_width="156dp"
-                            android:layout_height="86dp"
+                            android:layout_height="@dimen/_100sdp"
                             android:layout_below="@+id/txtStep2"
                             android:layout_toRightOf="@+id/imgStep2"
                             android:layout_marginTop="@dimen/_10sdp"
                             android:fontFamily="@font/average"
-                            android:text="Enjoy regular Science gathering at your club, follow the Relisant Manual of 12 problems and enjoy solving and demonstrating your solution to the club and world. "
+                            android:text="Track how many Religisou trails you have completed. This is the official badge of your Trailchivement."
                             android:textSize="16sp" />
 
 
@@ -183,7 +175,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="cursive"
-                            android:text="03 - Science Kits"
+                            android:text="Rate And Review"
                             android:textColor="@android:color/black"
                             android:textSize="@dimen/_17ssp"
                             android:textStyle="bold" />
@@ -195,7 +187,7 @@
                             android:layout_below="@+id/txtStep3"
                             android:layout_marginTop="@dimen/_10sdp"
                             android:fontFamily="@font/average"
-                            android:text="Enjoy Welcome Kit, Club owned kits and National kits or consumable material to enjoy for a month full of experiment and enjoy it as you want without any restriction."
+                            android:text="Rate and Review of Religious places and people. which helps you to prioratize, your visit."
                             android:textSize="16sp" />
 
                         <ImageView
@@ -205,7 +197,7 @@
                             android:layout_alignParentRight="true"
                             android:layout_marginStart="@dimen/_20sdp"
                             android:layout_toRightOf="@+id/txtDesc3"
-                            android:src="@drawable/step1"></ImageView>
+                            android:src="@drawable/rating"></ImageView>
 
 
                     </RelativeLayout>
@@ -217,85 +209,6 @@
 
             </TableLayout>
 
-
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="cursive"
-                android:text="ScienceClub Membership Includes..."
-                android:textAlignment="center"
-                android:textColor="@color/primaryColor"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="@dimen/_20sdp"
-                />
-
-
-            <TextView
-                android:id="@+id/txtBenifit1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="cursive"
-                android:text="01 ~ Access to one or more Science Kit Per month"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_14ssp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/txtBenifit2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="cursive"
-                android:text="02 ~ Unlimited Events, Activities and Competitions"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_14ssp"
-                android:textStyle="bold" />
-
-
-            <TextView
-                android:id="@+id/txtBenifit3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="cursive"
-                android:text="03 ~ Represent your Club to represent in Science War"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_14ssp"
-                android:textStyle="bold" />
-
-
-            <TextView
-                android:id="@+id/txtBenifit4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="cursive"
-                android:text="04 ~ Chance to Win Chief Scintific Advisor Title"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_14ssp"
-                android:textStyle="bold" />
-
-
-            <TextView
-                android:id="@+id/txtBenifit5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="cursive"
-                android:text="05 ~ Present your science idea, project and challangs"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_14ssp"
-            android:textStyle="bold" />
-
-
-            <TextView
-                android:id="@+id/txtBenifit6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="cursive"
-                android:text="06 ~ Get guidance of global community enthusiastics"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_14ssp"
-                android:textStyle="bold" />
 
         </LinearLayout>
 

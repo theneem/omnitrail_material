@@ -1,10 +1,15 @@
 package com.thenneem.omnitrail.adapter;
 
+import android.app.AlertDialog;
+
+//import android.support.v7.app.AlertDialog;
 import android.content.Context;
+
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,10 +26,13 @@ import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.thenneem.omnitrail.AddSaintActivity;
 import com.thenneem.omnitrail.AddTempleActivity;
+import com.thenneem.omnitrail.FullscreenActivity;
+import com.thenneem.omnitrail.LoginActivity;
 import com.thenneem.omnitrail.R;
 import com.thenneem.omnitrail.ReligionHome;
 import com.thenneem.omnitrail.model.Religion;
 import com.thenneem.omnitrail.rest.ItemClickListner;
+import com.thenneem.omnitrail.utils.PreferenceManager;
 
 
 public class ReligionAdaptor extends RecyclerView.Adapter<ReligionAdaptor.ReligionViewHolder> {
@@ -32,6 +40,7 @@ public class ReligionAdaptor extends RecyclerView.Adapter<ReligionAdaptor.Religi
     private List<Religion> religions;
     private int rowLayout;
     private Context context;
+    PreferenceManager preferenceManager;
 
 
     public static class ReligionViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -43,6 +52,9 @@ public class ReligionAdaptor extends RecyclerView.Adapter<ReligionAdaptor.Religi
         TextView txtRSaint;
         TextView txtRTemple;
         ImageView moreButton;
+        ImageView btnAddTemple;
+        ImageView btnAddSaint;
+
 
         private ItemClickListner itemClickListner;
 
@@ -55,7 +67,9 @@ public class ReligionAdaptor extends RecyclerView.Adapter<ReligionAdaptor.Religi
             txtRDesc = v.findViewById(R.id.txtReligionDesc);
             txtRSaint = v.findViewById(R.id.txtRSaint);
             txtRTemple = v.findViewById(R.id.txtRTemple);
-            moreButton = v.findViewById(R.id.moreButton);
+
+            btnAddSaint = v.findViewById(R.id.btn_addSaint);
+            btnAddTemple = v.findViewById(R.id.btn_addTemple);
 
             v.setOnClickListener(this);
 
@@ -122,32 +136,38 @@ public class ReligionAdaptor extends RecyclerView.Adapter<ReligionAdaptor.Religi
                     }
                 });
 
-        holder.moreButton.setOnClickListener(v -> {
-            PopupMenu menu = new PopupMenu(v.getContext(), v);
-            menu.getMenu().add(0, 0, 0, "Add Temple");
-            menu.getMenu().add(0, 1, 1, "Add Saint");
-            menu.setOnMenuItemClickListener(item -> {
-                Intent intent;
-                switch (item.getItemId()){
-                    case 0:{
-                        intent = new Intent(v.getContext(), AddTempleActivity.class);
-                        intent.putExtra("type", 0);
-                        break;
-                    }
-                    case 1:{
-                        intent = new Intent(v.getContext(), AddSaintActivity.class);
-                        intent.putExtra("type", 1);
-                        break;
-                    }
-                    default:
-                        intent = new Intent();
-                }
-                intent.putExtra("religion", religions.get(position));
-                v.getContext().startActivity(intent);
-                return false;
-            });
-            menu.show();
+
+        holder.btnAddTemple.setOnClickListener(v -> {
+            // we need to check the if already login or not
+
+            preferenceManager = new PreferenceManager(v.getContext());
+
+
+            if (preferenceManager.getLoginSession()) {
+                showTemple(religions.get(position),v.getContext());
+            }
+            else {
+                showPage("temple", religions.get(position), v.getContext());
+            }
         });
+
+
+        holder.btnAddSaint.setOnClickListener(v -> {
+
+            preferenceManager = new PreferenceManager(v.getContext());
+
+            if (preferenceManager.getLoginSession()) {
+                showSaint(religions.get(position),v.getContext());
+            }
+            else {
+                showPage("saint",  religions.get(position),v.getContext());
+            }
+
+
+
+
+        });
+
 
 
         //estup item click listner
@@ -155,6 +175,7 @@ public class ReligionAdaptor extends RecyclerView.Adapter<ReligionAdaptor.Religi
             @Override
             public void onClick(View view, int position) {
                 // Toast.makeText(context, " Clicked " + religions.get(position).getReligionName(), Toast.LENGTH_SHORT).show();
+
 
 
                 Intent intent = new Intent(context, ReligionHome.class);
@@ -168,6 +189,67 @@ public class ReligionAdaptor extends RecyclerView.Adapter<ReligionAdaptor.Religi
             }
         });
 
+
+    }
+
+    public void showPage(String pageName,  Religion religisionName, Context cntx)
+    {
+
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+
+                switch (which){
+                    case DialogInterface.BUTTON_POSITIVE:
+                        //Yes button clicked
+                        Intent intent;
+                        intent = new Intent(cntx, LoginActivity.class);
+                        //intent.putExtra("type", 1);
+                        //intent.putExtra("religion", religions.get(position));
+                        cntx.startActivity(intent);
+                        break;
+
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        //No button clicked
+                        if(pageName == "temple") {
+
+                            showTemple(religisionName,cntx);
+                        }
+                        else if (pageName == "saint")
+                        {
+                            showSaint(religisionName,cntx);
+
+                        }
+                        break;
+                }
+            }
+        };
+
+        AlertDialog.Builder abuilder = new AlertDialog.Builder(cntx);
+        abuilder.setMessage("Would you like to Login ? press no to continue as annonymus user.").setPositiveButton("Yes", dialogClickListener)
+                .setNegativeButton("No", dialogClickListener).show();
+
+    }
+
+    public void showSaint(Religion religisionName, Context cntx)
+    {
+        Intent intent;
+        intent = new Intent(cntx, AddSaintActivity.class);
+        intent.putExtra("type", 1);
+        intent.putExtra("religion", religisionName);
+        cntx.startActivity(intent);
+    }
+
+
+    public void showTemple(Religion religisionName, Context cntx)
+    {
+
+        Intent intent;
+        intent = new Intent(cntx, AddTempleActivity.class);
+        intent.putExtra("type", 0);
+        intent.putExtra("religion", religisionName);
+        cntx.startActivity(intent);
 
     }
 
