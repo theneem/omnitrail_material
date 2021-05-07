@@ -23,7 +23,7 @@ public class activity_about extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(activity_about.this, "Button clicked", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(activity_about.this, "Button clicked", Toast.LENGTH_SHORT).show();
               activity_about.super.onBackPressed();
             }
         });

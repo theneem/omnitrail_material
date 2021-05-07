@@ -172,7 +172,7 @@ public class FullscreenActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(FullscreenActivity.this, "Button clicked", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(FullscreenActivity.this, "Button clicked", Toast.LENGTH_SHORT).show();
                 onButtonShowPopupWindowClick(view);
             }
         });
@@ -363,7 +363,7 @@ public class FullscreenActivity extends AppCompatActivity {
             btnLogout.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(FullscreenActivity.this, "logout Button clicked", Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(FullscreenActivity.this, "logout Button clicked", Toast.LENGTH_SHORT).show();
                     preferenceManager.setLoginSession(false);
                     preferenceManager.clearPreferences();
 
@@ -389,7 +389,7 @@ public class FullscreenActivity extends AppCompatActivity {
             btnLogin.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(FullscreenActivity.this, "Button clicked", Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(FullscreenActivity.this, "Button clicked", Toast.LENGTH_SHORT).show();
 
                     Intent loginIntent = new Intent(FullscreenActivity.this, LoginActivity.class);
                     FullscreenActivity.this.startActivity(loginIntent);
