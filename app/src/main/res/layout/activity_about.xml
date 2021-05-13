@@ -27,7 +27,7 @@
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/top"
+    android:id="@+id/toptop"
     android:background="@color/colorWhite"
     >
 
@@ -42,7 +42,31 @@
         android:textSize="40sp"
         android:textStyle="bold" />
 
+
 </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/top"
+        android:layout_below="@id/toptop"
+        android:background="@color/colorWhite"
+        >
+
+        <TextView
+            android:id="@+id/txtHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtStep1"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:fontFamily="@font/average"
+            android:text="Relisant OmniTrail is world's largest Religeous Database for Religeos places (Temple, Derasar, Mandir, Church etc. ) And Religeous People (Saint, pop, etc) . "
+            android:textSize="@dimen/_20sdp" />
+
+
+    </LinearLayout>
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -58,11 +82,13 @@
             android:layout_margin="@dimen/_10sdp"
             android:orientation="vertical">
 
+
             <TableLayout
 
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 >
+
                 <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -78,7 +104,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="cursive"
-                            android:text="Largest Religious Database"
+                            android:text="Prmote your Faith"
                             android:textColor="@android:color/black"
                             android:textSize="@dimen/_17ssp"
                             android:textStyle="bold" />
@@ -90,7 +116,7 @@
                             android:layout_below="@+id/txtStep1"
                             android:layout_marginTop="@dimen/_10sdp"
                             android:fontFamily="@font/average"
-                            android:text="Relisant OmniTrail is world's largest Religeous Database for People and places. "
+                            android:text="Promote your favourice place or people of faith, maintain their data, images, facilities and events."
                             android:textSize="16sp" />
 
                         <ImageView

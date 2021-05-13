@@ -17,15 +17,18 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.login.LoginManager;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.squareup.picasso.Picasso;
 import com.thenneem.omnitrail.adapter.ReligionAdaptor;
 import com.thenneem.omnitrail.model.Religion;
 import com.thenneem.omnitrail.rest.ApiClient;
@@ -57,6 +60,9 @@ public class FullscreenActivity extends AppCompatActivity {
     private Religion religinoSingle;
 
     PreferenceManager preferenceManager;
+
+    Picasso picasso;
+
 
 
     private static final String TAG = FullscreenActivity.class.getSimpleName();
@@ -346,6 +352,7 @@ public class FullscreenActivity extends AppCompatActivity {
 
         TextView txtName = popupView.findViewById(R.id.txtName);
         TextView txtEmail = popupView.findViewById(R.id.txtEmail);
+        ImageView imgProfile = popupView.findViewById(R.id.imageView);
 
         if (preferenceManager.getLoginSession()) {
 
@@ -358,6 +365,21 @@ public class FullscreenActivity extends AppCompatActivity {
 
             txtName.setText(preferenceManager.getuserName());
             txtEmail.setText(preferenceManager.getemailAddress());
+
+            // try to set the profile piture using id
+
+
+            String image_url = "https://graph.facebook.com/" + preferenceManager.getUserId() + "/picture?type=large";
+
+            ImageView imgRThumb = findViewById(R.id.imgReligionThumb);
+            Picasso.Builder builder = new Picasso.Builder(getApplicationContext());
+            picasso = builder.build();
+            picasso.load(image_url)
+                    .placeholder((R.drawable.ic_launcher_background))
+                    .error(R.drawable.ic_launcher_foreground)
+                    .into(imgProfile);
+
+
 
 
             btnLogout.setOnClickListener(new View.OnClickListener(){

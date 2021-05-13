@@ -12,11 +12,16 @@
     android:background="@drawable/side_nav_bar"
     android:gravity="bottom"
     android:orientation="vertical"
+    android:layout_gravity="center"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+    android:theme="@style/ThemeOverlay.AppCompat.Dark"
+    >
+
+
+
 
     <ImageView
         android:id="@+id/imageView"
@@ -24,7 +29,9 @@
         android:layout_height="wrap_content"
         android:contentDescription="@string/nav_header_desc"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        app:srcCompat="@mipmap/ic_logo_notext" />
+        app:srcCompat="@mipmap/ic_logo_notext"
+        android:layout_gravity="center"
+        />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_login"
@@ -53,12 +60,18 @@
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:text="@string/nav_header_title"
+        style="@style/NormalText"
+        android:layout_gravity="center"
+
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView
         android:id="@+id/txtEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        style="@style/NormalText"
+
         android:text="@string/nav_header_subtitle" />
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_logout"
