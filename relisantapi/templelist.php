@@ -11,6 +11,7 @@ header("Access-Control-Allow-Origin: *");
     City.city_name AS 'city_name', 
     State.state_name AS 'state_name',
 	Country.country_name AS 'country_name'
+    
 From temple
 	inner join `Religion`
 		on Religion.ReligionID = temple.ReligionID
@@ -20,7 +21,8 @@ From temple
     	ON State.state_code = City.state_code
     left outer JOIN Country 
 		ON State.country_code = Country.country_code
-		where temple.ReligionID = ".$relegionid;
+   
+		where temple.ReligionID =  ".$relegionid;
 
 
 	$data=array(); 

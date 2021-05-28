@@ -3,6 +3,7 @@ package com.thenneem.omnitrail;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.ContentResolver;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Location;
 import android.net.Uri;
@@ -35,6 +36,7 @@ import com.thenneem.omnitrail.model.State;
 import com.thenneem.omnitrail.rest.ApiClient;
 import com.thenneem.omnitrail.rest.ApiInterface;
 import com.thenneem.omnitrail.model.UploadResult;
+import com.thenneem.omnitrail.utils.PreferenceManager;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -56,6 +58,8 @@ public class AddSaintActivity extends AppCompatActivity {
     private FusedLocationProviderClient fusedLocationClient;
     private Location currentLocation;
     private ApiInterface apiService;
+    PreferenceManager preferenceManager;
+    Integer created_by;
 
     @SuppressLint("MissingPermission")
     @NeedsPermission(Manifest.permission.ACCESS_FINE_LOCATION)
@@ -96,7 +100,7 @@ public class AddSaintActivity extends AppCompatActivity {
             finish();
 
         });
-
+        preferenceManager = new PreferenceManager(AddSaintActivity.this);
         findViewById(R.id.browseButton).setOnClickListener(v -> {
             Intent browseIntent = new Intent(Intent.ACTION_GET_CONTENT)
                     .setType("image/*");
@@ -146,7 +150,39 @@ public class AddSaintActivity extends AppCompatActivity {
 
         findViewById(R.id.sendButton).setOnClickListener(v -> {
             if (validation()) {
-                uploadAndSave();
+                if (preferenceManager.getLoginSession()|| preferenceManager.getFbLogin()){
+                    created_by = Integer.parseInt(preferenceManager.getUserId());
+                    uploadAndSave();
+                }else {
+                    AlertDialog.Builder Alertbuilder = new AlertDialog.Builder(this);
+
+                    Alertbuilder.setTitle("Confirmation");
+                    Alertbuilder.setMessage("You are not logged in, Do you want to add this saint as Anonymous user?");
+
+                    Alertbuilder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+
+                        public void onClick(DialogInterface dialog, int which) {
+                            // Do nothing but close the dialog
+                            created_by = 0;
+                            uploadAndSave();
+                            dialog.dismiss();
+                        }
+                    });
+
+                    Alertbuilder.setNegativeButton("LOGIN", new DialogInterface.OnClickListener() {
+
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            startActivity(new Intent(AddSaintActivity.this,LoginActivity.class));
+                            dialog.dismiss();
+                        }
+                    });
+
+                    AlertDialog alert = Alertbuilder.create();
+                    alert.show();
+                    //      uploadAndSave();
+                }
             }
         });
     }
@@ -326,12 +362,12 @@ public class AddSaintActivity extends AppCompatActivity {
                         String zip = zipCode.getText().toString();
                         apiService.saintAdd(String.valueOf(religion.getReligionID()),
                                 name, imageUrl, samudaiString, storyString,
-                                String.valueOf(currentCity.getCityId()), addressString, zip)
+                                String.valueOf(currentCity.getCityId()), addressString, zip,created_by)
                                 .enqueue(callback);
                     }else{
                         apiService.saintAdd(String.valueOf(religion.getReligionID()),
                                 name, imageUrl, samudaiString, storyString,
-                                currentLocation.getLongitude(), currentLocation.getLatitude())
+                                currentLocation.getLongitude(), currentLocation.getLatitude(),created_by)
                                 .enqueue(callback);
                     }
                 }

@@ -1,9 +1,12 @@
 package com.thenneem.omnitrail.retrofit;
 
+import com.thenneem.omnitrail.model.TempleImages;
 import com.thenneem.omnitrail.response.ForgotPassResponse;
 
 import com.thenneem.omnitrail.response.RegisterResponse;
 import com.thenneem.omnitrail.response.SocialLoginResponse;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -53,4 +56,10 @@ public interface ApiInterface {
             @Field("userId") String userId
     );
 
+
+    @FormUrlEncoded
+    @POST("getImages.php")
+    Call<List<TempleImages>> getImages(
+            @Field("templeid") int templeid
+    );
 }

@@ -78,27 +78,27 @@ public interface ApiInterface {
     @POST("templeadd.php")
     Call<Void> templeAdd(@Query("rid") String rid, @Query("TempleName") String templeName,
                          @Query("TempleIMG") String templeImage, @Query("PrimaryDeity") String deity,
-                         @Query("TempleStory") String story, @Query("lang") Double lang, @Query("lat") Double lat);
+                         @Query("TempleStory") String story, @Query("lang") Double lang, @Query("lat") Double lat, @Query("created_by") Integer created_by);
 
     @POST("templeadd.php")
     Call<Void> templeAdd(@Query("rid") String rid, @Query("TempleName") String templeName,
                          @Query("TempleIMG") String templeImage, @Query("PrimaryDeity") String deity,
-                         @Query("TempleStory") String story, @Query("CityID") String cityId, @Query("address") String address, @Query("zip") String zip);
-
-    @POST("saintadd.php")
-    Call<Void> saintAdd(@Query("rid") String rid, @Query("SaintName") String saintName,
-                         @Query("SaintIMG") String saintImage, @Query("Samudai") String samudai,
-                         @Query("SaintStory") String story, @Query("lang") Double lang, @Query("lat") Double lat);
+                         @Query("TempleStory") String story, @Query("CityID") String cityId, @Query("address") String address, @Query("zip") String zip, @Query("created_by") Integer created_by);
 
     @POST("saintadd.php")
     Call<Void> saintAdd(@Query("rid") String rid, @Query("SaintName") String saintName,
                         @Query("SaintIMG") String saintImage, @Query("Samudai") String samudai,
-                        @Query("SaintStory") String story, @Query("CityID") String cityId, @Query("address") String address, @Query("zip") String zip);
+                        @Query("SaintStory") String story, @Query("lang") Double lang, @Query("lat") Double lat,@Query("created_by") Integer created_by);
+
+    @POST("saintadd.php")
+    Call<Void> saintAdd(@Query("rid") String rid, @Query("SaintName") String saintName,
+                        @Query("SaintIMG") String saintImage, @Query("Samudai") String samudai,
+                        @Query("SaintStory") String story, @Query("CityID") String cityId, @Query("address") String address, @Query("zip") String zip, @Query("created_by") Integer created_by);
 
     @POST("saintadd.php")
     Call<Void> saintAddWithAddress(@Query("rid") String rid, @Query("SaintName") String saintName,
-                        @Query("SaintIMG") String saintImage, @Query("Samudai") String samudai,
-                        @Query("SaintStory") String story);
+                                   @Query("SaintIMG") String saintImage, @Query("Samudai") String samudai,
+                                   @Query("SaintStory") String story, @Query("created_by") Integer created_by);
 
     @POST("countrylist.php")
     Call<List<Country>> countryList();

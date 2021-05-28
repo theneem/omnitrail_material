@@ -69,6 +69,10 @@ public class Temple implements Serializable  {
     private String CompletionPerios;
 
 
+    @SerializedName("created_by")
+    private String created_by;
+
+
     public String getPrimaryDeity() {
         return PrimaryDeity;
     }
@@ -145,9 +149,13 @@ public class Temple implements Serializable  {
         return country_name;
     }
 
+    public String getCreatedBy() { return  created_by;}
+
+
+
     public Temple (int TempleID, String TempleName, String ReligionName, String TempleStory, String TempleIMG,
                    String address, String zip, double lang, double lat,
-                   String city_name, String state_name, String country_name
+                   String city_name, String state_name, String country_name, String created_By
 
                    ) {
 
@@ -163,6 +171,7 @@ public class Temple implements Serializable  {
         this.city_name = city_name;
         this.state_name = state_name;
         this.country_name = country_name;
+        this.created_by = created_By;
 
 
 

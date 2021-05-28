@@ -50,6 +50,9 @@
                     android:visibility="invisible"
 
                     ></ImageButton>
+
+
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.appcompat.widget.Toolbar
@@ -64,13 +67,17 @@
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
+
     </com.google.android.material.appbar.AppBarLayout>
+
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/primaryDarkColor"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
 
         <FrameLayout
             android:id="@+id/container"

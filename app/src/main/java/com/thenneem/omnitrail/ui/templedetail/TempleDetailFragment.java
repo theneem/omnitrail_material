@@ -18,8 +18,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.squareup.picasso.Picasso;
+import com.thenneem.omnitrail.GalleryActivity;
 import com.thenneem.omnitrail.R;
 import com.thenneem.omnitrail.adapter.TempleAdaptor;
 import com.thenneem.omnitrail.model.Temple;
@@ -47,10 +49,15 @@ public class TempleDetailFragment extends Fragment implements View.OnClickListen
     TextView txtContactPerson;
     TextView txtCreator;
     TextView txtCompletionPeriod;
+    TextView txtSponser;
 
-    String strWiki;
+
+    String strWiki,strName;
 
 
+    FloatingActionButton  btnPhotos;
+    FloatingActionButton btnWiki;
+    Integer intId;
 
     public static TempleDetailFragment newInstance() {
         return new TempleDetailFragment();
@@ -77,12 +84,15 @@ public class TempleDetailFragment extends Fragment implements View.OnClickListen
         txtCreator = root.findViewById(R.id.txtCreator);
         txtContactPerson = root.findViewById(R.id.txtContactPerson);
         txtCompletionPeriod = root.findViewById(R.id.txtCompletionPeriod);
-
+        txtSponser = root.findViewById(R.id.txtSponser);
         templeThumb = root.findViewById(R.id.templeThumb);
 
 
-        MaterialButton btnWiki = root.findViewById(R.id.btnWikiLink);
-                btnWiki.setOnClickListener(this);
+         btnWiki = root.findViewById(R.id.fabWiki);
+         btnWiki.setOnClickListener(this);
+
+        btnPhotos = root.findViewById(R.id.fabImageGallary);
+        btnPhotos.setOnClickListener(this);
 
         Bundle bundle = this.getArguments();
         if (bundle != null) {
@@ -132,6 +142,9 @@ public class TempleDetailFragment extends Fragment implements View.OnClickListen
             if(tl.size() >0 )
             {
 
+                strName = tl.get(0).getTempleName();
+                intId = tl.get(0).getTempleID();
+
                 txtFullAddress.setText(tl.get(0).getAddress() + " " + tl.get(0).getCity_name() + ", " + tl.get(0).getState_name()+ ", " +  tl.get(0).getCountry_name() );
                 txtTempleStory.setText(tl.get(0).getTempleStory());
 
@@ -141,6 +154,7 @@ public class TempleDetailFragment extends Fragment implements View.OnClickListen
                 txtCreator.setText(tl.get(0).getCreator());
                 txtCompletionPeriod.setText(tl.get(0).getCompletionPerios());
 
+                txtSponser.setText("Sponsered By: " + tl.get(0).getCreatedBy());
                 strWiki = tl.get(0).getWiki_link();
 
             }
@@ -158,11 +172,18 @@ public class TempleDetailFragment extends Fragment implements View.OnClickListen
     public void onClick(View v) {
 
         switch (v.getId()) {
-            case R.id.btnWikiLink:
+            case R.id.fabWiki:
                 // Do something
                 Toast.makeText(this.getContext(), "wiki link crossed" + strWiki, Toast.LENGTH_SHORT).show();
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(strWiki));
                 startActivity(browserIntent);
+            case R.id.fabImageGallary:
+                Intent intent = new Intent(getActivity(), GalleryActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("templeid", intId.toString());
+                bundle.putString("templename",strName);
+                intent.putExtras(bundle);
+                startActivity(intent);
 
         }
     }

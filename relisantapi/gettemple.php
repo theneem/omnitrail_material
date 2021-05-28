@@ -12,7 +12,13 @@ header("Access-Control-Allow-Origin: *");
     State.state_name AS 'state_name',
 	Country.country_name AS 'country_name',
 	`wiki_link`, `PrimaryDeity`, `GoverningBody`,
-	`ContactPerson`, `ContactNumber`, `Creator`, `CompletionPerios`
+	`ContactPerson`, `ContactNumber`, `Creator`, `CompletionPerios`,
+	CASE
+    WHEN fb_username is not  NULL THEN fb_username
+    WHEN gmail_username is not  NULL  THEN gmail_username
+    WHEN username is not  NULL THEN username
+    ELSE 'Omnitrail'
+  END as created_by
 From temple
 	inner join `Religion`
 		on Religion.ReligionID = temple.ReligionID
@@ -22,6 +28,8 @@ From temple
     	ON State.state_code = City.state_code
     INNER JOIN Country 
 		ON State.country_code = Country.country_code
+	left outer JOIN users
+    	on temple.created_by = users.id	
 		where temple.TempleID = ".$templeID;
 
 

@@ -179,15 +179,14 @@ public class TempleHome extends AppCompatActivity {
     };
 
     public  void getIncomingIntent(){
-        //mContentView.setText
-
-
 
         temple = (Temple)  getIntent().getSerializableExtra("Temple");
 
-        toolbar.setTitle(temple.getReligionName() + " -> " +  temple.getTempleName());
+        //toolbar.setTitle(temple.getReligionName() + " -> " +  temple.getTempleName());
+        toolbar.setTitle(temple.getTempleName());
 
         ImageView imgtopbar = findViewById(R.id.backdrop);
+
 
         Picasso.Builder builder = new Picasso.Builder(getApplicationContext());
         builder.build().load(temple.getTempleIMG())
