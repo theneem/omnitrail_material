@@ -137,7 +137,7 @@ public class TempleFragment extends Fragment {
 
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("Temple",rl.get(position));
-
+                intent.putExtra("templeImg",rl.get(position).getTempleIMG());
 
                 getContext().startActivity(intent);
 
