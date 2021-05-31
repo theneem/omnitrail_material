@@ -148,6 +148,7 @@ public class TempleHome extends AppCompatActivity {
         Bundle bundle = new Bundle();
         // NEED TO GET RELIGION ID TO PASS
         bundle.putString("TempleId", String.valueOf(temple.getTempleID()));
+        bundle.putString("templeImg", String.valueOf(temple.getTempleIMG()));
         fragment.setArguments(bundle);
         transaction.replace(R.id.container, fragment);
         transaction.addToBackStack(null);
