@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,12 +18,23 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.share.Sharer;
+import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.model.SharePhoto;
+import com.facebook.share.model.SharePhotoContent;
+import com.facebook.share.widget.ShareButton;
+import com.facebook.share.widget.ShareDialog;
 import com.google.android.material.button.MaterialButton;
+import com.thenneem.omnitrail.GalleryActivity;
 import com.thenneem.omnitrail.R;
 import com.thenneem.omnitrail.model.Saint;
 import com.thenneem.omnitrail.model.Temple;
 import com.thenneem.omnitrail.rest.ApiClient;
 import com.thenneem.omnitrail.rest.ApiInterface;
+import com.thenneem.omnitrail.ui.templedetail.TempleDetailFragment;
 
 import org.w3c.dom.Text;
 
@@ -35,7 +47,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SaintDetailFragment extends Fragment  implements View.OnClickListener  {
+public class SaintDetailFragment extends Fragment implements View.OnClickListener {
 
     private SaintDetailViewModel mViewModel;
 
@@ -47,25 +59,42 @@ public class SaintDetailFragment extends Fragment  implements View.OnClickListen
     TextView txtSaintStory;
     TextView txtContactPerson;
     MaterialButton btnWikiLink;
-
+    MaterialButton btnPhotos;
     TextView txtSaintDeatilName;
     TextView txtLifeSpan;
-
-
-    String strWiki;
-
-
+    ShareButton btnShare;
+    CallbackManager callbackManager;
+    ShareDialog shareDialog;
+    String strWiki, strName, img, mySID;
+    Integer intId;
+    private static String TAG = SaintDetailFragment.class.getName();
 
     public static SaintDetailFragment newInstance() {
         return new SaintDetailFragment();
     }
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        callbackManager = CallbackManager.Factory.create();
+        shareDialog = new ShareDialog(this);
+
+        shareDialog.registerCallback(callbackManager, callback);
+        mySID = "";
+        img = "";
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+
+            mySID = bundle.getString("SaintId");
+            img = bundle.getString("SaintImg");
+            //Toast.makeText(this.getContext(), "TempleID : " + myTID, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        final View root  =  inflater.inflate(R.layout.saint_detail_fragment, container, false);
-
-        String mySID = "";
+        final View root = inflater.inflate(R.layout.saint_detail_fragment, container, false);
 
 
         txtSaintDeatilName = root.findViewById(R.id.txtSaintDetailName);
@@ -79,20 +108,11 @@ public class SaintDetailFragment extends Fragment  implements View.OnClickListen
         txtFullAddress = root.findViewById(R.id.txtFullAddress);
         txtSaintStory = root.findViewById(R.id.txtSaintStory);
         btnWikiLink = root.findViewById(R.id.btnWikiLink);
-
-        txtContactPerson= root.findViewById(R.id.txtContactPerson);
-
+        btnPhotos = root.findViewById(R.id.btnPhotos);
+        txtContactPerson = root.findViewById(R.id.txtContactPerson);
 
         btnWikiLink.setOnClickListener(this);
-
-        Bundle bundle = this.getArguments();
-        if (bundle != null) {
-
-            mySID = bundle.getString("SaintId");
-            //Toast.makeText(this.getContext(), "TempleID : " + myTID, Toast.LENGTH_SHORT).show();
-        }
-
-
+        btnPhotos.setOnClickListener(this);
 
 
         // calling json retrofit
@@ -118,7 +138,7 @@ public class SaintDetailFragment extends Fragment  implements View.OnClickListen
             @Override
             public void onFailure(Call<List<Saint>> call, Throwable t) {
                 //Log.d(TAG , t.toString());
-                Toast.makeText(getContext(), "Error" +  t.toString(),Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "Error" + t.toString(), Toast.LENGTH_LONG).show();
             }
         });
 
@@ -128,11 +148,11 @@ public class SaintDetailFragment extends Fragment  implements View.OnClickListen
     }
 
 
-    public void BindSaintDetail( List<Saint> sl)
-    {
-        if(sl.size() >0 )
-        {
+    public void BindSaintDetail(List<Saint> sl) {
+        if (sl.size() > 0) {
 
+            intId = sl.get(0).getSaintID();
+            strName = sl.get(0).getSaintName();
             txtSaintDeatilName.setText(sl.get(0).getSaintName());
             txtSect.setText(sl.get(0).getSectName());
             txtSamudai.setText(sl.get(0).getSamudai());
@@ -157,20 +177,18 @@ public class SaintDetailFragment extends Fragment  implements View.OnClickListen
             try {
 
 
-                if(sl.get(0).getBirthDate() != null  )
+                if (sl.get(0).getBirthDate() != null)
                     BirthDate = format.parse(sl.get(0).getBirthDate());
-                if(sl.get(0).getDeathDate() != null )
+                if (sl.get(0).getDeathDate() != null)
                     DeathDate = format.parse(sl.get(0).getDeathDate());
 
                 format = new SimpleDateFormat("MMM dd, yyyy");
 
-                if(sl.get(0).getBirthDate() != null  )
+                if (sl.get(0).getBirthDate() != null)
                     strBirthDate = format.format(BirthDate);
 
-                if(sl.get(0).getDeathDate() != null )
+                if (sl.get(0).getDeathDate() != null)
                     strDeathDate = format.format(DeathDate);
-
-
 
 
             } catch (ParseException e) {
@@ -179,19 +197,15 @@ public class SaintDetailFragment extends Fragment  implements View.OnClickListen
             }
 
 
-        if(strDeathDate != "")
-            txtLifeSpan.setText(strBirthDate + " to " +  strDeathDate );
-        else
-            txtLifeSpan.setText(strBirthDate);
-
-
-
+            if (strDeathDate != "")
+                txtLifeSpan.setText(strBirthDate + " to " + strDeathDate);
+            else
+                txtLifeSpan.setText(strBirthDate);
 
 
         }
 
     }
-
 
 
     @Override
@@ -209,7 +223,66 @@ public class SaintDetailFragment extends Fragment  implements View.OnClickListen
                 Toast.makeText(this.getContext(), "wiki link crossed" + strWiki, Toast.LENGTH_SHORT).show();
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(strWiki));
                 startActivity(browserIntent);
+                break;
+            case R.id.btnPhotos:
+                Intent intent = new Intent(getActivity(), GalleryActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("bundleId", "1");
+                bundle.putString("SaintId", intId.toString());
+                bundle.putString("SaintName", strName);
+                intent.putExtras(bundle);
+                startActivity(intent);
+                break;
         }
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        setImageShare(view);
+
+    }
+
+    private void setImageShare(View view) {
+
+        SharePhoto sharePhoto = new SharePhoto.Builder()
+                .setImageUrl(Uri.parse(img))
+                .setCaption("I am here!")
+                .build();
+        SharePhotoContent content = new SharePhotoContent.Builder()
+                .addPhoto(sharePhoto)
+                .build();
+
+        btnShare = (ShareButton) view.findViewById(R.id.share);
+        btnShare.setShareContent(content);
+
+
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+
+    }
+
+    private FacebookCallback<Sharer.Result> callback = new FacebookCallback<Sharer.Result>() {
+        @Override
+        public void onSuccess(Sharer.Result result) {
+            Log.v(TAG, "Successfully posted");
+            // Write some code to do some operations when you shared content successfully.
+        }
+
+        @Override
+        public void onCancel() {
+            Log.v(TAG, "Sharing cancelled");
+            // Write some code to do some operations when you cancel sharing content.
+        }
+
+        @Override
+        public void onError(FacebookException error) {
+            Log.v(TAG, error.getMessage());
+            // Write some code to do some operations when some error occurs while sharing content.
+        }
+    };
 }
