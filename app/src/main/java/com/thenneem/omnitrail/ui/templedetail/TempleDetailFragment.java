@@ -2,6 +2,7 @@ package com.thenneem.omnitrail.ui.templedetail;
 
 import androidx.lifecycle.ViewModelProviders;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -59,23 +60,15 @@ public class TempleDetailFragment extends Fragment implements View.OnClickListen
     private TempleDetailViewModel mViewModel;
 
 
-    ImageView templeThumb, imgTest;
-    // TextView txtTempleName;
-    // TextView txtLocation;
-    TextView txtFullAddress;
-    TextView txtTempleStory;
-    TextView txtPrimaryDeity;
-    TextView txtGoverningBody;
-    TextView txtContactPerson;
-    TextView txtCreator;
-    TextView txtCompletionPeriod;
-    String strWiki, strName, img, myTID;
+    ImageView templeThumb;
+    TextView txtFullAddress, txtTempleStory, txtPrimaryDeity, txtGoverningBody, txtContactPerson, txtCreator, txtCompletionPeriod;
+    String strWiki, strName, templeAdd, templeStory, templeDeity, templeGoverning, templeContact, templeCreator, templeCompletion,
+            img, myTID;
     MaterialButton btnPhotos;
-    Integer intId;
     ShareButton btnShare;
     CallbackManager callbackManager;
     ShareDialog shareDialog;
-    private static String TAG = TempleDetailFragment.class.getName();
+    private static final String TAG = TempleDetailFragment.class.getName();
 
 
     public static TempleDetailFragment newInstance() {
@@ -88,17 +81,25 @@ public class TempleDetailFragment extends Fragment implements View.OnClickListen
 
         callbackManager = CallbackManager.Factory.create();
         shareDialog = new ShareDialog(this);
-
         shareDialog.registerCallback(callbackManager, callback);
+
         myTID = "";
         img = "";
+
         Bundle bundle = this.getArguments();
         if (bundle != null) {
-
             myTID = bundle.getString("TempleId");
             img = bundle.getString("templeImg");
-
-//            Toast.makeText(this.getContext(), "TempleID : " + myTID, Toast.LENGTH_SHORT).show();
+            strName = bundle.getString("TempleName");
+            templeAdd = bundle.getString("templeAdd") + "" + bundle.getString("templeCity")
+                    + "," + bundle.getString("templeState") + "," + bundle.getString("templeCountry") + ".";
+            templeStory = bundle.getString("templeStory");
+            templeDeity = bundle.getString("templeDeity");
+            templeGoverning = bundle.getString("templeGoverning");
+            templeContact = bundle.getString("templeContactPerson") + ":" + bundle.getString("templeContactNumber");
+            templeCreator = bundle.getString("templeCreator");
+            templeCompletion = bundle.getString("templeCompletionPeriod");
+            strWiki = bundle.getString("templeWiki");
         }
 
     }
@@ -110,9 +111,6 @@ public class TempleDetailFragment extends Fragment implements View.OnClickListen
 
         final View root = inflater.inflate(R.layout.temple_detail_fragment, container, false);
 
-
-//        txtTempleName = root.findViewById(R.id.txtTempleName);
-        //       txtLocation = root.findViewById(R.id.txtMyLocation);
         txtFullAddress = root.findViewById(R.id.txtFullAddress);
         txtTempleStory = root.findViewById(R.id.txtTempleStory);
         txtPrimaryDeity = root.findViewById(R.id.txtPrimaryDeity);
@@ -128,59 +126,19 @@ public class TempleDetailFragment extends Fragment implements View.OnClickListen
         btnWiki.setOnClickListener(this);
         btnPhotos.setOnClickListener(this);
 
-        // calling json retrofit
-        ApiInterface apiService =
-                ApiClient.getClient().create(ApiInterface.class);
-
-        Call<List<Temple>> call = apiService.getTemple(myTID);
-        //Call<List<Temple>> call = apiService.getTempleList("1");
-
-
-        //
-        call.enqueue(new Callback<List<Temple>>() {
-            @Override
-            public void onResponse(Call<List<Temple>> call, Response<List<Temple>> response) {
-
-                Utils.showLoader(getActivity());
-                List<Temple> tl = response.body();
-                ///recyclerView.setAdapter(new TempleAdaptor(rl,R.layout.templelist_layout,getContext()));
-                BindTempleDetail(tl);
-
-
-            }
-
-            @Override
-            public void onFailure(Call<List<Temple>> call, Throwable t) {
-                //Log.d(TAG , t.toString());
-                Toast.makeText(getContext(), "Error" + t.toString(), Toast.LENGTH_LONG).show();
-            }
-        });
-
+        BindTempleDetail();
 
         return root;
     }
 
-
-    public void BindTempleDetail(List<Temple> tl) {
-        if (tl.size() > 0) {
-            strName = tl.get(0).getTempleName();
-            intId = tl.get(0).getTempleID();
-            txtFullAddress.setText(tl.get(0).getAddress() + " " + tl.get(0).getCity_name() + ", " + tl.get(0).getState_name() + ", " + tl.get(0).getCountry_name());
-            txtTempleStory.setText(tl.get(0).getTempleStory());
-
-            txtPrimaryDeity.setText(tl.get(0).getPrimaryDeity());
-            txtGoverningBody.setText(tl.get(0).getGoverningBody());
-            txtContactPerson.setText(tl.get(0).getContactPerson() + " : " + tl.get(0).getContactNumber());
-            txtCreator.setText(tl.get(0).getCreator());
-            txtCompletionPeriod.setText(tl.get(0).getCompletionPerios());
-            //img = tl.get(0).getTempleIMG();
-
-            strWiki = tl.get(0).getWiki_link();
-            //UrlToBitmap(img);
-            Utils.hideLoader(getActivity());
-
-        }
-
+    public void BindTempleDetail() {
+        txtFullAddress.setText(templeAdd);
+        txtTempleStory.setText(templeStory);
+        txtPrimaryDeity.setText(templeDeity);
+        txtGoverningBody.setText(templeGoverning);
+        txtContactPerson.setText(templeContact);
+        txtCreator.setText(templeCreator);
+        txtCompletionPeriod.setText(templeCompletion);
     }
 
     @Override
@@ -206,12 +164,6 @@ public class TempleDetailFragment extends Fragment implements View.OnClickListen
         SharePhotoContent content = new SharePhotoContent.Builder()
                 .addPhoto(sharePhoto)
                 .build();
-
-        ShareLinkContent shareLinkContent = new ShareLinkContent.Builder()
-                .setQuote("I am at!")
-                .setContentUrl(Uri.parse(img))
-                .build();
-
         btnShare = (ShareButton) view.findViewById(R.id.share);
         btnShare.setShareContent(content);
 
@@ -245,6 +197,7 @@ public class TempleDetailFragment extends Fragment implements View.OnClickListen
         }
     };
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
 
@@ -258,8 +211,9 @@ public class TempleDetailFragment extends Fragment implements View.OnClickListen
             case R.id.btnPhotos:
                 Intent intent = new Intent(getActivity(), GalleryActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putString("templeid", intId.toString());
-                bundle.putString("templename", strName);
+                bundle.putString("bundleId", "0");
+                bundle.putString("templeId", myTID);
+                bundle.putString("templeName", strName);
                 intent.putExtras(bundle);
                 startActivity(intent);
                 break;
