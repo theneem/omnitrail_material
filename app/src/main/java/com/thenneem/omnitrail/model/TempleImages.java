@@ -7,9 +7,9 @@ public class TempleImages {
     @SerializedName("id")
     @Expose
     private String id;
-    @SerializedName("templeId")
+    @SerializedName("objectid")
     @Expose
-    private String templeId;
+    private String objectid;
     @SerializedName("imgURL")
     @Expose
     private String imgURL;
@@ -25,12 +25,12 @@ public class TempleImages {
         this.id = id;
     }
 
-    public String getTempleId() {
-        return templeId;
+    public String getObjectId() {
+        return objectid;
     }
 
-    public void setTempleId(String templeId) {
-        this.templeId = templeId;
+    public void setObjectId(String objectid) {
+        this.objectid = objectid;
     }
 
     public String getImgURL() {
