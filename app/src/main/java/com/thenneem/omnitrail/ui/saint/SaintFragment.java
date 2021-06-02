@@ -134,6 +134,7 @@ public class SaintFragment extends Fragment {
 
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("Saint",rl.get(position));
+                intent.putExtra("SaintImg",rl.get(position).getSaintIMG());
 
 
                 getContext().startActivity(intent);
