@@ -60,6 +60,7 @@ public interface ApiInterface {
     @FormUrlEncoded
     @POST("getImages.php")
     Call<List<TempleImages>> getImages(
-            @Field("templeid") int templeid
+            @Field("id") int id,
+            @Field("objectid") int objectid
     );
 }
