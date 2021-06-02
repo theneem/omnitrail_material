@@ -7,6 +7,51 @@
     tools:context=".ui.templedetail.TempleDetailFragment">
 
 
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabImageGallary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|left"
+            android:layout_marginStart="20dp"
+            app:fabSize="mini"
+            android:contentDescription="Hello"
+            android:backgroundTint="@color/colorWhite"
+            app:srcCompat="@drawable/ic_image_gallary"
+
+            />
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabShare"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|center"
+            android:layout_marginTop="@dimen/_5sdp"
+            app:fabSize="mini"
+            android:contentDescription="Hello"
+            android:backgroundTint="@color/colorWhite"
+            app:srcCompat="@drawable/ic_share"
+
+            />
+
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabWiki"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|right"
+            android:layout_marginEnd="20dp"
+            app:fabSize="mini"
+
+            android:contentDescription="Hello"
+            android:backgroundTint="@color/colorWhite"
+            app:srcCompat="@drawable/ic_wiki"
+
+            />
+
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -23,14 +68,14 @@
             android:padding="10dp"
             app:cardBackgroundColor="@color/primaryColor"
 
-            app:cardCornerRadius="15dp"
+            app:cardCornerRadius="25dp"
             app:cardElevation="10dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-
+                android:layout_marginTop="@dimen/_35sdp"
                 >
 
                 <LinearLayout
