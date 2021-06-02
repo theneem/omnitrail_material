@@ -148,7 +148,20 @@ public class TempleHome extends AppCompatActivity {
         Bundle bundle = new Bundle();
         // NEED TO GET RELIGION ID TO PASS
         bundle.putString("TempleId", String.valueOf(temple.getTempleID()));
+        bundle.putString("TempleName", String.valueOf(temple.getTempleName()));
         bundle.putString("templeImg", String.valueOf(temple.getTempleIMG()));
+        bundle.putString("templeAdd",temple.getAddress());
+        bundle.putString("templeCity",temple.getCity_name());
+        bundle.putString("templeState",temple.getState_name());
+        bundle.putString("templeCountry",temple.getCountry_name());
+        bundle.putString("templeStory",temple.getTempleStory());
+        bundle.putString("templeDeity",temple.getPrimaryDeity());
+        bundle.putString("templeGoverning",temple.getGoverningBody());
+        bundle.putString("templeContactPerson",temple.getContactPerson());
+        bundle.putString("templeContactNumber",temple.getContactNumber());
+        bundle.putString("templeCreator",temple.getCreator());
+        bundle.putString("templeCompletionPeriod",temple.getCompletionPerios());
+        bundle.putString("templeWiki",temple.getWiki_link());
         fragment.setArguments(bundle);
         transaction.replace(R.id.container, fragment);
         transaction.addToBackStack(null);
