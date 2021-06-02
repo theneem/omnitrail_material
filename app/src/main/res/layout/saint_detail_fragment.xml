@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/primaryDarkColor"
     tools:context=".ui.saintdetail.SaintDetailFragment">
 
@@ -17,323 +17,148 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginLeft="10dp"
 
-            android:padding="10dp"
-            app:cardCornerRadius="15dp"
-            app:cardElevation="10dp"
-
-            app:cardBackgroundColor="@color/primaryColor"
             android:outlineAmbientShadowColor="@color/primaryDarkColor"
-            >
+            android:padding="10dp"
+            app:cardBackgroundColor="@color/primaryColor"
+
+            app:cardCornerRadius="15dp"
+            app:cardElevation="10dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="10dp"
-                >
+                android:padding="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    >
+                    android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
                         android:layout_weight="5"
-                        android:padding="5dp"
-                        >
+                        android:orientation="horizontal"
+                        android:padding="5dp">
 
-                       <TextView
+                        <TextView
                             android:id="@+id/txtSaintDetailName"
+                            style="@style/HeaderText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="start"
-                            android:layout_weight="3"
                             android:layout_marginStart="10dp"
 
-                            android:text="Contact Person - Number"
-                            style="@style/HeaderText"/>
+                            android:layout_weight="3"
+                            android:text="Contact Person - Number" />
 
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
                         android:layout_weight="5"
-                        android:padding="5dp"
-                        >
+                        android:orientation="horizontal"
+                        android:padding="5dp">
 
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
 
                             app:srcCompat="@drawable/ic_account_circle_white_24dp"></ImageView>
+
                         <TextView
                             android:id="@+id/txtContactPerson"
+                            style="@style/NormalText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="start"
-                            android:layout_weight="3"
                             android:layout_marginStart="10dp"
 
-                            android:text="Contact Person - Number"
-                            style="@style/NormalText"/>
+                            android:layout_weight="3"
+                            android:text="Contact Person - Number" />
 
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
                         android:layout_weight="5"
-                        android:padding="5dp"
-                        >
+                        android:orientation="horizontal"
+                        android:padding="5dp">
 
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
 
                             app:srcCompat="@drawable/ic_event"></ImageView>
+
                         <TextView
                             android:id="@+id/txtLifeSpan"
+                            style="@style/NormalText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="start"
-                            android:layout_weight="3"
                             android:layout_marginStart="10dp"
 
-                            android:text="Contact Person - Number"
-                           style="@style/NormalText"/>
+                            android:layout_weight="3"
+                            android:text="Contact Person - Number" />
 
                     </LinearLayout>
+
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@color/colorWhite"/>
+                        android:background="@color/colorWhite" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_weight="100"
                         android:orientation="horizontal"
-                        android:padding="10dp"
-                        android:layout_weight="100">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:paddingStart="0dp"
-                        android:background="@color/colorWhite"
-                        android:layout_weight="100">
+                        android:padding="10dp">
 
-
-                        <TextView
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="start"
-                            android:padding="5dp"
-
-                            android:text="Sect :  "
-                            android:layout_weight="60"
-                           style="@style/NormalLable"/>
+                            android:layout_weight="100"
+                            android:background="@color/colorWhite"
+                            android:orientation="horizontal"
+                            android:paddingStart="0dp">
 
 
+                            <TextView
+                                style="@style/NormalLable"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="start"
 
-                        <TextView
-                            android:id="@+id/txtSect"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="start"
-                            android:padding="5dp"
-
-                            android:background="@drawable/back"
-                            android:text="Setamber"
-
-                            android:layout_weight="40"
-
-                            style="@style/NormalText"/>
+                                android:layout_weight="60"
+                                android:padding="5dp"
+                                android:text="Sect :  " />
 
 
+                            <TextView
+                                android:id="@+id/txtSect"
+                                style="@style/NormalText"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="start"
 
-                    </LinearLayout>
+                                android:layout_weight="40"
+                                android:background="@drawable/back"
 
-                    </LinearLayout>
+                                android:padding="5dp"
 
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:padding="10dp"
-                        android:layout_weight="100">
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:padding="0dp"
-                        android:background="@color/colorWhite"
-                        android:layout_weight="100">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="start"
-                            android:padding="5dp"
-                            android:text="Samudai : "
-                            android:layout_weight="60"
-                            style="@style/NormalLable"/>
+                                android:text="Setamber" />
 
 
-
-
-                        <TextView
-                            android:id="@+id/txtSamudai"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="start"
-
-                            android:background="@drawable/back"
-                            android:padding="5dp"
-                            android:text="Samudai"
-                            android:layout_weight="40"
-                            style="@style/NormalText"
-                            />
-                    </LinearLayout>
-
-
-</LinearLayout>
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:padding="10dp"
-                        android:layout_weight="100">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:padding="0dp"
-                        android:background="@color/colorWhite"
-                        android:layout_weight="100">
-
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="start"
-                            android:padding="5dp"
-                            android:text="Guru :"
-                            android:layout_weight="60"
-                            style="@style/NormalLable"/>
-
-
-                        <TextView
-                            android:id="@+id/txtParentSaint"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="start"
-
-
-                            android:background="@drawable/back"
-                            android:padding="5dp"
-                            android:text="Guru"
-                            android:layout_weight="40"
-                            style="@style/NormalText"/>
-
-                    </LinearLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:padding="10dp"
-                        android:layout_weight="100">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:padding="0dp"
-                        android:background="@color/colorWhite"
-                        android:layout_weight="100">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="start"
-                            android:padding="5dp"
-                            android:text="Saint Date :"
-                            android:layout_weight="60"
-                            style="@style/NormalLable"/>
-
-
-                        <TextView
-                            android:id="@+id/txtSaintDate"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="start"
-                            android:padding="5dp"
-
-                            android:background="@drawable/back"
-                            android:text="SintDate"
-                            android:layout_weight="40"
-                            style="@style/NormalText"/>
-
-                    </LinearLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:padding="10dp"
-                        android:layout_weight="100">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:padding="0dp"
-                    android:background="@color/colorWhite"
-                        android:layout_weight="100">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="start"
-                            android:padding="5dp"
-                            android:text="Address:"
-                            android:layout_weight="60"
-                            style="@style/NormalLable"/>
-
-
-                        <TextView
-                            android:id="@+id/txtFullAddress"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="start"
-                            android:padding="5dp"
-
-                            android:background="@drawable/back"
-                            android:text="Full Address"
-                            android:layout_weight="40"
-                            style="@style/NormalText"/>
-
-                    </LinearLayout>
+                        </LinearLayout>
 
                     </LinearLayout>
 
@@ -341,41 +166,228 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_weight="100"
                         android:orientation="horizontal"
-                        android:padding="10dp"
-                        android:layout_weight="100">
+                        android:padding="10dp">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="100"
+                            android:background="@color/colorWhite"
+                            android:orientation="horizontal"
+                            android:padding="0dp">
+
+                            <TextView
+                                style="@style/NormalLable"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="start"
+                                android:layout_weight="60"
+                                android:padding="5dp"
+                                android:text="Samudai : " />
+
+
+                            <TextView
+                                android:id="@+id/txtSamudai"
+                                style="@style/NormalText"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+
+                                android:layout_gravity="start"
+                                android:layout_weight="40"
+                                android:background="@drawable/back"
+                                android:padding="5dp"
+                                android:text="Samudai" />
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="100"
+                        android:orientation="horizontal"
+                        android:padding="10dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="100"
+                            android:background="@color/colorWhite"
+                            android:orientation="horizontal"
+                            android:padding="0dp">
+
+
+                            <TextView
+                                style="@style/NormalLable"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="start"
+                                android:layout_weight="60"
+                                android:padding="5dp"
+                                android:text="Guru :" />
+
+
+                            <TextView
+                                android:id="@+id/txtParentSaint"
+                                style="@style/NormalText"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+
+
+                                android:layout_gravity="start"
+                                android:layout_weight="40"
+                                android:background="@drawable/back"
+                                android:padding="5dp"
+                                android:text="Guru" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="100"
+                        android:orientation="horizontal"
+                        android:padding="10dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="100"
+                            android:background="@color/colorWhite"
+                            android:orientation="horizontal"
+                            android:padding="0dp">
+
+                            <TextView
+                                style="@style/NormalLable"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="start"
+                                android:layout_weight="60"
+                                android:padding="5dp"
+                                android:text="Saint Date :" />
+
+
+                            <TextView
+                                android:id="@+id/txtSaintDate"
+                                style="@style/NormalText"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="start"
+
+                                android:layout_weight="40"
+                                android:background="@drawable/back"
+                                android:padding="5dp"
+                                android:text="SintDate" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="100"
+                        android:orientation="horizontal"
+                        android:padding="10dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="100"
+                            android:background="@color/colorWhite"
+                            android:orientation="horizontal"
+                            android:padding="0dp">
+
+                            <TextView
+                                style="@style/NormalLable"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="start"
+                                android:layout_weight="60"
+                                android:padding="5dp"
+                                android:text="Address:" />
+
+
+                            <TextView
+                                android:id="@+id/txtFullAddress"
+                                style="@style/NormalText"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="start"
+
+                                android:layout_weight="40"
+                                android:background="@drawable/back"
+                                android:padding="5dp"
+                                android:text="Full Address" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="100"
+                        android:orientation="horizontal"
+                        android:padding="10dp">
 
 
                         <TextView
                             android:id="@+id/txtSaintStory"
+                            style="@style/NormalLable"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="start"
                             android:padding="5dp"
-                            android:text="Saint Story"
-                            style="@style/NormalLable"
-                            />
+                            android:text="Saint Story" />
                     </LinearLayout>
 
-                    <com.google.android.material.button.MaterialButton
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/btnWikiLink"
-                        android:text="Open Wiki Link..."
                         android:layout_gravity="center_horizontal"
-                        style="@style/ButtonMain">
+                        android:padding="5dp">
 
-                    </com.google.android.material.button.MaterialButton>
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnWikiLink"
+                            style="@style/ButtonMain"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:text="Wikipedia"
+                            android:textAllCaps="false"/>
 
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnPhotos"
+                            style="@style/ButtonMain"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_margin="10dp"
+                            android:padding="10dp"
+                            android:text="Photos"
+                            android:textAllCaps="false" />
 
+                        <com.facebook.share.widget.ShareButton
+                            android:id="@+id/share"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp" />
 
+                    </LinearLayout>
 
                 </LinearLayout>
 
 
-
             </LinearLayout>
-
 
 
         </androidx.cardview.widget.CardView>
