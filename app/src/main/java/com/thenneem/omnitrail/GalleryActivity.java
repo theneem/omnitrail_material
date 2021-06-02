@@ -29,7 +29,7 @@ public class    GalleryActivity extends AppCompatActivity {
     private List<TempleImages> images;
     private ImageAdapter imageAdapter;
     String strName;
-    Integer intId;
+    Integer intId, contentId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +40,14 @@ public class    GalleryActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         Bundle bundle = getIntent().getExtras();
-        strName = bundle.getString("templename");
-        intId = Integer.parseInt(bundle.getString("templeid"));
+        contentId = Integer.parseInt(bundle.getString("bundleId"));
+        if (contentId==0) {
+            strName = bundle.getString("templeName");
+            intId = Integer.parseInt(bundle.getString("templeId"));
+        }else {
+            strName = bundle.getString("SaintName");
+            intId = Integer.parseInt(bundle.getString("SaintId"));
+        }
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -51,15 +57,15 @@ public class    GalleryActivity extends AppCompatActivity {
         recyclerImages = findViewById(R.id.imageRecycler);
         gridLayoutManager = new GridLayoutManager(GalleryActivity.this, 3);
         recyclerImages.setLayoutManager(gridLayoutManager);
-        getImages();
+            getTempleImages(contentId,intId);
     }
 
-    public void getImages() {
+    public void getTempleImages(int conId,int objId) {
         if (Utils.isConnected(GalleryActivity.this)) {
             images = new ArrayList<>();
             Utils.showLoader(GalleryActivity.this);
             final ApiInterface api = ApiClient.getApiService();
-            Call<List<TempleImages>> call = api.getImages(intId);
+            Call<List<TempleImages>> call = api.getImages(conId,objId);
 
             call.enqueue(new Callback<List<TempleImages>>() {
                 @Override
