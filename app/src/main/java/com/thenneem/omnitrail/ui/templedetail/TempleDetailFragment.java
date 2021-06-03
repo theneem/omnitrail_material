@@ -222,6 +222,9 @@ public class TempleDetailFragment extends Fragment implements View.OnClickListen
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(strWiki));
                 startActivity(browserIntent);
                 break;
+            case R.id.fabShare:
+                btnShare.performClick();
+                break;
             case R.id.fabImageGallary:
                 Intent intent = new Intent(getActivity(), GalleryActivity.class);
                 Bundle bundle = new Bundle();

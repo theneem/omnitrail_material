@@ -28,6 +28,7 @@ import com.facebook.share.model.SharePhotoContent;
 import com.facebook.share.widget.ShareButton;
 import com.facebook.share.widget.ShareDialog;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.thenneem.omnitrail.GalleryActivity;
 import com.thenneem.omnitrail.R;
 import com.thenneem.omnitrail.model.Saint;
@@ -67,6 +68,13 @@ public class SaintDetailFragment extends Fragment implements View.OnClickListene
     ShareDialog shareDialog;
     String strWiki, strName, img, mySID;
     Integer intId;
+
+
+    FloatingActionButton fabImageGallary;
+    FloatingActionButton fabShare;
+    FloatingActionButton fabWiki;
+
+
     private static String TAG = SaintDetailFragment.class.getName();
 
     public static SaintDetailFragment newInstance() {
@@ -107,12 +115,18 @@ public class SaintDetailFragment extends Fragment implements View.OnClickListene
         txtSaintDate = root.findViewById(R.id.txtSaintDate);
         txtFullAddress = root.findViewById(R.id.txtFullAddress);
         txtSaintStory = root.findViewById(R.id.txtSaintStory);
-        btnWikiLink = root.findViewById(R.id.btnWikiLink);
-        btnPhotos = root.findViewById(R.id.btnPhotos);
         txtContactPerson = root.findViewById(R.id.txtContactPerson);
 
-        btnWikiLink.setOnClickListener(this);
-        btnPhotos.setOnClickListener(this);
+
+
+
+        fabWiki = root.findViewById(R.id.fabWiki);
+        fabImageGallary = root.findViewById(R.id.fabImageGallary);
+        fabShare = root.findViewById(R.id.fabShare);
+
+        fabWiki.setOnClickListener(this);
+        fabImageGallary.setOnClickListener(this);
+        fabShare.setOnClickListener(this);
 
 
         // calling json retrofit
@@ -218,13 +232,16 @@ public class SaintDetailFragment extends Fragment implements View.OnClickListene
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btnWikiLink:
+            case R.id.fabShare:
+                btnShare.performClick();
+                break;
+            case R.id.fabWiki:
                 // Do something
                 Toast.makeText(this.getContext(), "wiki link crossed" + strWiki, Toast.LENGTH_SHORT).show();
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(strWiki));
                 startActivity(browserIntent);
                 break;
-            case R.id.btnPhotos:
+            case R.id.fabImageGallary:
                 Intent intent = new Intent(getActivity(), GalleryActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("bundleId", "1");

@@ -402,31 +402,13 @@ android:layout_marginTop="@dimen/_35sdp"
                         android:layout_gravity="center_horizontal"
                         android:padding="5dp">
 
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/btnWikiLink"
-                            style="@style/ButtonMain"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:text="Wikipedia"
-                            android:textAllCaps="false"/>
-
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/btnPhotos"
-                            style="@style/ButtonMain"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_margin="10dp"
-                            android:padding="10dp"
-                            android:text="Photos"
-                            android:textAllCaps="false" />
-
                         <com.facebook.share.widget.ShareButton
                             android:id="@+id/share"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_margin="10dp" />
+                            android:layout_margin="10dp"
+                            android:visibility="gone"
+                            />
 
                     </LinearLayout>
 
