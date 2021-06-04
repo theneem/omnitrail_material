@@ -8,8 +8,6 @@
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-
-
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -22,8 +20,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".GalleryActivity"></activity>
-        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".TrailActivity"></activity>
+        <activity android:name=".GalleryActivity" />
+        <activity android:name=".LoginActivity" />
         <activity
             android:name=".OmniHomeActivity"
             android:label="@string/title_activity_omni_home" />
@@ -37,46 +36,41 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key"
-
-            />
-        <meta-data android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id"/>
-
+            android:value="@string/google_maps_key" />
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
         <!--
                Set to true if your app is Standalone, that is, it does not require the handheld
                app to run.
         -->
         <provider
-            android:authorities="com.facebook.app.FacebookContentProvider449082165999605"
             android:name="com.facebook.FacebookContentProvider"
-            android:exported="true"/>
-        <activity android:name="com.facebook.FacebookActivity"
-            android:configChanges=
-                "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:authorities="com.facebook.app.FacebookContentProvider449082165999605"
+            android:exported="true" />
+
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name" />
         <activity
             android:name="com.facebook.CustomTabActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-
-
         <activity
             android:name=".activity_about"
-            android:label="@string/title_activity_acbout">
-
-        </activity>
+            android:label="@string/title_activity_acbout"></activity>
         <activity
             android:name=".activity_howitworks"
-            android:label="@string/title_activity_acbout">
-
-        </activity>
+            android:label="@string/title_activity_acbout"></activity>
         <activity
             android:name=".Home"
             android:label="@string/title_activity_home"
