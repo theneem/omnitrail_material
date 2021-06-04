@@ -17,7 +17,7 @@
     <string name="action_settings">Settings</string>
 
     <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
+    <string name="menu_gallery">Trails</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="title_activity_omnihome">OmnihomeActivity</string>
     <string name="title_activity_home">Home</string>
@@ -37,5 +37,8 @@
     <!-- facebook values -->
     <string name="facebook_app_id">449082165999605</string>
     <string name="fb_login_protocol_scheme">fb449082165999605</string>
+    <string name="trail_image">Trail Image</string>
+    <string name="lengthString">Length:</string>
+    <string name="AvgDays">| Est. Days:</string>
 
 </resources>
