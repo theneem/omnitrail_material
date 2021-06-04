@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="5dp"
+        android:outlineAmbientShadowColor="@color/primaryDarkColor"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorWhite"
+            android:paddingBottom="10dp">
+
+            <ImageView
+                android:id="@+id/imgTrail"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:contentDescription="@string/trail_image"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtTrailName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="8dp"
+                android:text="Trail Name"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/imgTrail"
+                app:layout_constraintTop_toBottomOf="@+id/imgTrail"
+                app:layout_constraintVertical_bias="0.037" />
+
+            <TextView
+                android:id="@+id/totalTrailPlaces"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="5 Places"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@+id/txtTrailName"
+                app:layout_constraintStart_toStartOf="@+id/txtTrailName"
+                app:layout_constraintTop_toBottomOf="@+id/txtTrailName" />
+
+            <TextView
+                android:id="@+id/txtLengthName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/lengthString"
+                app:layout_constraintStart_toStartOf="@+id/totalTrailPlaces"
+                app:layout_constraintTop_toBottomOf="@+id/totalTrailPlaces" />
+
+            <TextView
+                android:id="@+id/txtLength"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:text="5 km"
+                app:layout_constraintBottom_toBottomOf="@+id/txtLengthName"
+                app:layout_constraintStart_toEndOf="@+id/txtLengthName"
+                app:layout_constraintTop_toTopOf="@+id/txtLengthName" />
+
+            <TextView
+                android:id="@+id/AvgDaysName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="@string/AvgDays"
+                app:layout_constraintBottom_toBottomOf="@+id/txtLength"
+                app:layout_constraintStart_toEndOf="@+id/txtLength"
+                app:layout_constraintTop_toTopOf="@+id/txtLength" />
+
+            <TextView
+                android:id="@+id/AvgDays"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:text="2 days"
+                app:layout_constraintBottom_toBottomOf="@+id/AvgDaysName"
+                app:layout_constraintStart_toEndOf="@+id/AvgDaysName"
+                app:layout_constraintTop_toTopOf="@+id/AvgDaysName" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
