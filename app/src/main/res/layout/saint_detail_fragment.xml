@@ -8,6 +8,51 @@
     tools:context=".ui.saintdetail.SaintDetailFragment">
 
 
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabImageGallary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|left"
+        android:layout_marginStart="20dp"
+        app:fabSize="mini"
+        android:contentDescription="Hello"
+        android:backgroundTint="@color/colorWhite"
+        app:srcCompat="@drawable/ic_image_gallary"
+
+        />
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabShare"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|center"
+        android:layout_marginTop="@dimen/_5sdp"
+        app:fabSize="mini"
+        android:contentDescription="Hello"
+        android:backgroundTint="@color/colorWhite"
+        app:srcCompat="@drawable/ic_share"
+
+        />
+
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabWiki"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|right"
+        android:layout_marginEnd="20dp"
+        app:fabSize="mini"
+
+        android:contentDescription="Hello"
+        android:backgroundTint="@color/colorWhite"
+        app:srcCompat="@drawable/ic_wiki"
+
+        />
+
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -32,6 +77,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+android:layout_marginTop="@dimen/_35sdp"
                 android:padding="10dp">
 
                 <LinearLayout
@@ -356,31 +402,13 @@
                         android:layout_gravity="center_horizontal"
                         android:padding="5dp">
 
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/btnWikiLink"
-                            style="@style/ButtonMain"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:text="Wikipedia"
-                            android:textAllCaps="false"/>
-
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/btnPhotos"
-                            style="@style/ButtonMain"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_margin="10dp"
-                            android:padding="10dp"
-                            android:text="Photos"
-                            android:textAllCaps="false" />
-
                         <com.facebook.share.widget.ShareButton
                             android:id="@+id/share"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_margin="10dp" />
+                            android:layout_margin="10dp"
+                            android:visibility="gone"
+                            />
 
                     </LinearLayout>
 

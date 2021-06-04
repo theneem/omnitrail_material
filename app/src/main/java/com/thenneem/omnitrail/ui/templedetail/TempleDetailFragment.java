@@ -37,6 +37,7 @@ import com.facebook.share.widget.MessageDialog;
 import com.facebook.share.widget.ShareButton;
 import com.facebook.share.widget.ShareDialog;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
@@ -65,6 +66,12 @@ public class TempleDetailFragment extends Fragment implements View.OnClickListen
     String strWiki, strName, templeAdd, templeStory, templeDeity, templeGoverning, templeContact, templeCreator, templeCompletion,
             img, myTID;
     MaterialButton btnPhotos;
+
+    FloatingActionButton fabImageGallary;
+    FloatingActionButton fabShare;
+    FloatingActionButton fabWiki;
+
+
     ShareButton btnShare;
     CallbackManager callbackManager;
     ShareDialog shareDialog;
@@ -121,10 +128,15 @@ public class TempleDetailFragment extends Fragment implements View.OnClickListen
         txtCompletionPeriod = root.findViewById(R.id.txtCompletionPeriod);
 
         templeThumb = root.findViewById(R.id.templeThumb);
-        MaterialButton btnWiki = root.findViewById(R.id.btnWikiLink);
-        btnPhotos = root.findViewById(R.id.btnPhotos);
-        btnWiki.setOnClickListener(this);
-        btnPhotos.setOnClickListener(this);
+
+
+        fabWiki = root.findViewById(R.id.fabWiki);
+        fabImageGallary = root.findViewById(R.id.fabImageGallary);
+        fabShare = root.findViewById(R.id.fabShare);
+
+        fabWiki.setOnClickListener(this);
+        fabImageGallary.setOnClickListener(this);
+        fabShare.setOnClickListener(this);
 
         BindTempleDetail();
 
@@ -164,6 +176,8 @@ public class TempleDetailFragment extends Fragment implements View.OnClickListen
         SharePhotoContent content = new SharePhotoContent.Builder()
                 .addPhoto(sharePhoto)
                 .build();
+        //fabShare = (ShareButton) view.findViewById(R.id.share);
+
         btnShare = (ShareButton) view.findViewById(R.id.share);
         btnShare.setShareContent(content);
 
@@ -202,13 +216,16 @@ public class TempleDetailFragment extends Fragment implements View.OnClickListen
     public void onClick(View v) {
 
         switch (v.getId()) {
-            case R.id.btnWikiLink:
+            case R.id.fabWiki:
                 // Do something
                 Toast.makeText(this.getContext(), "wiki link crossed" + strWiki, Toast.LENGTH_SHORT).show();
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(strWiki));
                 startActivity(browserIntent);
                 break;
-            case R.id.btnPhotos:
+            case R.id.fabShare:
+                btnShare.performClick();
+                break;
+            case R.id.fabImageGallary:
                 Intent intent = new Intent(getActivity(), GalleryActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("bundleId", "0");
