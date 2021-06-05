@@ -431,7 +431,7 @@ public class FullscreenActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(MenuItem menuItem) {
                 int id = menuItem.getItemId();
                 if(id == R.id.nav_gallery) {
-                    Toast.makeText(FullscreenActivity.this, "nav gallary", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(FullscreenActivity.this,TrailActivity.class));
                 } else if(id == R.id.nav_mytrails) {
                     Toast.makeText(FullscreenActivity.this, "nav gallary 2" , Toast.LENGTH_SHORT).show();
 
