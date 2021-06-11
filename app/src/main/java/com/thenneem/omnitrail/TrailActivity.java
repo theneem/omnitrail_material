@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.appbar.MaterialToolbar;
+import com.thenneem.omnitrail.adapter.RecyclerItemClickListner;
 import com.thenneem.omnitrail.adapter.TrailAdapter;
 import com.thenneem.omnitrail.model.TrailMaster;
 import com.thenneem.omnitrail.retrofit.ApiClient;
@@ -75,6 +77,19 @@ public class TrailActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+        trailRecycler.addOnItemTouchListener(new RecyclerItemClickListner(this, trailRecycler, new RecyclerItemClickListner.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Intent intent = new Intent(TrailActivity.this,TrailDetailActivity.class);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onItemLongClick(View view, int position) {
+
+            }
+        }));
     }
 
     void showSearchResult(String query){
