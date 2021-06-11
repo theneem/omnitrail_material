@@ -433,7 +433,7 @@ public class FullscreenActivity extends AppCompatActivity {
                 if(id == R.id.nav_gallery) {
                     startActivity(new Intent(FullscreenActivity.this,TrailActivity.class));
                 } else if(id == R.id.nav_mytrails) {
-                    Toast.makeText(FullscreenActivity.this, "nav gallary 2" , Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(FullscreenActivity.this,TrailDetailActivity.class));
 
                 } else if(id == R.id.how_work) {
 
