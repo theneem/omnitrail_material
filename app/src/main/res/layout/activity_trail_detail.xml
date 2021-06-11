@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TrailDetailActivity">
+
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    
+<!--    <androidx.core.widget.NestedScrollView-->
+<!--        android:id="@+id/bottomSheetScroll"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="350dp"-->
+<!--        android:clipToPadding="true"-->
+<!--        android:background="@drawable/bottom_sheet_bg"-->
+<!--        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">-->
+
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:text="this is akshay,doing the test!\nthis is akshay,doing the test!-->
+<!--\nthis is akshay,doing the test!\nthis is akshay,doing the test!-->
+<!--\nthis is akshay,doing the test!\nthis is akshay,doing the test!-->
+<!--\nthis is akshay,doing the test!-->
+<!--\nthis is akshay,doing the test!"/>-->
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/bottomSheetRecycler"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:paddingTop="20dp"-->
+<!--            android:paddingLeft="10dp"-->
+<!--            android:paddingRight="10dp"/>-->
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
