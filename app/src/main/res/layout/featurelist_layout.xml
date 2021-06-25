@@ -14,11 +14,21 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/spacing_medium"
+            android:layout_marginVertical="@dimen/spacing_small"
+            android:layout_marginBottom="@dimen/_35sdp"
+            android:visibility="visible"
+            app:cardBackgroundColor="@android:color/white"
+            app:cardCornerRadius="6dp"
+            app:cardElevation="0dp"
+            app:strokeColor="@color/grey_10"
+            app:strokeWidth="1dp">
 
-            app:cardBackgroundColor="@color/primaryColor"
-
-            >
-
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -45,47 +55,47 @@
 
             </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:orientation="vertical"
-                    android:padding="5dp"
-                    android:weightSum="10">
-
-
-                    <androidx.appcompat.widget.AppCompatRatingBar
-                        style="@style/NormalRatingBar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:layout_gravity="end"
-                        android:backgroundTint="@color/primaryTextColor"
-
-                        ></androidx.appcompat.widget.AppCompatRatingBar>
-                </LinearLayout>
 
 
             </LinearLayout>
 
-        </com.google.android.material.card.MaterialCardView>
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:minHeight="40dp"
-
-
-            >
-
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/spacing_large" />
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/txtFeatureDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="this is feature description"
-
-                style="@style/NormalLable"
+                android:layout_marginStart="@dimen/spacing_large"
+                style="@style/NormalText"
                 android:textFontWeight="33"
                 />
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/spacing_large" />
+
+
+                <androidx.appcompat.widget.AppCompatRatingBar
+                    style="@style/AppTheme.AppBarOverlay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_gravity="end"
+                    android:backgroundTint="@color/black"
+                    android:layout_marginBottom="@dimen/_15sdp"
+                    ></androidx.appcompat.widget.AppCompatRatingBar>
+            </LinearLayout>
+
+
+            </LinearLayout>
+
         </com.google.android.material.card.MaterialCardView>
 
 

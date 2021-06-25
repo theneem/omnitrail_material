@@ -364,10 +364,10 @@ public class ReligionHome extends AppCompatActivity {
         ImageView imgRThumb = findViewById(R.id.imgReligionThumb);
 
         txtName.setText(religion.getReligionName());
-        //topToolBar.setTitle(religion.getReligionName());
+        topToolBar.setTitle(religion.getReligionName());
 
-        TextView txtTitle = findViewById(R.id.txtAppbarTitle);
-        txtTitle.setText(religion.getReligionName());
+        //TextView txtTitle = findViewById(R.id.txtAppbarTitle);
+        //txtTitle.setText(religion.getReligionName());
         Picasso.Builder builder = new Picasso.Builder(getApplicationContext());
 
 

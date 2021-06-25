@@ -66,6 +66,16 @@ public class SaintReviewFragment extends Fragment {
 
         Call<List<Event>> call = apiService.getEventList("saint", getArguments().getString("SaintId"));
 
+
+
+
+
+        TextView txtSaintDetailName;
+        txtSaintDetailName = root.findViewById(R.id.txtSaintDetailName);
+        Bundle bundle = this.getArguments();
+        txtSaintDetailName.setText(bundle.getString("SaintName"));
+
+
         //
         call.enqueue(new Callback<List<Event>>() {
             @Override

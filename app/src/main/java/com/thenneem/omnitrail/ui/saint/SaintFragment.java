@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
@@ -77,6 +78,14 @@ public class SaintFragment extends Fragment {
             // use a linear layout manager
             layoutManager = new LinearLayoutManager(this.getContext());
             recyclerView.setLayoutManager(layoutManager);
+
+
+
+        TextView txtSaintDetailName;
+        txtSaintDetailName = root.findViewById(R.id.txtSaintDetailName);
+        Bundle bundle = this.getArguments();
+        txtSaintDetailName.setText(bundle.getString("SaintName"));
+
 
 
         // calling json retrofit

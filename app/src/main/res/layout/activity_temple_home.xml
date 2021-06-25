@@ -10,7 +10,7 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
-        android:layout_height="256dp"
+        android:layout_height="260dp"
         android:fitsSystemWindows="true"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
@@ -19,56 +19,65 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
-            app:contentScrim="?attr/colorPrimaryDark"
-            app:expandedTitleMarginEnd="64dp"
-            app:expandedTitleMarginStart="48dp"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            app:contentScrim="?attr/colorPrimary"
+            app:expandedTitleTextAppearance="@style/TextAppearance.AppCompat.Headline"
+            app:collapsedTitleTextAppearance="@style/TextAppearance.AppCompat.Headline"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:titleEnabled="false">
 
-
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <ImageView
+                android:id="@+id/backdrop"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:id="@+id/backdrop"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:fitsSystemWindows="true"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/jainism"
-                    app:layout_collapseMode="parallax" />
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/jainism"
+                app:layout_collapseMode="parallax" />
 
 
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_more"
-                    app:layout_constraintTop_toTopOf="@+id/backdrop"
-                    app:layout_constraintEnd_toEndOf="@id/backdrop"
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_more"
+                app:layout_constraintTop_toTopOf="@+id/backdrop"
+                app:layout_constraintEnd_toEndOf="@id/backdrop"
 
-                    android:id="@+id/imgbtnMax"
-                    android:visibility="invisible"
+                android:id="@+id/imgbtnMax"
+                android:visibility="invisible"
 
-                    ></ImageButton>
+                />
 
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/overlay_dark_10" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.appcompat.widget.Toolbar
+            <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin"
-                app:title="OmniTrail"
+                android:layout_height="wrap_content"
+                android:layout_margin="0dp"
 
-                
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+                style="@style/AppSearchView"
+                android:contentInsetStart="1dp"
+                android:contentInsetLeft="5dp"
+                android:contentInsetRight="5dp"
+                android:padding="0dp"
+                app:contentInsetLeft="1dp"
+                app:contentInsetRight="5dp"
+                app:contentInsetStart="5dp"
+                app:navigationIcon="@mipmap/ic_omnitrail_launch"
+                app:menu="@menu/search"
+                app:title="@string/app_name"
+                app:titleTextColor="@color/primaryTextColor"/>
+
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
-
     </com.google.android.material.appbar.AppBarLayout>
+
+
 
 
     <androidx.core.widget.NestedScrollView

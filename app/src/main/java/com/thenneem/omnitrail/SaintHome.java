@@ -230,6 +230,8 @@ public class SaintHome extends AppCompatActivity {
         Bundle bundle = new Bundle();
         // NEED TO GET RELIGION ID TO PASS
         bundle.putString("SaintId", String.valueOf(  saint.getSaintID()));
+        bundle.putString("SaintName", String.valueOf(  saint.getSaintName()));
+
         bundle.putString("SaintImg", String.valueOf(  saint.getSaintIMG()));
         fragment.setArguments(bundle);
         transaction.replace(R.id.container, fragment);

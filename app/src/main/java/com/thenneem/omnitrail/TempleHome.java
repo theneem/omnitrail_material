@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
@@ -31,7 +32,7 @@ import com.thenneem.omnitrail.ui.templereview.TempleReviewFragment;
 public class TempleHome extends AppCompatActivity {
 
     private Temple temple;
-    Toolbar toolbar;
+    private MaterialToolbar toolbar;
     BottomNavigationView bottomNavigation;
     ImageView imgHead;
 
@@ -45,6 +46,7 @@ public class TempleHome extends AppCompatActivity {
         setContentView(R.layout.activity_temple_home);
 
         toolbar = findViewById(R.id.toolbar);
+
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -104,6 +106,8 @@ public class TempleHome extends AppCompatActivity {
         });
 
 
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+        toolbar.animate();
 
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {

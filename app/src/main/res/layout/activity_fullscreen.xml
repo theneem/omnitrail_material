@@ -135,6 +135,7 @@
         android:layout_height="match_parent"
         android:fitsSystemWindows="false">
 
+
         <LinearLayout
             android:id="@+id/fullscreen_content_controls1"
             style="?metaButtonBarStyle"
@@ -170,23 +171,57 @@
                         android:orientation="horizontal"
                         android:padding="@dimen/spacing_medium">
 
-                        <ImageButton
-                            android:id="@+id/map_button"
-                            android:layout_width="?attr/actionBarSize"
-                            android:layout_height="?attr/actionBarSize"
-                            android:background="?attr/selectableItemBackgroundBorderless"
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:padding="@dimen/spacing_medium">
 
-                            android:tint="@color/primaryLightColor"
-                            app:srcCompat="@drawable/ic_near_me" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Near Me"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
-                            android:textColor="@color/primaryLightColor"
-                            android:textStyle="bold" />
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:padding="@dimen/spacing_medium">
 
+                                <ImageView
+                                    android:id="@+id/menu_nav_1"
+                                    android:layout_width="?attr/actionBarSize"
+                                    android:layout_height="?attr/actionBarSize"
+                                    android:background="?attr/selectableItemBackgroundBorderless"
+                                    android:clickable="true"
+                                    android:padding="@dimen/spacing_smlarge"
+                                    android:tint="@color/blue_900"
+                                    app:srcCompat="@drawable/ic_home" />
+
+                            </LinearLayout>
+
+
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:padding="@dimen/spacing_medium">
+
+                                <ImageView
+                                    android:id="@+id/menuNearMe"
+                                    android:layout_width="?attr/actionBarSize"
+                                    android:layout_height="?attr/actionBarSize"
+                                    android:background="?attr/selectableItemBackgroundBorderless"
+                                    android:clickable="true"
+                                    android:padding="@dimen/spacing_smlarge"
+                                    android:tint="@color/blue_900"
+                                    app:srcCompat="@drawable/ic_location" />
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
                     </LinearLayout>
 
                     <View
@@ -200,23 +235,43 @@
                         android:gravity="center"
                         android:padding="@dimen/spacing_medium">
 
-                        <ImageButton
-                            android:id="@+id/list_button"
-                            android:layout_width="?attr/actionBarSize"
-                            android:layout_height="?attr/actionBarSize"
-                            android:background="?attr/selectableItemBackgroundBorderless"
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:padding="@dimen/spacing_medium">
 
-                            android:tint="@color/primaryLightColor"
-                            app:srcCompat="@drawable/ic_format_list_bulleted" />
+                            <ImageView
+                                android:id="@+id/menuHowitWorks"
+                                android:layout_width="?attr/actionBarSize"
+                                android:layout_height="?attr/actionBarSize"
+                                android:background="?attr/selectableItemBackgroundBorderless"
+                                android:clickable="true"
+                                android:padding="@dimen/spacing_smlarge"
+                                android:tint="@color/blue_900"
+                                app:srcCompat="@drawable/ic_howitwork" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="About"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
-                            android:textColor="@color/primaryLightColor"
-                            android:textStyle="bold" />
+                        </LinearLayout>
 
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:padding="@dimen/spacing_medium">
+
+                            <ImageView
+                                android:id="@+id/menuAbutUs"
+                                android:layout_width="?attr/actionBarSize"
+                                android:layout_height="?attr/actionBarSize"
+                                android:background="?attr/selectableItemBackgroundBorderless"
+                                android:clickable="true"
+                                android:padding="@dimen/spacing_smlarge"
+                                android:tint="@color/blue_900"
+                                app:srcCompat="@drawable/ic_about" />
+
+                        </LinearLayout>
                     </LinearLayout>
 
                 </LinearLayout>

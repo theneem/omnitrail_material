@@ -75,7 +75,12 @@ public class TempleFeatureFragment extends Fragment  implements View.OnClickList
 
         Call<List<Feature>> call = apiService.getFeatureList("temple", getArguments().getString("TempleId"));
 
-//
+
+        TextView txtTempleName;
+        txtTempleName = root.findViewById(R.id.txtTempleName);
+        Bundle bundle = this.getArguments();
+        txtTempleName.setText(bundle.getString("TempleName"));
+
         call.enqueue(new Callback<List<Feature>>() {
             @Override
             public void onResponse(Call<List<Feature>> call, Response<List<Feature>> response) {

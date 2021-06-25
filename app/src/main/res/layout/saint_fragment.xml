@@ -12,18 +12,39 @@
 
 
 
-        <!--
-            <SearchView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:queryHint="enter Saint Name"
-                android:queryBackground="@color/text_Header"
-                style="@style/MaterialAlertDialog.MaterialComponents.Title.Panel.CenterStacked"
-                android:gravity="end"
 
-                ></SearchView>
-        -->
-    <androidx.recyclerview.widget.RecyclerView
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/spacing_large" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:orientation="horizontal"
+            android:padding="1dp">
+
+            <TextView
+                android:id="@+id/txtSaintDetailName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_large"
+                android:text="Saint Name"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
+                android:textColor="@color/grey_90" /> />
+
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/spacing_large" />
+
+        <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/rv_religions"
@@ -44,6 +65,7 @@
             android:text="No Data Awailable" />
 
 
+    </LinearLayout>
     </LinearLayout>
 
 </FrameLayout>

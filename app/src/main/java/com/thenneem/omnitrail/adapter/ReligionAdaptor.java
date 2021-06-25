@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.thenneem.omnitrail.AddSaintActivity;
@@ -51,9 +52,11 @@ public class ReligionAdaptor extends RecyclerView.Adapter<ReligionAdaptor.Religi
         TextView txtRDesc;
         TextView txtRSaint;
         TextView txtRTemple;
+        TextView txtRTrail;
         ImageView moreButton;
         ImageView btnAddTemple;
         ImageView btnAddSaint;
+        FloatingActionButton fabAddTemple;
 
 
         private ItemClickListner itemClickListner;
@@ -67,10 +70,10 @@ public class ReligionAdaptor extends RecyclerView.Adapter<ReligionAdaptor.Religi
             txtRDesc = v.findViewById(R.id.txtReligionDesc);
             txtRSaint = v.findViewById(R.id.txtRSaint);
             txtRTemple = v.findViewById(R.id.txtRTemple);
-
+            txtRTrail = v.findViewById(R.id.txtRTrail);
             btnAddSaint = v.findViewById(R.id.btn_addSaint);
             btnAddTemple = v.findViewById(R.id.btn_addTemple);
-
+            fabAddTemple = v.findViewById(R.id.fabAddTemple);
             v.setOnClickListener(this);
 
 
@@ -114,7 +117,7 @@ public class ReligionAdaptor extends RecyclerView.Adapter<ReligionAdaptor.Religi
         holder.txtRDesc.setText(religions.get(position).getReligionDesc());
         holder.txtRSaint.setText("Saints: " + religions.get(position).getNoofsaint() );
         holder.txtRTemple.setText("Temples: " + religions.get(position).getNooftemple() );
-
+        holder.txtRTrail.setText("Trail:" + religions.get(position).getNooftrail());
         holder.txtRDesc.setVisibility(View.GONE);
 
         Picasso.Builder builder = new Picasso.Builder(this.context);
@@ -136,6 +139,26 @@ public class ReligionAdaptor extends RecyclerView.Adapter<ReligionAdaptor.Religi
                         Toast.makeText(context, "Piccaso Error " + e.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
+
+
+
+
+
+        holder.fabAddTemple.setOnClickListener(v -> {
+            // we need to check the if already login or not
+
+            preferenceManager = new PreferenceManager(v.getContext());
+
+
+            if (preferenceManager.getLoginSession()) {
+                showTemple(religions.get(position),v.getContext());
+            }
+            else {
+                showPage("temple", religions.get(position), v.getContext());
+            }
+        });
+
+
 
 
         holder.btnAddTemple.setOnClickListener(v -> {

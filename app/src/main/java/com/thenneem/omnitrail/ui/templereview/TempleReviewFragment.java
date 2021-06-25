@@ -72,6 +72,12 @@ public class TempleReviewFragment extends Fragment {
 
         Call<List<Event>> call = apiService.getEventList("temple", getArguments().getString("TempleId"));
 
+        TextView txtTempleName;
+        txtTempleName = root.findViewById(R.id.txtTempleName);
+        Bundle bundle = this.getArguments();
+        txtTempleName.setText(bundle.getString("TempleName"));
+
+
         //
         call.enqueue(new Callback<List<Event>>() {
             @Override

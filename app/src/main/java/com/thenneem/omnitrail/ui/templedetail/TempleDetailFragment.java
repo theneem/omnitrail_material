@@ -62,7 +62,7 @@ public class TempleDetailFragment extends Fragment implements View.OnClickListen
 
 
     ImageView templeThumb;
-    TextView txtFullAddress, txtTempleStory, txtPrimaryDeity, txtGoverningBody, txtContactPerson, txtCreator, txtCompletionPeriod;
+    TextView txtTempleName,  txtFullAddress, txtTempleStory, txtPrimaryDeity, txtGoverningBody, txtContactPerson, txtCreator, txtCompletionPeriod;
     String strWiki, strName, templeAdd, templeStory, templeDeity, templeGoverning, templeContact, templeCreator, templeCompletion,
             img, myTID;
     MaterialButton btnPhotos;
@@ -118,6 +118,7 @@ public class TempleDetailFragment extends Fragment implements View.OnClickListen
 
         final View root = inflater.inflate(R.layout.temple_detail_fragment, container, false);
 
+        txtTempleName = root.findViewById(R.id.txtTempleName);
         txtFullAddress = root.findViewById(R.id.txtFullAddress);
         txtTempleStory = root.findViewById(R.id.txtTempleStory);
         txtPrimaryDeity = root.findViewById(R.id.txtPrimaryDeity);
@@ -144,6 +145,8 @@ public class TempleDetailFragment extends Fragment implements View.OnClickListen
     }
 
     public void BindTempleDetail() {
+
+        txtTempleName.setText(strName);
         txtFullAddress.setText(templeAdd);
         txtTempleStory.setText(templeStory);
         txtPrimaryDeity.setText(templeDeity);

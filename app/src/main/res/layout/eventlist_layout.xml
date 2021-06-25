@@ -16,6 +16,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
+        android:layout_marginBottom="@dimen/_10sdp"
         app:cardCornerRadius="15dp"
         app:cardElevation="10dp"
         app:cardBackgroundColor="@color/primaryColor"
@@ -77,8 +78,8 @@
                     android:layout_gravity="start"
                     android:gravity="left"
                     android:text="Event Name"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="#FFFFFF" />
+                    style="@style/NormalText"
+                    />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -99,7 +100,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
 
-                            app:srcCompat="@drawable/ic_event_time"></ImageView>
+                            app:srcCompat="@drawable/ic_event_time"
+                            android:tint="@color/primaryLightColor"
+                            ></ImageView>
 
                         <TextView
                             android:id="@+id/txtEventTime"
@@ -166,7 +169,7 @@
                 android:layout_gravity="start"
                 android:layout_marginTop="1dp"
                 android:text="Event Details"
-                style="@style/NormalLable" />
+                style="@style/NormalText" />
 
 
             </com.google.android.material.card.MaterialCardView>
