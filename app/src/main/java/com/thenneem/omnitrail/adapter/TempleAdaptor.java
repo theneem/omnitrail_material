@@ -105,7 +105,7 @@ implements Filterable
             txtLocation = itemView.findViewById(R.id.txtMyLocation);
             txtPrimaryDeity = itemView.findViewById(R.id.txtPrimaryDeity);
             btnMore = itemView.findViewById(R.id.btnMore);
-            llDeity = itemView.findViewById(R.id.layoutDeity);
+            //llDeity = itemView.findViewById(R.id.layoutDeity);
             itemView.setOnClickListener(this);
 
         }
@@ -150,10 +150,10 @@ implements Filterable
         holder.txtLocation.setText(temples.get(position).getCity_name() + ", " +  temples.get(position).getState_name() + "," + temples.get(position).getCountry_name()  );
         if(temples.get(position).getPrimaryDeity()!="")
         {
-            holder.llDeity.setVisibility(View.VISIBLE);
+           // holder.llDeity.setVisibility(View.VISIBLE);
             holder.txtPrimaryDeity.setText(temples.get(position).getPrimaryDeity());}
         else {
-            holder.llDeity.setVisibility(View.GONE);
+           // holder.llDeity.setVisibility(View.GONE);
         }
 
 

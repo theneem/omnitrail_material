@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <resources>
-    <color name="primaryColor">#50797A</color>
-    <color name="primaryDarkColor">#375657</color>
-    <color name="primaryLightColor">#A5BCBC</color>
+
+
+
+    <color name="primaryColor">#FFFFFF</color>
+    <color name="primaryDarkColor">#FFFFFF</color>
+    <color name="primaryLightColor">#1E88E5</color>
 
 
     <color name="secondaryColor">#607d8b</color>
     <color name="secondaryLightColor">#8eacbb</color>
     <color name="secondaryDarkColor">#34515e</color>
 
-    <color name="primaryTextColor">#ffffff</color>
-    <color name="secondaryTextColor">#000000</color>
+    <color name="primaryTextColor">#000000</color>
+    <color name="secondaryTextColor">#FFFFFF</color>
 
 
 
@@ -26,12 +29,94 @@
     <color name="black">#000000</color>
 
 
+    <!-- from template -->
+
+    <color name="grey_3">#f7f7f7</color>
+    <color name="grey_5">#f2f2f2</color>
+    <color name="grey_10">#e6e6e6</color>
+    <color name="grey_20">#cccccc</color>
+    <color name="grey_40">#999999</color>
+    <color name="grey_60">#666666</color>
+    <color name="grey_80">#37474F</color>
+    <color name="grey_90">#263238</color>
+    <color name="grey_95">#1a1a1a</color>
+    <color name="grey_100_">#0d0d0d</color>
+
+    <color name="overlay_dark_5">#0C000000</color>
+    <color name="overlay_dark_10">#1A000000</color>
+    <color name="overlay_dark_20">#33000000</color>
+    <color name="overlay_dark_30">#4D000000</color>
+    <color name="overlay_dark_40">#66000000</color>
+    <color name="overlay_dark_50">#80000000</color>
+    <color name="overlay_dark_60">#99000000</color>
+    <color name="overlay_dark_70">#B3000000</color>
+    <color name="overlay_dark_80">#CC000000</color>
+    <color name="overlay_dark_90">#E6000000</color>
+
+
+    <color name="deep_orange_50">#FBE9E7</color>
+    <color name="deep_orange_100">#FFCCBC</color>
+    <color name="deep_orange_200">#FFAB91</color>
+    <color name="deep_orange_300">#FF8A65</color>
+    <color name="deep_orange_400">#FF7043</color>
+    <color name="deep_orange_500">#FF5722</color>
+    <color name="deep_orange_600">#F4511E</color>
+    <color name="deep_orange_700">#E64A19</color>
+    <color name="deep_orange_800">#D84315</color>
+    <color name="deep_orange_900">#BF360C</color>
+    <color name="deep_orange_A100">#FF9E80</color>
+    <color name="deep_orange_A200">#FF6E40</color>
+    <color name="deep_orange_A400">#FF3D00</color>
+    <color name="deep_orange_A700">#DD2C00</color>
+
+
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccentDark">#F50057</color>
+    <color name="colorAccentLight">#FF80AB</color>
+
+
+
+
+
+</resources>
+
+<!-- originoal green whie on live
+
+
+<resources>
+<color name="primaryColor">#50797A</color>
+<color name="primaryDarkColor">#375657</color>
+<color name="primaryLightColor">#A5BCBC</color>
+
+
+<color name="secondaryColor">#607d8b</color>
+<color name="secondaryLightColor">#8eacbb</color>
+<color name="secondaryDarkColor">#34515e</color>
+
+<color name="primaryTextColor">#ffffff</color>
+<color name="secondaryTextColor">#000000</color>
+
+
+
+
+<color name="black_overlay">#66000000</color>
+<color name="text_Header">#000000</color>
+
+
+<color name="colorWhite">#FFFFFF</color>
+<color name="colorGray">#CCCCCC</color>
+
+<color name="black">#000000</color>
+
+
 
 
 
 </resources>
 
 
+
+    end of original green white on live -->
 
 
     <!-- YELLOW  COLOR -->

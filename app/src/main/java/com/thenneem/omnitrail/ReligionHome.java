@@ -34,6 +34,8 @@ import com.thenneem.omnitrail.ui.book.BookFragment;
 import com.thenneem.omnitrail.ui.saint.SaintFragment;
 import com.thenneem.omnitrail.ui.temple.TempleFragment;
 
+import org.w3c.dom.Text;
+
 import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.OnShowRationale;
 import permissions.dispatcher.PermissionRequest;
@@ -225,7 +227,7 @@ public class ReligionHome extends AppCompatActivity {
         mContentView = findViewById(R.id.fullscreen_content);
 
 
-        topToolBar.setNavigationIcon(R.drawable.ic_back);
+        topToolBar.setNavigationIcon(R.drawable.ic_arrow_back);
         topToolBar.animate();
 
 
@@ -362,8 +364,10 @@ public class ReligionHome extends AppCompatActivity {
         ImageView imgRThumb = findViewById(R.id.imgReligionThumb);
 
         txtName.setText(religion.getReligionName());
-        topToolBar.setTitle(religion.getReligionName());
+        //topToolBar.setTitle(religion.getReligionName());
 
+        TextView txtTitle = findViewById(R.id.txtAppbarTitle);
+        txtTitle.setText(religion.getReligionName());
         Picasso.Builder builder = new Picasso.Builder(getApplicationContext());
 
 

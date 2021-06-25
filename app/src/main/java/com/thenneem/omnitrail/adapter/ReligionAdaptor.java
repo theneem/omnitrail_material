@@ -112,8 +112,9 @@ public class ReligionAdaptor extends RecyclerView.Adapter<ReligionAdaptor.Religi
         //Toast.makeText(context, religions.get(position).getReligionName(), Toast.LENGTH_LONG).show();
         holder.txtRName.setText(religions.get(position).getReligionName());
         holder.txtRDesc.setText(religions.get(position).getReligionDesc());
-        holder.txtRSaint.setText("Saints (" + religions.get(position).getNoofsaint() + ")");
-        holder.txtRTemple.setText("Temples (" + religions.get(position).getNooftemple() + ")");
+        holder.txtRSaint.setText("Saints: " + religions.get(position).getNoofsaint() );
+        holder.txtRTemple.setText("Temples: " + religions.get(position).getNooftemple() );
+
         holder.txtRDesc.setVisibility(View.GONE);
 
         Picasso.Builder builder = new Picasso.Builder(this.context);

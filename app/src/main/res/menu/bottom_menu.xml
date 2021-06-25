@@ -15,8 +15,8 @@
         android:title="Saint" />
     <item
         android:id="@+id/navigation_book"
-        android:icon="@drawable/ic_books"
+        android:icon="@drawable/ic_trails"
         android:enabled="true"
 
-        android:title="Book" />
+        android:title="Trail" />
 </menu>
