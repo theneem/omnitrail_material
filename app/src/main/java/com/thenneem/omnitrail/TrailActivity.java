@@ -101,6 +101,7 @@ public class TrailActivity extends AppCompatActivity {
         }
         trailAdapter.updateList(trails);
     }
+
     public void getTrails() {
         if (Utils.isConnected(TrailActivity.this)) {
             Utils.showLoader(TrailActivity.this);
