@@ -21,7 +21,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".TrailDetailActivity"></activity>
+        <activity android:name=".TrailDetailActivity"
+            android:theme="@style/AppFullScreenTheme"/>
         <activity android:name=".TrailActivity" />
         <activity android:name=".GalleryActivity" />
         <activity android:name=".LoginActivity" />
