@@ -1,6 +1,7 @@
 package com.thenneem.omnitrail.retrofit;
 
 import com.thenneem.omnitrail.model.TempleImages;
+import com.thenneem.omnitrail.model.TrailChild;
 import com.thenneem.omnitrail.model.TrailMaster;
 import com.thenneem.omnitrail.response.ForgotPassResponse;
 
@@ -67,4 +68,10 @@ public interface ApiInterface {
 
     @GET("getTrails.php")
     Call<List<TrailMaster>> getTrails();
+
+    @FormUrlEncoded
+    @POST("getTrailChildren.php")
+    Call<List<TrailChild>> getTrailChildren(
+            @Field("trailID") int trailID
+    );
 }
