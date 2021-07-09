@@ -33,6 +33,7 @@ import com.thenneem.omnitrail.ui.TempleMapsFragment;
 import com.thenneem.omnitrail.ui.book.BookFragment;
 import com.thenneem.omnitrail.ui.saint.SaintFragment;
 import com.thenneem.omnitrail.ui.temple.TempleFragment;
+import com.thenneem.omnitrail.ui.trail.TrailListFragment;
 
 import org.w3c.dom.Text;
 
@@ -311,7 +312,7 @@ public class ReligionHome extends AppCompatActivity {
                 fragment = SaintFragment.newInstance();
                 break;
             case R.id.navigation_book:
-                fragment = BookFragment.newInstance();
+                fragment = TrailListFragment.newInstance();
                 break;
         }
         if(fragment != null){
@@ -343,7 +344,7 @@ public class ReligionHome extends AppCompatActivity {
                     result = true;
                     break;
                 case R.id.navigation_book:
-                    openFragment(BookFragment.newInstance());
+                    openFragment(TrailListFragment.newInstance());
                     item.setChecked(true);
                     hint = "Search Book";
                     result = true;
