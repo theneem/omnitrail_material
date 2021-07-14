@@ -17,7 +17,7 @@
             android:contentDescription="Configuration"
 
             app:backgroundTint="@android:color/transparent"
-            android:layout_margin="16dp"
+            android:layout_margin="10dp"
             android:visibility="visible"
 
 
@@ -36,7 +36,7 @@
             android:layout_margin="@dimen/_10sdp"
             android:text="How it works "
             android:textAlignment="center"
-            android:textColor="@color/primaryColor"
+            android:textColor="@color/primaryLightColor"
             android:textSize="40sp"
             android:textStyle="bold" />
 

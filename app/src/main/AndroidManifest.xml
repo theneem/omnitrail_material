@@ -22,7 +22,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".TrailDetailActivity"
-            android:theme="@style/AppFullScreenTheme"/>
+            android:theme="@style/FullscreenTheme"/>
         <activity android:name=".TrailActivity" />
         <activity android:name=".GalleryActivity" />
         <activity android:name=".LoginActivity" />
@@ -116,6 +116,20 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".FullscreenActivity" />
         </activity>
+
+
+        <activity
+            android:name=".ProfileTab"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_profile"
+            android:theme="@style/FullscreenTheme"
+            android:usesCleartextTraffic="true">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".FullscreenActivity" />
+        </activity>
+
+
         <activity
             android:name=".SplashActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"

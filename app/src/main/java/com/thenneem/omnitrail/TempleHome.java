@@ -8,6 +8,7 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.MenuItem;
@@ -50,7 +51,7 @@ public class TempleHome extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        CollapsingToolbarLayout collapsingToolbar = findViewById(R.id.collapsing_toolbar);
+
 
         bottomNavigation = findViewById(R.id.bottom_navigation);
         bottomNavigation.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
@@ -106,7 +107,7 @@ public class TempleHome extends AppCompatActivity {
         });
 
 
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+        toolbar.setNavigationIcon(R.drawable.icon_back);
         toolbar.animate();
 
 
@@ -202,6 +203,7 @@ public class TempleHome extends AppCompatActivity {
 
         //toolbar.setTitle(temple.getReligionName() + " -> " +  temple.getTempleName());
         toolbar.setTitle(temple.getTempleName());
+        toolbar.setTitleTextColor(Color.BLACK);
 
         ImageView imgtopbar = findViewById(R.id.backdrop);
 

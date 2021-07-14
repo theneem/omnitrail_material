@@ -182,9 +182,44 @@ public class FullscreenActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
 
-        /*
+        FloatingActionButton fab = findViewById(R.id.add_button);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(FullscreenActivity.this, ProfileTab.class);
+                startActivity(intent);
+            }
+        });
 
-        FloatingActionButton fab = findViewById(R.id.fab);
+        //botttom nabigatio click events
+
+        ImageView imgAboutus = findViewById(R.id.menuAbutUs);
+        imgAboutus.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(FullscreenActivity.this, activity_about.class);
+                startActivity(intent);
+            }
+
+        });
+
+
+        ImageView imgHowitWorks = findViewById(R.id.menuHowitWorks);
+        imgHowitWorks.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(FullscreenActivity.this, activity_howitworks.class);
+                startActivity(intent);
+            }
+
+        });
+
+
+
+
+
+/*
+        FloatingActionButton fab = findViewById(R.id.add_button);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -193,7 +228,7 @@ public class FullscreenActivity extends AppCompatActivity {
             }
         });
 
-        */
+*/
 
 
         // end of show navigation draswer

@@ -20,8 +20,8 @@
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
             app:contentScrim="?attr/colorPrimary"
-            app:expandedTitleTextAppearance="@style/TextAppearance.AppCompat.Headline"
-            app:collapsedTitleTextAppearance="@style/TextAppearance.AppCompat.Headline"
+            app:expandedTitleTextAppearance="@style/HeaderText"
+            app:collapsedTitleTextAppearance="@style/HeaderText"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:titleEnabled="false">
 
@@ -70,7 +70,7 @@
                 app:navigationIcon="@mipmap/ic_omnitrail_launch"
                 app:menu="@menu/search"
                 app:title="@string/app_name"
-                app:titleTextColor="@color/primaryTextColor"/>
+                app:titleTextColor="@color/primaryLightColor"/>
 
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
