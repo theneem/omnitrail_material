@@ -34,23 +34,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="5"
-                        android:orientation="horizontal"
-                        android:padding="1dp">
 
-                        <TextView
-                            android:id="@+id/txtSaintDetailName"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/spacing_large"
-                            android:text="Saint Name"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
-                            android:textColor="@color/grey_90" /> />
-
-                    </LinearLayout>
 
 
 

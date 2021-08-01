@@ -146,7 +146,7 @@ public class TempleDetailFragment extends Fragment implements View.OnClickListen
 
     public void BindTempleDetail() {
 
-        txtTempleName.setText(strName);
+        //txtTempleName.setText(strName);
         txtFullAddress.setText(templeAdd);
         txtTempleStory.setText(templeStory);
         txtPrimaryDeity.setText(templeDeity);

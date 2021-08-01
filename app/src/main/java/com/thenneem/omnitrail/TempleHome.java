@@ -30,12 +30,16 @@ import com.thenneem.omnitrail.ui.templedetail.TempleDetailFragment;
 import com.thenneem.omnitrail.ui.templefeature.TempleFeatureFragment;
 import com.thenneem.omnitrail.ui.templereview.TempleReviewFragment;
 
+import java.util.Objects;
+
 public class TempleHome extends AppCompatActivity {
 
     private Temple temple;
     private MaterialToolbar toolbar;
     BottomNavigationView bottomNavigation;
     ImageView imgHead;
+
+    TextView txtSubTag ;
 
     AppBarLayout appBarLayout;
     boolean isImageFitToScreen;
@@ -46,11 +50,12 @@ public class TempleHome extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_temple_home);
 
-        toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toptoolbar);
 
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
         bottomNavigation = findViewById(R.id.bottom_navigation);
@@ -107,9 +112,37 @@ public class TempleHome extends AppCompatActivity {
         });
 
 
-        toolbar.setNavigationIcon(R.drawable.icon_back);
-        toolbar.animate();
 
+
+        AppBarLayout apbar ;
+        apbar = findViewById(R.id.app_bar_layout);
+
+        //toolbar.setTitle(temple.getReligionName());
+        apbar.addOnOffsetChangedListener(new AppBarLayout.BaseOnOffsetChangedListener() {
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+
+                if (Math.abs(verticalOffset)-appBarLayout.getTotalScrollRange() == 0)
+                {
+                    //  Collapsed
+                    toolbar.setTitleTextColor(getResources().getColor(android.R.color.black));
+                    toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+
+                }
+                else
+                {
+                    //Expanded
+                    toolbar.setTitleTextColor(getResources().getColor(android.R.color.white));
+                    toolbar.setNavigationIcon(R.drawable.ic_back);
+
+
+                }
+
+            }
+        });
+
+
+        toolbar.animate();
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,11 +150,13 @@ public class TempleHome extends AppCompatActivity {
                 finish();
             }
         });
+
         getIncomingIntent();
         openFragment(TempleDetailFragment.newInstance());
 
 
         // initiate and perform click event on button's
+       /* TRY
         ImageButton search = findViewById(R.id.imgbtnMax);
         search.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -144,7 +179,7 @@ public class TempleHome extends AppCompatActivity {
             }
         });
 
-
+        end try */
 
     }
 
@@ -171,6 +206,7 @@ public class TempleHome extends AppCompatActivity {
         transaction.replace(R.id.container, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
+
     }
 
     BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -197,14 +233,24 @@ public class TempleHome extends AppCompatActivity {
         }
     };
 
+
     public  void getIncomingIntent(){
 
         temple = (Temple)  getIntent().getSerializableExtra("Temple");
 
-        //toolbar.setTitle(temple.getReligionName() + " -> " +  temple.getTempleName());
+        txtSubTag = findViewById(R.id.textViewSubTag);
+
+        txtSubTag.setText(temple.getTempleName());
+
+        toolbar.setTitle(temple.getReligionName());
+
+
+        /* try
         toolbar.setTitle(temple.getTempleName());
         toolbar.setTitleTextColor(Color.BLACK);
 
+        end try
+         */
         ImageView imgtopbar = findViewById(R.id.backdrop);
 
 

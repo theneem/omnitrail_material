@@ -167,7 +167,7 @@ public class SaintDetailFragment extends Fragment implements View.OnClickListene
 
             intId = sl.get(0).getSaintID();
             strName = sl.get(0).getSaintName();
-            txtSaintDeatilName.setText(sl.get(0).getSaintName());
+//            txtSaintDeatilName.setText(sl.get(0).getSaintName());
             txtSect.setText(sl.get(0).getSectName());
             txtSamudai.setText(sl.get(0).getSamudai());
             txtParentSaint.setText(sl.get(0).getParentSaintName());

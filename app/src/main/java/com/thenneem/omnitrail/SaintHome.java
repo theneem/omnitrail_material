@@ -35,6 +35,8 @@ import com.thenneem.omnitrail.ui.saintreview.SaintReviewFragment;
 import com.thenneem.omnitrail.ui.temple.TempleFragment;
 import com.thenneem.omnitrail.ui.templedetail.TempleDetailFragment;
 
+import org.w3c.dom.Text;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -63,7 +65,9 @@ public class SaintHome extends AppCompatActivity {
     private MaterialToolbar topToolBar;
     private Saint saint;
     ImageView imgSThumb;
-    Toolbar toolbar;
+    TextView txtSubTag;
+    //Toolbar toolbar;
+    private MaterialToolbar toolbar;
     BottomNavigationView bottomNavigation;
 
     ImageView imgHead;
@@ -160,8 +164,37 @@ public class SaintHome extends AppCompatActivity {
 
 
 
+        AppBarLayout apbar ;
+        apbar = findViewById(R.id.app_bar_layout);
 
-        toolbar = findViewById(R.id.toolbar);
+        //toolbar.setTitle(temple.getReligionName());
+        apbar.addOnOffsetChangedListener(new AppBarLayout.BaseOnOffsetChangedListener() {
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+
+                if (Math.abs(verticalOffset)-appBarLayout.getTotalScrollRange() == 0)
+                {
+                    //  Collapsed
+                    toolbar.setTitleTextColor(getResources().getColor(android.R.color.black));
+                    toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+
+                }
+                else
+                {
+                    //Expanded
+                    toolbar.setTitleTextColor(getResources().getColor(android.R.color.white));
+                    toolbar.setNavigationIcon(R.drawable.ic_back);
+
+
+                }
+
+            }
+        });
+
+
+
+
+        toolbar = findViewById(R.id.toptoolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -192,7 +225,14 @@ public class SaintHome extends AppCompatActivity {
         saint = (Saint)  getIntent().getSerializableExtra("Saint");
         TextView txtName = findViewById(R.id.fullscreen_content);
 
+        toolbar.setTitle(saint.getReligionName());
+
+        txtSubTag = findViewById(R.id.textViewSubTag);
+
+        txtSubTag.setText(saint.getSaintName());
+
         imgSThumb = findViewById(R.id.backdrop);
+
 
         Picasso.Builder builder = new Picasso.Builder(getApplicationContext());
         builder.build().load(saint.getSaintIMG())
@@ -209,8 +249,7 @@ public class SaintHome extends AppCompatActivity {
                 });
 
 
-        //topToolBar.setTitle(  "-> " +   saint.getSaintName());
-        toolbar.setTitle( saint.getReligionName() +  "-> " +   saint.getSaintName());
+        //toolbar.setTitle( saint.getReligionName() +  "-> " +   saint.getSaintName());
 
 
 

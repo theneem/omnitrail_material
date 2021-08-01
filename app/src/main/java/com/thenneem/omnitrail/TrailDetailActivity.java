@@ -14,6 +14,7 @@ import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
 
@@ -60,6 +61,19 @@ public class TrailDetailActivity extends AppCompatActivity implements OnMapReady
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(TrailDetailActivity.this);
         trailChildRecycler.setLayoutManager(layoutManager);
         trailChildRecycler.setItemAnimator(new DefaultItemAnimator());
+
+
+        MaterialToolbar toolbar = findViewById(R.id.toptoolbar);
+
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
+
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
