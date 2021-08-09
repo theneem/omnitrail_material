@@ -38,7 +38,6 @@ public class TempleHome extends AppCompatActivity {
     private MaterialToolbar toolbar;
     BottomNavigationView bottomNavigation;
     ImageView imgHead;
-
     TextView txtSubTag ;
 
     AppBarLayout appBarLayout;
@@ -54,9 +53,6 @@ public class TempleHome extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
 
         bottomNavigation = findViewById(R.id.bottom_navigation);
         bottomNavigation.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
@@ -91,10 +87,6 @@ public class TempleHome extends AppCompatActivity {
 
                 }else{
                     isImageFitToScreen=true;
-                    //imgHead.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
-
-                    //appBarLayout.setLayoutParams(new CoordinatorLayout.LayoutParams(CoordinatorLayout.LayoutParams.MATCH_PARENT,CoordinatorLayout.LayoutParams.MATCH_PARENT));
-                    //imgHead.setLayoutParams(new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT,ConstraintLayout.LayoutParams.MATCH_PARENT));
 
                     appBarLayout.setLayoutParams(new CoordinatorLayout.LayoutParams(width,height));
                     imgHead.setLayoutParams(new ConstraintLayout.LayoutParams(width,height));
@@ -102,16 +94,11 @@ public class TempleHome extends AppCompatActivity {
                     imgHead.setAdjustViewBounds(true);
                     imgHead.setTooltipText("Click to Minimize");
 
-                    //imgHead.setScaleType(ImageView.ScaleType.FIT_XY);
                     imgHead.setScaleType(ImageView.ScaleType.FIT_START);
-
-
 
                 }
             }
         });
-
-
 
 
         AppBarLayout apbar ;
@@ -127,59 +114,33 @@ public class TempleHome extends AppCompatActivity {
                     //  Collapsed
                     toolbar.setTitleTextColor(getResources().getColor(android.R.color.black));
                     toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
-
                 }
                 else
                 {
                     //Expanded
                     toolbar.setTitleTextColor(getResources().getColor(android.R.color.white));
                     toolbar.setNavigationIcon(R.drawable.ic_back);
-
-
                 }
 
             }
         });
 
 
-        toolbar.animate();
-
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
 
         getIncomingIntent();
         openFragment(TempleDetailFragment.newInstance());
 
 
-        // initiate and perform click event on button's
-       /* TRY
-        ImageButton search = findViewById(R.id.imgbtnMax);
-        search.setOnClickListener(new View.OnClickListener() {
+        toolbar.animate();
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-
-
-
-                Toast.makeText(getApplicationContext(), "Show some text on the screen.", Toast.LENGTH_LONG).show();
-
-
-                DisplayMetrics displayMetrics = new DisplayMetrics();
-                getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-                int height = displayMetrics.heightPixels;
-                int width = displayMetrics.widthPixels;
-
-                imgHead.setMaxHeight(height);
-                imgHead.setMaxWidth(width);
-
-
+            public void onClick(View view)
+            {
+                finish();
             }
         });
 
-        end try */
 
     }
 
@@ -237,22 +198,11 @@ public class TempleHome extends AppCompatActivity {
     public  void getIncomingIntent(){
 
         temple = (Temple)  getIntent().getSerializableExtra("Temple");
-
         txtSubTag = findViewById(R.id.textViewSubTag);
-
         txtSubTag.setText(temple.getTempleName());
-
         toolbar.setTitle(temple.getReligionName());
 
-
-        /* try
-        toolbar.setTitle(temple.getTempleName());
-        toolbar.setTitleTextColor(Color.BLACK);
-
-        end try
-         */
         ImageView imgtopbar = findViewById(R.id.backdrop);
-
 
         Picasso.Builder builder = new Picasso.Builder(getApplicationContext());
         builder.build().load(temple.getTempleIMG())
